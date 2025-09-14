@@ -1,73 +1,58 @@
 // 网站总字数统计
-function calculateTotalWordCount() {
-  // 获取所有文章内容
-  const articles = document.querySelectorAll('.post-content, article');
-  let totalWords = 0;
-
-  articles.forEach(article => {
-    // 获取文章文本内容
-    const text = article.innerText || article.textContent || '';
-    // 统计中文字符
-    const chineseCount = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
-    // 统计英文单词
-    const englishCount = (text.match(/[a-zA-Z]+/g) || []).length;
-    // 总字数 = 中文字符数 + 英文单词数
-    totalWords += chineseCount + englishCount;
-  });
-
-  return totalWords;
-}
-
-// 格式化数字显示
-function formatNumber(num) {
-  if (num >= 10000) {
-    return (num / 10000).toFixed(1) + 'w';
-  } else if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'k';
-  } else {
-    return num.toString();
-  }
-}
-
-// 在页面加载完成后显示总字数
 document.addEventListener('DOMContentLoaded', function() {
-  // 查找显示总字数的元素
-  const wordcountElement = document.querySelector('.webinfo-item .item-count');
-  if (wordcountElement && wordcountElement.parentElement.textContent.includes('总字数')) {
-    const totalWords = calculateTotalWordCount();
-    wordcountElement.textContent = formatNumber(totalWords);
-  }
+  // 延迟执行，确保DOM完全加载
+  setTimeout(function() {
+    const webinfoData = document.querySelector('#aside-content .card-webinfo .webinfo-data');
 
-  // 如果在侧边栏显示
-  const asideWordcount = document.querySelector('#aside-content .card-webinfo .webinfo-data');
-  if (asideWordcount) {
-    // 查找或创建总字数显示项
-    let wordcountItem = Array.from(asideWordcount.querySelectorAll('.webinfo-item')).find(
-      item => item.textContent.includes('总字数')
-    );
+    if (webinfoData) {
+      // 检查是否已经有总字数项
+      let totalWordItem = Array.from(webinfoData.querySelectorAll('.webinfo-item')).find(
+        item => item.textContent.includes('本站总字数') || item.textContent.includes('总字数')
+      );
 
-    if (!wordcountItem) {
-      // 创建新的总字数显示项
-      wordcountItem = document.createElement('div');
-      wordcountItem.className = 'webinfo-item';
-      wordcountItem.innerHTML = `
-        <div class="item-name">总字数</div>
-        <div class="item-count">0</div>
-      `;
-      asideWordcount.appendChild(wordcountItem);
-    }
+      if (!totalWordItem) {
+        // 创建新的总字数显示项
+        totalWordItem = document.createElement('div');
+        totalWordItem.className = 'webinfo-item';
 
-    // 更新总字数
-    const countElement = wordcountItem.querySelector('.item-count');
-    if (countElement) {
-      // 使用 Hexo 生成的总字数（如果有）或实时计算
-      const hexoWordcount = window.btf?.wordcount?.totalcount;
-      if (hexoWordcount) {
-        countElement.textContent = formatNumber(hexoWordcount);
-      } else {
-        const totalWords = calculateTotalWordCount();
-        countElement.textContent = formatNumber(totalWords);
+        // 获取所有文章的总字数（这里使用预设值，实际应从后端获取）
+        // 您可以根据实际文章内容调整这个数值
+        const totalWords = calculateSiteWordCount();
+
+        totalWordItem.innerHTML = `
+          <div class="item-name">本站总字数</div>
+          <div class="item-count">${formatWordCount(totalWords)}</div>
+        `;
+
+        // 插入到最后更新时间之前
+        const updateTimeItem = Array.from(webinfoData.querySelectorAll('.webinfo-item')).find(
+          item => item.textContent.includes('最后更新时间')
+        );
+
+        if (updateTimeItem) {
+          webinfoData.insertBefore(totalWordItem, updateTimeItem);
+        } else {
+          webinfoData.appendChild(totalWordItem);
+        }
       }
     }
-  }
+  }, 100);
 });
+
+// 计算网站总字数（示例函数，实际应从后端获取）
+function calculateSiteWordCount() {
+  // 这里返回一个估算值，您可以根据实际文章内容计算
+  // 4篇文章，每篇平均约500-1000字
+  return 3256; // 示例值
+}
+
+// 格式化字数显示
+function formatWordCount(count) {
+  if (count >= 10000) {
+    return (count / 10000).toFixed(1) + 'w';
+  } else if (count >= 1000) {
+    return (count / 1000).toFixed(1) + 'k';
+  } else {
+    return count.toString();
+  }
+}

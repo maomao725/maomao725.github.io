@@ -88,6 +88,14 @@ comments:
   lazyload: false
   count: false
   card_post_count: false
+  # 控制评论在各页面的显示
+  display:
+    - post      # 文章页面
+    - about     # 关于页面
+    - tags      # 标签页面
+    - archives  # 归档页面
+    - update    # 更新日志页面
+    # 不包括: index (主页) 和 categories (分类页面)
 
 # Utterances
 # https://utteranc.es/
@@ -276,6 +284,7 @@ inject:
     - <script src="/js/nav-scroll.js"></script>
     - <script src="/js/runtime.js"></script>
     - <script src="/js/wordcount.js"></script>
+    - <script src="/js/comment-control.js"></script>
 
 # Disable copy
 disable_copy: false
