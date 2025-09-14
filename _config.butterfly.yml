@@ -11,7 +11,7 @@ menu:
 # Avatar
 avatar:
   img: /img/avatar.jpg
-  effect: true
+  effect: false
 
 # Nav related settings
 nav:
@@ -22,7 +22,7 @@ nav:
 # Main page settings
 index_img: /img/background.png
 default_top_img: /img/background.png
-index_top_img_height: 60vh
+index_top_img_height: 100vh
 footer_img: false
 
 # Cover image settings
@@ -233,6 +233,7 @@ pwa:
 # Inject
 inject:
   head:
+    - <link rel="stylesheet" href="/css/custom.css">
   bottom:
 
 # Disable copy

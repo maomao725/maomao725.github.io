@@ -1,0 +1,79 @@
+/* 自定义样式 */
+
+/* 头像hover旋转效果 */
+.avatar-img img {
+  transition: transform 0.6s ease-in-out;
+}
+
+.avatar-img:hover img {
+  transform: rotate(360deg);
+}
+
+/* 确保首页背景图片全屏 */
+#page-header.full_page {
+  height: 100vh !important;
+}
+
+/* 调整首页标题位置 */
+#site-info {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+/* 首页滚动箭头 */
+#scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+/* 分类和标签页面样式 */
+.category-content,
+.tag-content {
+  padding: 20px;
+}
+
+/* 侧边栏样式优化 */
+#aside-content .card-widget {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 文章卡片样式 */
+.recent-post-item {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recent-post-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 导航栏优化 */
+#nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* 深色模式支持 */
+[data-theme="dark"] #aside-content .card-widget {
+  background: rgba(30, 30, 30, 0.9);
+}
+
+[data-theme="dark"] #nav {
+  background: rgba(30, 30, 30, 0.95);
+}
