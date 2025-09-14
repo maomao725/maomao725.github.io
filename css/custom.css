@@ -296,17 +296,20 @@ body {
 }
 
 /* ========== 8. 导航栏文字样式优化 ========== */
-/* 初始状态导航栏文字颜色 */
+/* 初始状态导航栏文字颜色和大小 */
 #nav .menus_items .menus_item .menus_item_child {
   color: #ffffff !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
 }
 
 /* 滚动后导航栏文字颜色 */
 #nav.nav-fixed .menus_items .menus_item .menus_item_child {
   color: #4C4948 !important;
   text-shadow: none !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
 }
 
 /* 导航栏链接悬停效果 */
@@ -314,27 +317,56 @@ body {
   color: #4682B4 !important;
 }
 
-/* 站点标题初始颜色 */
+/* 站点标题初始颜色和大小 */
 #nav #blog-info > a {
   color: #ffffff !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
-  font-size: 20px !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
 }
 
 /* 站点标题滚动后颜色 */
 #nav.nav-fixed #blog-info > a {
   color: #4C4948 !important;
   text-shadow: none !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
 }
 
-/* 搜索和主题切换按钮初始颜色 */
+/* 搜索和主题切换按钮初始颜色和大小 */
 #nav #nav-right div i {
   color: #ffffff !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+  font-size: 18px !important;
 }
 
 /* 搜索和主题切换按钮滚动后颜色 */
 #nav.nav-fixed #nav-right div i {
   color: #4C4948 !important;
   text-shadow: none !important;
+  font-size: 18px !important;
+}
+
+/* 首页标题字体大小增大 */
+#site-title {
+  color: #ffffff !important;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3) !important;
+  font-size: 4.5em !important;
+  font-weight: 700 !important;
+  margin-bottom: 15px !important;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  #nav .menus_items .menus_item .menus_item_child {
+    font-size: 16px !important;
+  }
+  
+  #nav #blog-info > a {
+    font-size: 20px !important;
+  }
+  
+  #site-title {
+    font-size: 3em !important;
+  }
 }

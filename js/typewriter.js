@@ -4,8 +4,30 @@ document.addEventListener('DOMContentLoaded', function() {
   const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
 
   if (isHomePage) {
-    const subtitle = document.getElementById('site-subtitle');
+    // 尝试多种可能的副标题元素选择器
+    let subtitle = document.getElementById('site-subtitle') || 
+                   document.querySelector('#site-info #site-subtitle') ||
+                   document.querySelector('.site-subtitle') ||
+                   document.querySelector('#page-header .subtitle');
 
+    // 如果找不到副标题元素，等待一段时间后再尝试
+    if (!subtitle) {
+      setTimeout(() => {
+        subtitle = document.getElementById('site-subtitle') || 
+                   document.querySelector('#site-info #site-subtitle') ||
+                   document.querySelector('.site-subtitle') ||
+                   document.querySelector('#page-header .subtitle');
+        
+        if (subtitle) {
+          initTypewriter(subtitle);
+        }
+      }, 1000);
+    } else {
+      initTypewriter(subtitle);
+    }
+  }
+
+  function initTypewriter(subtitle) {
     if (subtitle) {
       // 配置打字机内容
       const texts = ['不敢相信～', '簡直八點檔！'];
@@ -61,10 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
 
-      // 添加光标效果的CSS
+      // 添加光标效果的CSS - 使用通用选择器
       const style = document.createElement('style');
       style.textContent = `
-        #site-subtitle::after {
+        #site-subtitle::after,
+        .site-subtitle::after,
+        #page-header .subtitle::after {
           content: '|';
           animation: blink 1s infinite;
           color: rgba(255, 255, 255, 0.8);
