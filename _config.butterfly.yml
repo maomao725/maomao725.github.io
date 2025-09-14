@@ -1,0 +1,243 @@
+# Main menu navigation
+menu:
+  首页: / || fas fa-home
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  关于: /about/ || fas fa-heart
+  其他||fas fa-list:
+    归档: /archives/ || fas fa-asterisk
+    更新日志: /update/ || fas fa-archive
+
+# Avatar
+avatar:
+  img: /img/avatar.jpg
+  effect: true
+
+# Nav related settings
+nav:
+  logo: # image url
+  display_title: true
+  fixed: true
+
+# Main page settings
+index_img: /img/background.png
+default_top_img: /img/background.png
+index_top_img_height: 60
+footer_img: false
+
+# Cover image settings
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  position: both
+  default_cover:
+    - /img/background.png
+
+# Search
+local_search:
+  enable: true
+  preload: true
+  top_n_per_article: 1
+  unescape: true
+  CDN:
+
+# Code highlighting theme
+highlight_theme: light
+highlight_copy: true
+highlight_lang: true
+highlight_shrink: false
+code_word_wrap: false
+
+# Copy text settings
+copy:
+  enable: true
+  copyright:
+    enable: true
+    limit_count: 50
+
+# Social media links
+social:
+  fab fa-github: https://github.com/maomao725 || Github
+  fas fa-envelope: mailto:yejiale25@gmail || Email
+
+# Share
+share:
+  enable: false
+
+# Comment system
+comments:
+  use: false
+  text: true
+  lazyload: false
+  count: false
+  card_post_count: false
+
+# Online Chat
+chat:
+  enable: false
+
+# Footer settings
+footer:
+  owner:
+    enable: true
+    since: 2024
+  custom_text: # HTML allowed
+  copyright: true
+
+# Aside widget settings
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: true
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description: 自能生羽翼，何必仰云梯
+    button:
+      enable: true
+      icon: fab fa-github
+      text: 关注我
+      link: https://github.com/maomao725
+  card_announcement:
+    enable: true
+    content: 🚀 重启纪元，记录技术成长的点点滴滴
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+    sort_order: desc
+  card_categories:
+    enable: true
+    limit: 8
+    expand: none
+    sort_order:
+  card_tags:
+    enable: true
+    limit: 40
+    color: false
+    sort_order:
+  card_archives:
+    enable: true
+    type: monthly
+    format: MMMM YYYY
+    order: desc
+    limit: 8
+    sort_order:
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
+    sort_order:
+
+# Post settings
+post:
+  meta:
+    author:
+      enable: false
+    date:
+      enable: true
+      format: 'YYYY-MM-DD'
+    updated:
+      enable: true
+      date_format: 'YYYY-MM-DD'
+    categories:
+      enable: true
+    tags:
+      enable: true
+  award:
+    enable: false
+  copyright:
+    enable: true
+    decode: false
+    author_href:
+    license: CC BY-NC-SA 4.0
+    license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# Dark mode
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: false
+
+# CDN settings
+CDN:
+  internal_provider: jsdelivr
+  third_party_provider: jsdelivr
+  option:
+
+# Math (KaTeX)
+math:
+  enable: false
+  per_page: false
+  hide_scrollbar: false
+  engine: mathjax
+  mathjax:
+    enableMenu: true
+    tags: false
+
+# Medium Zoom
+medium_zoom: false
+
+# Image lazy loading
+lazyload:
+  enable: false
+
+# Sidebar related
+toc:
+  post: true
+  page: false
+  number: true
+  expand: false
+  style_simple: false
+  scroll_percent: true
+
+# Reading progress
+reading_progress:
+  enable: false
+
+# Auto scroll
+auto_scroll: false
+
+# Beautify/Effect
+beautify:
+  enable: false
+  field: post
+  title-prefix-icon:
+  title-prefix-icon-color:
+
+# Global font
+font:
+  global-font-size:
+  code-font-size:
+  font-family:
+  code-font-family:
+
+# Website analytic
+baidu_analytics:
+google_analytics:
+
+# Performance
+preloader:
+  enable: false
+
+# PWA
+pwa:
+  enable: false
+
+# Inject
+inject:
+  head:
+  bottom:
+
+# Disable copy
+disable_copy: false
+disable_selection: false
+
+# Dev console
+console: false
