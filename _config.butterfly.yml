@@ -81,8 +81,8 @@ chat:
 footer:
   owner:
     enable: true
-    since: 2024
-  custom_text: # HTML allowed
+    since: 2025
+  custom_text: © 2025 By 毛毛
   copyright: true
 
 # Aside widget settings

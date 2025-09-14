@@ -1,6 +1,6 @@
 ---
 title: 🦋 基于Hexo+Butterfly搭建优雅博客完整指南
-date: 2024-09-14 17:35:00
+date: 2025-09-14 17:35:00
 tags:
   - Hexo
   - Butterfly
