@@ -2,7 +2,7 @@
 title: 小破站更新日志
 date: 2025-09-14 17:30:00
 type: update
-comments: false
+comments: true
 top_img: /img/background.png
 ---
 

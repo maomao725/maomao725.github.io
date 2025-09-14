@@ -2,7 +2,7 @@
 title: 关于
 date: 2024-09-14 17:30:00
 type: about
-comments: false
+comments: true
 top_img: /img/background.png
 ---
 
