@@ -117,10 +117,23 @@ body {
 
 /* ========== 4. 页脚样式美化 ========== */
 #footer {
-  background: linear-gradient(135deg, rgba(70, 130, 180, 0.9) 0%, rgba(100, 149, 237, 0.9) 100%) !important;
+  background: url('/img/background.png') bottom center/cover fixed !important;
+  position: relative;
   color: #ffffff !important;
-  padding: 40px 0 30px 0 !important;
-  margin-top: 40px;
+  padding: 20px 0 15px 0 !important;
+  margin-top: 30px;
+}
+
+/* 页脚背景遮罩层 */
+#footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
 }
 
 #footer .footer-separator {
@@ -129,6 +142,9 @@ body {
 
 #footer-wrap {
   color: #ffffff !important;
+  position: relative;
+  z-index: 1;
+  text-align: center;
 }
 
 #footer-wrap a {
@@ -147,13 +163,26 @@ body {
 #footer .footer_custom_text,
 #footer-wrap .footer_custom_text {
   color: #ffffff !important;
-  font-size: 16px;
+  font-size: 14px;
   opacity: 0.95;
+  line-height: 1.6;
+}
+
+/* 运行时间显示 */
+#runtime {
+  color: #ffffff !important;
+  font-size: 13px;
+  margin-top: 8px;
+  opacity: 0.9;
 }
 
 /* 深色模式页脚 */
 [data-theme="dark"] #footer {
-  background: linear-gradient(135deg, rgba(25, 25, 112, 0.9) 0%, rgba(65, 105, 225, 0.9) 100%) !important;
+  background: url('/img/background.png') bottom center/cover fixed !important;
+}
+
+[data-theme="dark"] #footer::before {
+  background: rgba(0, 0, 0, 0.6);
 }
 
 /* ========== 5. 首页标题和箭头优化 ========== */
