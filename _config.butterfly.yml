@@ -83,7 +83,21 @@ share:
 
 # Comment system
 comments:
-  use: false
+  use: Utterances
+  text: true
+  lazyload: false
+  count: false
+  card_post_count: false
+
+# Utterances
+# https://utteranc.es/
+utterances:
+  repo: maomao725/maomao725.github.io
+  # Issue Mapping: pathname/url/title/og:title
+  issue_term: pathname
+  # Theme: github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
+  light_theme: github-light
+  dark_theme: photon-dark
   text: true
   lazyload: false
   count: false
@@ -174,6 +188,12 @@ post:
     author_href:
     license: CC BY-NC-SA 4.0
     license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# Related Articles
+related_post:
+  enable: true
+  limit: 6
+  date_type: created
 
 # Dark mode
 darkmode:
