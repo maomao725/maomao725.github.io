@@ -22,7 +22,7 @@ nav:
 # Main page settings
 index_img: /img/background.png
 default_top_img: /img/background.png
-index_top_img_height: 60
+index_top_img_height: 60vh
 footer_img: false
 
 # Cover image settings

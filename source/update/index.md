@@ -1,5 +1,5 @@
 ---
-title: 更新日志
+title: 小破站更新日志
 date: 2024-09-14 17:30:00
 type: update
 comments: false
