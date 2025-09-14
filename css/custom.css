@@ -60,16 +60,16 @@
 }
 
 /* ========== 3. 背景渐变色效果 ========== */
-/* 页面背景渐变 */
+/* 页面背景渐变 - 蓝色天空主题 */
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #fbc2eb 100%) !important;
+  background: linear-gradient(135deg, #89CFF0 0%, #6495ED 25%, #4682B4 50%, #87CEEB 100%) !important;
   background-attachment: fixed !important;
   min-height: 100vh;
 }
 
-/* 深色模式背景渐变 */
+/* 深色模式背景渐变 - 深蓝夜空主题 */
 [data-theme="dark"] body {
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #7e57c2 50%, #aa6da3 100%) !important;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #3B5998 50%, #4169E1 100%) !important;
   background-attachment: fixed !important;
 }
 
@@ -91,20 +91,33 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 导航栏背景 */
+/* 导航栏背景 - 初始透明，滚动后显示 */
 #nav {
-  background: rgba(255, 255, 255, 0.92) !important;
-  backdrop-filter: blur(20px) !important;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1) !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
 }
 
+/* 滚动后的导航栏样式 */
+#nav.nav-fixed {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08) !important;
+}
+
+/* 深色模式导航栏 */
 [data-theme="dark"] #nav {
-  background: rgba(30, 30, 30, 0.92) !important;
+  background: transparent !important;
+}
+
+[data-theme="dark"] #nav.nav-fixed {
+  background: rgba(30, 30, 30, 0.75) !important;
 }
 
 /* ========== 4. 页脚样式美化 ========== */
 #footer {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%) !important;
+  background: linear-gradient(135deg, rgba(70, 130, 180, 0.9) 0%, rgba(100, 149, 237, 0.9) 100%) !important;
   color: #ffffff !important;
   padding: 40px 0 30px 0 !important;
   margin-top: 40px;
@@ -140,7 +153,7 @@ body {
 
 /* 深色模式页脚 */
 [data-theme="dark"] #footer {
-  background: linear-gradient(135deg, rgba(30, 60, 114, 0.9) 0%, rgba(42, 82, 152, 0.9) 100%) !important;
+  background: linear-gradient(135deg, rgba(25, 25, 112, 0.9) 0%, rgba(65, 105, 225, 0.9) 100%) !important;
 }
 
 /* ========== 5. 首页标题和箭头优化 ========== */
@@ -228,21 +241,63 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4682B4 0%, #87CEEB 100%);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
 }
 
 /* 选中文字颜色 */
 ::selection {
-  background: rgba(118, 75, 162, 0.3);
+  background: rgba(100, 149, 237, 0.3);
   color: #333;
 }
 
 ::-moz-selection {
-  background: rgba(118, 75, 162, 0.3);
+  background: rgba(100, 149, 237, 0.3);
   color: #333;
+}
+
+/* ========== 8. 导航栏文字样式优化 ========== */
+/* 初始状态导航栏文字颜色 */
+#nav .menus_items .menus_item .menus_item_child {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 滚动后导航栏文字颜色 */
+#nav.nav-fixed .menus_items .menus_item .menus_item_child {
+  color: #4C4948 !important;
+  text-shadow: none !important;
+}
+
+/* 导航栏链接悬停效果 */
+#nav .menus_items .menus_item .menus_item_child:hover {
+  color: #4682B4 !important;
+}
+
+/* 站点标题初始颜色 */
+#nav #blog-info > a {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 站点标题滚动后颜色 */
+#nav.nav-fixed #blog-info > a {
+  color: #4C4948 !important;
+  text-shadow: none !important;
+}
+
+/* 搜索和主题切换按钮初始颜色 */
+#nav #nav-right div i {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 搜索和主题切换按钮滚动后颜色 */
+#nav.nav-fixed #nav-right div i {
+  color: #4C4948 !important;
+  text-shadow: none !important;
 }
