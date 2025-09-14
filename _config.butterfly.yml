@@ -92,7 +92,7 @@ comments:
 # Utterances
 # https://utteranc.es/
 utterances:
-  repo: maomao725/maomao725.github.io
+  repo: maomao725.github.io
   # Issue Mapping: pathname/url/title/og:title
   issue_term: pathname
   # Theme: github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
