@@ -356,6 +356,141 @@ body {
   margin-bottom: 15px !important;
 }
 
+/* ========== 9. 小剪刀分割线样式 ========== */
+.custom-hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+  margin: 30px 0;
+  position: relative;
+}
+
+.custom-hr::before {
+  content: "✂";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--card-bg);
+  padding: 0 15px;
+  color: #87CEEB;
+  font-size: 18px;
+}
+
+/* 深色模式下的剪刀样式 */
+[data-theme="dark"] .custom-hr {
+  background: linear-gradient(to right, transparent, #4a4a4a, transparent);
+}
+
+[data-theme="dark"] .custom-hr::before {
+  color: #87CEEB;
+}
+
+/* ========== 10. 相关推荐文章样式 ========== */
+.relatedPosts {
+  margin: 40px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.relatedPosts .headline {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #4682B4;
+  display: flex;
+  align-items: center;
+}
+
+.relatedPosts .headline i {
+  margin-right: 8px;
+}
+
+.relatedPosts .relatedPosts-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.relatedPosts .relatedPosts-list .relatedPosts-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.relatedPosts .relatedPosts-list .relatedPosts-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(31, 38, 135, 0.2);
+}
+
+.relatedPosts .relatedPosts-list .relatedPosts-item .cover {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.relatedPosts .relatedPosts-list .relatedPosts-item .cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.relatedPosts .relatedPosts-list .relatedPosts-item .content .title {
+  font-size: 0.95em;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.relatedPosts .relatedPosts-list .relatedPosts-item .content .title:hover {
+  color: #4682B4;
+}
+
+.relatedPosts .relatedPosts-list .relatedPosts-item .content .date {
+  font-size: 0.8em;
+  color: #999;
+  margin-top: 5px;
+}
+
+/* 深色模式相关推荐样式 */
+[data-theme="dark"] .relatedPosts {
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .relatedPosts .headline {
+  color: #87CEEB;
+}
+
+[data-theme="dark"] .relatedPosts .relatedPosts-list .relatedPosts-item {
+  background: rgba(40, 40, 40, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .relatedPosts .relatedPosts-list .relatedPosts-item .content .title {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .relatedPosts .relatedPosts-list .relatedPosts-item .content .title:hover {
+  color: #87CEEB;
+}
+
 /* 移动端适配 */
 @media screen and (max-width: 768px) {
   #nav .menus_items .menus_item .menus_item_child {
@@ -368,5 +503,15 @@ body {
   
   #site-title {
     font-size: 3em !important;
+  }
+  
+  .relatedPosts .relatedPosts-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .relatedPosts .relatedPosts-list .relatedPosts-item .cover {
+    width: 50px;
+    height: 50px;
+    margin-right: 12px;
   }
 }
