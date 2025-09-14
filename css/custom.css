@@ -1,0 +1,564 @@
+/* 自定义样式 - 完整版 */
+
+/* ========== 1. 首页全屏背景设置 ========== */
+/* 确保首页背景真正全屏，内容在第二屏 */
+#page-header.full_page {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  background-position: center !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 首页内容区域推到第二屏 */
+.layout > div:first-child {
+  margin-top: 0 !important;
+}
+
+#recent-posts {
+  margin-top: 20px;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  #page-header.full_page {
+    height: 100vh !important;
+    min-height: 100vh !important;
+  }
+}
+
+/* ========== 2. 彻底禁用头像自动旋转 ========== */
+/* 移除所有头像旋转动画 */
+.avatar-img img,
+#sidebar .avatar-img img,
+.card-avatar .avatar-img img,
+#aside-content .avatar-img img {
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  -ms-animation: none !important;
+  animation: none !important;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* 只在鼠标悬停时旋转 */
+.avatar-img:hover img,
+#sidebar .avatar-img:hover img,
+.card-avatar .avatar-img:hover img,
+#aside-content .avatar-img:hover img {
+  transform: rotate(360deg);
+}
+
+/* 禁用Butterfly主题的rotate动画 */
+@keyframes rotate {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(0); }
+}
+
+/* ========== 3. 背景渐变色效果 ========== */
+/* 页面背景渐变 - 蓝色天空主题 */
+body {
+  background: linear-gradient(135deg, #89CFF0 0%, #6495ED 25%, #4682B4 50%, #87CEEB 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+}
+
+/* 深色模式背景渐变 - 深蓝夜空主题 */
+[data-theme="dark"] body {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #3B5998 50%, #4169E1 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* 文章卡片背景 */
+.recent-post-item,
+#aside-content .card-widget,
+.layout > .recent-posts .recent-post-item {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+/* 深色模式卡片背景 */
+[data-theme="dark"] .recent-post-item,
+[data-theme="dark"] #aside-content .card-widget {
+  background: rgba(30, 30, 30, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 导航栏背景 - 初始透明，滚动后显示 */
+#nav {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+}
+
+/* 滚动后的导航栏样式 */
+#nav.nav-fixed {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08) !important;
+}
+
+/* 深色模式导航栏 */
+[data-theme="dark"] #nav {
+  background: transparent !important;
+}
+
+[data-theme="dark"] #nav.nav-fixed {
+  background: rgba(30, 30, 30, 0.75) !important;
+}
+
+/* ========== 4. 页脚样式美化 ========== */
+#footer {
+  background: url('/img/background.png') bottom center/cover fixed !important;
+  position: relative;
+  color: #ffffff !important;
+  padding: 10px 0 8px 0 !important;
+  margin-top: 20px;
+}
+
+/* 页脚背景遮罩层 */
+#footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+#footer .footer-separator {
+  display: none !important;
+}
+
+#footer-wrap {
+  color: #ffffff !important;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+#footer-wrap a {
+  color: #ffffff !important;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+#footer-wrap a:hover {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+/* 页脚文字颜色 */
+.footer_custom_text,
+#footer .footer_custom_text,
+#footer-wrap .footer_custom_text {
+  color: #ffffff !important;
+  font-size: 12px;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+
+/* 隐藏默认footer内容 */
+#footer-wrap > div:first-child {
+  display: none !important;
+}
+
+/* 运行时间显示 */
+#runtime {
+  color: #ffffff !important;
+  font-size: 12px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* 深色模式页脚 */
+[data-theme="dark"] #footer {
+  background: url('/img/background.png') bottom center/cover fixed !important;
+}
+
+[data-theme="dark"] #footer::before {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* ========== 5. 首页标题和箭头优化 ========== */
+#site-info {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+#site-title {
+  color: #ffffff !important;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3) !important;
+  font-size: 4em !important;
+  margin-bottom: 15px !important;
+}
+
+#site-subtitle {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3) !important;
+  font-size: 1.8em !important;
+  min-height: 2em;
+}
+
+/* 滚动箭头 */
+#scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+#scroll-down i {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 30px;
+  animation: scroll-down-effect 1.5s infinite;
+}
+
+@keyframes scroll-down-effect {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+}
+
+/* ========== 6. 内容区域优化 ========== */
+/* 主内容区域 */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 文章列表间距 */
+.recent-post-item {
+  margin-bottom: 25px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.recent-post-item:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25) !important;
+}
+
+/* ========== 7. 其他优化 ========== */
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4682B4 0%, #87CEEB 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+}
+
+/* 选中文字颜色 */
+::selection {
+  background: rgba(100, 149, 237, 0.3);
+  color: #333;
+}
+
+::-moz-selection {
+  background: rgba(100, 149, 237, 0.3);
+  color: #333;
+}
+
+/* ========== 8. 导航栏文字样式优化 ========== */
+/* 初始状态导航栏文字颜色和大小 */
+#nav .menus_items .menus_item .menus_item_child {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+/* 滚动后导航栏文字颜色 */
+#nav.nav-fixed .menus_items .menus_item .menus_item_child {
+  color: #4C4948 !important;
+  text-shadow: none !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+/* 导航栏链接悬停效果 */
+#nav .menus_items .menus_item .menus_item_child:hover {
+  color: #4682B4 !important;
+}
+
+/* 站点标题初始颜色和大小 */
+#nav #blog-info > a {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+
+/* 站点标题滚动后颜色 */
+#nav.nav-fixed #blog-info > a {
+  color: #4C4948 !important;
+  text-shadow: none !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+}
+
+/* 搜索和主题切换按钮初始颜色和大小 */
+#nav #nav-right div i {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+  font-size: 18px !important;
+}
+
+/* 搜索和主题切换按钮滚动后颜色 */
+#nav.nav-fixed #nav-right div i {
+  color: #4C4948 !important;
+  text-shadow: none !important;
+  font-size: 18px !important;
+}
+
+/* 首页标题字体大小增大 */
+#site-title {
+  color: #ffffff !important;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3) !important;
+  font-size: 4.5em !important;
+  font-weight: 700 !important;
+  margin-bottom: 15px !important;
+}
+
+/* ========== 9. 小剪刀分割线样式 (完全复制目标网站) ========== */
+.custom-hr,
+#article-container.post-content hr {
+  position: relative;
+  margin: 40px auto;
+  border: 2px dashed var(--hr-border);
+  width: calc(100% - 4px);
+}
+
+.custom-hr:hover:before,
+#article-container.post-content hr:hover:before {
+  left: calc(95% - 20px);
+}
+
+.custom-hr:before,
+#article-container.post-content hr:before {
+  position: absolute;
+  top: -10px;
+  left: 5%;
+  z-index: 1;
+  color: var(--hr-before-color);
+  content: '\f0c4';
+  font-size: 20px;
+  line-height: 1;
+  display: inline-block;
+  font-weight: 600;
+  font-family: 'Font Awesome 6 Free';
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+/* ========== 10. 相关推荐文章样式 (完全复制目标网站) ========== */
+.relatedPosts {
+  margin-top: 40px;
+  padding: 0;
+}
+
+.relatedPosts > .headline {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.43em;
+  color: var(--font-color);
+  display: flex;
+  align-items: center;
+}
+
+.relatedPosts > .headline i {
+  margin-right: 8px;
+  color: #49b1f5;
+}
+
+.relatedPosts > .relatedPosts-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.relatedPosts > .relatedPosts-list > div {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: calc(33.333% - 10px);
+  height: 200px;
+  background: #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.relatedPosts > .relatedPosts-list > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 768px) {
+  .relatedPosts > .relatedPosts-list > div {
+    width: calc(50% - 7.5px);
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .relatedPosts > .relatedPosts-list > div {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+.relatedPosts > .relatedPosts-list .content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: #fff;
+  z-index: 2;
+}
+
+.relatedPosts > .relatedPosts-list .content.is-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  text-align: left;
+}
+
+.relatedPosts > .relatedPosts-list .content .date {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.relatedPosts > .relatedPosts-list .content .date i {
+  margin-right: 5px;
+  font-size: 11px;
+}
+
+.relatedPosts > .relatedPosts-list .content .title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.relatedPosts > .relatedPosts-list > div:hover .cover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.relatedPosts > .relatedPosts-list > div .cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.relatedPosts > .relatedPosts-list > div a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.relatedPosts > .relatedPosts-list > div a:hover {
+  text-decoration: none;
+}
+
+/* 深色模式适配 */
+[data-theme="dark"] .relatedPosts > .headline {
+  color: var(--font-color);
+}
+
+[data-theme="dark"] .relatedPosts > .relatedPosts-list > div {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .relatedPosts > .relatedPosts-list > div:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  #nav .menus_items .menus_item .menus_item_child {
+    font-size: 16px !important;
+  }
+  
+  #nav #blog-info > a {
+    font-size: 20px !important;
+  }
+  
+  #site-title {
+    font-size: 3em !important;
+  }
+  
+  .relatedPosts .relatedPosts-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .relatedPosts .relatedPosts-list .relatedPosts-item .cover {
+    width: 50px;
+    height: 50px;
+    margin-right: 12px;
+  }
+}

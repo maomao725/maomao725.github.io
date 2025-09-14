@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>博客功能大升级：评论系统与用户体验优化</title>
+    <url>/2025/09/14/blog-features-upgrade/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天为博客进行了一次重大的功能升级，主要添加了三个核心功能：GitHub评论系统、相关推荐文章和小剪刀分割线装饰。这些功能的加入让博客的用户体验得到了显著提升。</p>
+<h2 id="功能亮点"><a href="#功能亮点" class="headerlink" title="功能亮点"></a>功能亮点</h2><h3 id="1-GitHub评论系统"><a href="#1-GitHub评论系统" class="headerlink" title="1. GitHub评论系统"></a>1. GitHub评论系统</h3><p>使用Utterances评论系统，基于GitHub Issues实现：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://utteranc.es/client.js&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">repo</span>=<span class="string">&quot;maomao725.github.io&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">issue-term</span>=<span class="string">&quot;pathname&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">theme</span>=<span class="string">&quot;github-light&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">async</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>优势：</strong></p>
+<ul>
+<li>无需额外注册，使用GitHub账号即可评论</li>
+<li>支持Markdown语法和代码高亮</li>
+<li>自动适配深色&#x2F;浅色主题</li>
+<li>完全免费且稳定</li>
+</ul>
+<h3 id="2-相关推荐文章"><a href="#2-相关推荐文章" class="headerlink" title="2. 相关推荐文章"></a>2. 相关推荐文章</h3><p>在文章底部智能推荐相关内容，提高用户粘性：</p>
+<ul>
+<li>基于标签和分类的智能匹配</li>
+<li>卡片式布局，包含封面图片</li>
+<li>悬停动画效果</li>
+<li>响应式设计</li>
+</ul>
+<h3 id="3-小剪刀分割线"><a href="#3-小剪刀分割线" class="headerlink" title="3. 小剪刀分割线"></a>3. 小剪刀分割线</h3><p>精美的装饰性分割线，用于分隔不同内容区域：</p>
+<ul>
+<li>渐变背景效果</li>
+<li>中间带小剪刀图标 ✂</li>
+<li>支持主题切换</li>
+<li>提升视觉层次感</li>
+</ul>
+<h2 id="技术实现"><a href="#技术实现" class="headerlink" title="技术实现"></a>技术实现</h2><h3 id="CSS样式优化"><a href="#CSS样式优化" class="headerlink" title="CSS样式优化"></a>CSS样式优化</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.custom-hr</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, transparent, <span class="number">#e0e0e0</span>, transparent);</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">30px</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.custom-hr</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&quot;✂&quot;</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--card-bg);</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#87CEEB</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置优化"><a href="#配置优化" class="headerlink" title="配置优化"></a>配置优化</h3><p>在Butterfly主题配置中启用相关功能：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 评论系统</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="attr">use:</span> <span class="string">Utterances</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 相关推荐</span></span><br><span class="line"><span class="attr">related_post:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="用户体验提升"><a href="#用户体验提升" class="headerlink" title="用户体验提升"></a>用户体验提升</h2><ol>
+<li><strong>互动性增强</strong>：评论功能让读者可以直接参与讨论</li>
+<li><strong>内容发现</strong>：相关推荐帮助用户发现更多感兴趣的内容</li>
+<li><strong>视觉美化</strong>：精美的装饰元素提升整体观感</li>
+<li><strong>响应式设计</strong>：在各种设备上都有良好的显示效果</li>
+</ol>
+<h2 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h2><ul>
+<li><input disabled="" type="checkbox"> 添加文章搜索功能</li>
+<li><input disabled="" type="checkbox"> 完善友链页面</li>
+<li><input disabled="" type="checkbox"> 优化SEO设置</li>
+<li><input disabled="" type="checkbox"> 添加访客统计</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次功能升级让博客从一个简单的展示平台变成了一个真正的交互式网站。GitHub评论系统的加入让读者可以方便地参与讨论，相关推荐功能提高了内容的可发现性，而精美的视觉装饰则让整个网站更加美观。</p>
+<p>希望这些改进能为访问者带来更好的阅读体验！</p>
+<hr>
+<p><em>如果您对这些功能有任何建议或问题，欢迎在下方评论区留言讨论！</em></p>
+]]></content>
+      <categories>
+        <category>技术教程</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+        <tag>Utterances</tag>
+        <tag>用户体验</tag>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GitHub Pages部署指南：从零到一搭建个人博客</title>
+    <url>/2025/09/14/github-pages-deployment-guide/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GitHub Pages是GitHub提供的免费静态网站托管服务，非常适合用来部署个人博客、项目文档等静态网站。本文将详细介绍如何使用GitHub Pages部署博客。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="1-创建GitHub仓库"><a href="#1-创建GitHub仓库" class="headerlink" title="1. 创建GitHub仓库"></a>1. 创建GitHub仓库</h3><p>首先需要在GitHub上创建一个新的仓库：</p>
+<ul>
+<li>仓库名格式：<code>username.github.io</code>（其中username是你的GitHub用户名）</li>
+<li>设置为Public仓库</li>
+<li>初始化时可以添加README文件</li>
+</ul>
+<h3 id="2-本地环境准备"><a href="#2-本地环境准备" class="headerlink" title="2. 本地环境准备"></a>2. 本地环境准备</h3><p>确保本地已安装：</p>
+<ul>
+<li>Git</li>
+<li>Node.js（如果使用Hexo等静态网站生成器）</li>
+</ul>
+<h2 id="部署方式"><a href="#部署方式" class="headerlink" title="部署方式"></a>部署方式</h2><h3 id="方式一：直接推送静态文件"><a href="#方式一：直接推送静态文件" class="headerlink" title="方式一：直接推送静态文件"></a>方式一：直接推送静态文件</h3><p>最简单的方式是直接将生成的静态文件推送到仓库的main分支：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/username/username.github.io.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> username.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span> &gt; index.html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交并推送</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit&quot;</span></span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式二：使用gh-pages分支"><a href="#方式二：使用gh-pages分支" class="headerlink" title="方式二：使用gh-pages分支"></a>方式二：使用gh-pages分支</h3><p>对于使用静态网站生成器的项目，推荐使用gh-pages分支：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装hexo-deployer-git</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置_config.yml</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/username/username.github.io.git</span><br><span class="line">  branch: gh-pages</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署</span></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义域名配置"><a href="#自定义域名配置" class="headerlink" title="自定义域名配置"></a>自定义域名配置</h2><h3 id="1-添加CNAME文件"><a href="#1-添加CNAME文件" class="headerlink" title="1. 添加CNAME文件"></a>1. 添加CNAME文件</h3><p>在仓库根目录创建CNAME文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yourdomain.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-DNS配置"><a href="#2-DNS配置" class="headerlink" title="2. DNS配置"></a>2. DNS配置</h3><p>在域名服务商处配置DNS记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># A记录</span><br><span class="line">@ 185.199.108.153</span><br><span class="line">@ 185.199.109.153</span><br><span class="line">@ 185.199.110.153</span><br><span class="line">@ 185.199.111.153</span><br><span class="line"></span><br><span class="line"># CNAME记录（可选）</span><br><span class="line">www username.github.io</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-启用HTTPS"><a href="#3-启用HTTPS" class="headerlink" title="3. 启用HTTPS"></a>3. 启用HTTPS</h3><p>在仓库Settings → Pages中：</p>
+<ul>
+<li>选择正确的分支</li>
+<li>勾选”Enforce HTTPS”</li>
+</ul>
+<h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><h3 id="GitHub-Actions配置"><a href="#GitHub-Actions配置" class="headerlink" title="GitHub Actions配置"></a>GitHub Actions配置</h3><p>创建<code>.github/workflows/deploy.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">to</span> <span class="string">GitHub</span> <span class="string">Pages</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span> [ <span class="string">main</span> ]</span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    </span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">    </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/setup-node@v2</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">node-version:</span> <span class="string">&#x27;16&#x27;</span></span><br><span class="line">        </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">      </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line">      </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常见问题解决"><a href="#常见问题解决" class="headerlink" title="常见问题解决"></a>常见问题解决</h2><h3 id="1-404错误"><a href="#1-404错误" class="headerlink" title="1. 404错误"></a>1. 404错误</h3><ul>
+<li>检查仓库名是否正确</li>
+<li>确认分支设置是否正确</li>
+<li>验证index.html文件是否存在</li>
+</ul>
+<h3 id="2-自定义域名不生效"><a href="#2-自定义域名不生效" class="headerlink" title="2. 自定义域名不生效"></a>2. 自定义域名不生效</h3><ul>
+<li>检查CNAME文件内容</li>
+<li>验证DNS配置是否正确</li>
+<li>等待DNS传播（可能需要24小时）</li>
+</ul>
+<h3 id="3-样式文件加载失败"><a href="#3-样式文件加载失败" class="headerlink" title="3. 样式文件加载失败"></a>3. 样式文件加载失败</h3><p>检查配置文件中的URL设置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://yourdomain.com</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="1-图片优化"><a href="#1-图片优化" class="headerlink" title="1. 图片优化"></a>1. 图片优化</h3><ul>
+<li>使用WebP格式</li>
+<li>压缩图片大小</li>
+<li>使用CDN加速</li>
+</ul>
+<h3 id="2-代码压缩"><a href="#2-代码压缩" class="headerlink" title="2. 代码压缩"></a>2. 代码压缩</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装压缩插件</span></span><br><span class="line">npm install hexo-html-minifier --save</span><br><span class="line">npm install hexo-clean-css --save</span><br><span class="line">npm install hexo-uglify --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-缓存策略"><a href="#3-缓存策略" class="headerlink" title="3. 缓存策略"></a>3. 缓存策略</h3><p>在<code>_config.yml</code>中配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 静态文件缓存</span></span><br><span class="line"><span class="attr">static_prefix:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">prefix:</span> <span class="string">/static</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="监控与分析"><a href="#监控与分析" class="headerlink" title="监控与分析"></a>监控与分析</h2><h3 id="1-Google-Analytics"><a href="#1-Google-Analytics" class="headerlink" title="1. Google Analytics"></a>1. Google Analytics</h3><p>添加跟踪代码到主题模板中：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Google Analytics --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">dataLayer</span> = <span class="variable language_">window</span>.<span class="property">dataLayer</span> || [];</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">gtag</span>(<span class="params"></span>)&#123;dataLayer.<span class="title function_">push</span>(<span class="variable language_">arguments</span>);&#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">gtag</span>(<span class="string">&#x27;js&#x27;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>());</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">gtag</span>(<span class="string">&#x27;config&#x27;</span>, <span class="string">&#x27;GA_TRACKING_ID&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-网站地图"><a href="#2-网站地图" class="headerlink" title="2. 网站地图"></a>2. 网站地图</h3><p>生成并提交sitemap.xml：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装sitemap插件</span></span><br><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置_config.yml</span></span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>GitHub Pages提供了一个简单、免费且可靠的静态网站托管解决方案。通过合理的配置和优化，可以搭建出性能优秀的个人博客。</p>
+<p>关键要点：</p>
+<ul>
+<li>选择合适的部署方式</li>
+<li>正确配置自定义域名</li>
+<li>使用自动化部署提高效率</li>
+<li>持续优化网站性能</li>
+</ul>
+<p>希望这份指南能帮助你成功部署自己的GitHub Pages博客！</p>
+<hr>
+<p><em>有任何问题欢迎在评论区讨论交流！</em></p>
+]]></content>
+      <categories>
+        <category>技术教程</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+        <tag>GitHub-Pages</tag>
+        <tag>部署</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🦋 基于Hexo+Butterfly搭建优雅博客完整指南</title>
+    <url>/2025/09/14/hexo-butterfly-blog-setup/</url>
+    <content><![CDATA[<h2 id="🎯-前言"><a href="#🎯-前言" class="headerlink" title="🎯 前言"></a>🎯 前言</h2><p>在这个信息爆炸的时代，拥有一个属于自己的博客平台变得越来越重要。今天我将分享如何使用 <strong>Hexo</strong> + <strong>Butterfly主题</strong> 搭建一个既美观又功能强大的个人博客。</p>
+<h3 id="为什么选择-Hexo-Butterfly？"><a href="#为什么选择-Hexo-Butterfly？" class="headerlink" title="为什么选择 Hexo + Butterfly？"></a>为什么选择 Hexo + Butterfly？</h3><ul>
+<li><strong>Hexo</strong>: 快速、简洁且高效的静态站点生成器</li>
+<li><strong>Butterfly</strong>: 功能丰富、界面优雅的Hexo主题</li>
+<li><strong>GitHub Pages</strong>: 免费的静态网站托管服务</li>
+<li><strong>自定义域名</strong>: 提升博客的专业性</li>
+</ul>
+<h2 id="🛠️-环境准备"><a href="#🛠️-环境准备" class="headerlink" title="🛠️ 环境准备"></a>🛠️ 环境准备</h2><h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><ul>
+<li>Node.js 16.x 或更高版本</li>
+<li>Git</li>
+<li>文本编辑器（推荐VS Code）</li>
+</ul>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查Node.js版本</span></span><br><span class="line">node --version</span><br><span class="line">npm --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果未安装，请前往官网下载安装</span></span><br><span class="line"><span class="comment"># https://nodejs.org/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="📦-Hexo安装与配置"><a href="#📦-Hexo安装与配置" class="headerlink" title="📦 Hexo安装与配置"></a>📦 Hexo安装与配置</h2><h3 id="1-全局安装Hexo-CLI"><a href="#1-全局安装Hexo-CLI" class="headerlink" title="1. 全局安装Hexo CLI"></a>1. 全局安装Hexo CLI</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-创建博客项目"><a href="#2-创建博客项目" class="headerlink" title="2. 创建博客项目"></a>2. 创建博客项目</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建新的Hexo项目</span></span><br><span class="line">hexo init my-blog</span><br><span class="line"><span class="built_in">cd</span> my-blog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-项目结构概览"><a href="#3-项目结构概览" class="headerlink" title="3. 项目结构概览"></a>3. 项目结构概览</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">my-blog/</span><br><span class="line">├── _config.yml          # 站点配置文件</span><br><span class="line">├── package.json         # 项目依赖</span><br><span class="line">├── scaffolds/           # 模板文件夹</span><br><span class="line">├── source/              # 资源文件夹</span><br><span class="line">│   ├── _drafts/         # 草稿</span><br><span class="line">│   └── _posts/          # 文章</span><br><span class="line">└── themes/              # 主题文件夹</span><br></pre></td></tr></table></figure>
+
+<h2 id="🦋-Butterfly主题安装"><a href="#🦋-Butterfly主题安装" class="headerlink" title="🦋 Butterfly主题安装"></a>🦋 Butterfly主题安装</h2><h3 id="方法一：NPM安装（推荐）"><a href="#方法一：NPM安装（推荐）" class="headerlink" title="方法一：NPM安装（推荐）"></a>方法一：NPM安装（推荐）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-theme-butterfly</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二：Git克隆"><a href="#方法二：Git克隆" class="headerlink" title="方法二：Git克隆"></a>方法二：Git克隆</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure>
+
+<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><ol>
+<li><p>修改站点配置文件 <code>_config.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">butterfly</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建主题配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> node_modules/hexo-theme-butterfly/_config.yml _config.butterfly.yml</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="⚙️-核心配置详解"><a href="#⚙️-核心配置详解" class="headerlink" title="⚙️ 核心配置详解"></a>⚙️ 核心配置详解</h2><h3 id="站点配置-config-yml"><a href="#站点配置-config-yml" class="headerlink" title="站点配置 (_config.yml)"></a>站点配置 (_config.yml)</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 基本信息</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">重启纪元</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">启航新征程</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">自能生羽翼，何必仰云梯</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">毛毛</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">Asia/Shanghai</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL配置</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://maomao725.top</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主题配置</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">butterfly</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Butterfly主题配置要点"><a href="#Butterfly主题配置要点" class="headerlink" title="Butterfly主题配置要点"></a>Butterfly主题配置要点</h3><h4 id="1-导航菜单"><a href="#1-导航菜单" class="headerlink" title="1. 导航菜单"></a>1. 导航菜单</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">首页:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="string">标签:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="string">分类:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-folder-open</span></span><br><span class="line">  <span class="string">关于:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-heart</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-头像和背景图片"><a href="#2-头像和背景图片" class="headerlink" title="2. 头像和背景图片"></a>2. 头像和背景图片</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="attr">img:</span> <span class="string">/img/avatar.jpg</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">index_img:</span> <span class="string">/img/background.png</span></span><br><span class="line"><span class="attr">default_top_img:</span> <span class="string">/img/background.png</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-社交链接"><a href="#3-社交链接" class="headerlink" title="3. 社交链接"></a>3. 社交链接</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">social:</span></span><br><span class="line">  <span class="attr">fab fa-github:</span> <span class="string">https://github.com/maomao725</span> <span class="string">||</span> <span class="string">Github</span></span><br><span class="line">  <span class="attr">fas fa-envelope:</span> <span class="string">mailto:yejiale25@gmail</span> <span class="string">||</span> <span class="string">Email</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-搜索功能"><a href="#4-搜索功能" class="headerlink" title="4. 搜索功能"></a>4. 搜索功能</h4><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="🎨-个性化定制"><a href="#🎨-个性化定制" class="headerlink" title="🎨 个性化定制"></a>🎨 个性化定制</h2><h3 id="1-添加自定义样式"><a href="#1-添加自定义样式" class="headerlink" title="1. 添加自定义样式"></a>1. 添加自定义样式</h3><p>创建 <code>source/css/custom.css</code>：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 自定义样式 */</span></span><br><span class="line"><span class="selector-class">.custom-class</span> &#123;</span><br><span class="line">    <span class="comment">/* 你的样式 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-添加网站图标"><a href="#2-添加网站图标" class="headerlink" title="2. 添加网站图标"></a>2. 添加网站图标</h3><p>将 <code>favicon.ico</code> 放置在 <code>source/</code> 目录下。</p>
+<h3 id="3-配置代码高亮"><a href="#3-配置代码高亮" class="headerlink" title="3. 配置代码高亮"></a>3. 配置代码高亮</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight_theme:</span> <span class="string">light</span></span><br><span class="line"><span class="attr">highlight_copy:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">highlight_lang:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="🚀-部署到GitHub-Pages"><a href="#🚀-部署到GitHub-Pages" class="headerlink" title="🚀 部署到GitHub Pages"></a>🚀 部署到GitHub Pages</h2><h3 id="1-创建GitHub仓库"><a href="#1-创建GitHub仓库" class="headerlink" title="1. 创建GitHub仓库"></a>1. 创建GitHub仓库</h3><p>创建名为 <code>username.github.io</code> 的仓库。</p>
+<h3 id="2-配置部署"><a href="#2-配置部署" class="headerlink" title="2. 配置部署"></a>2. 配置部署</h3><p>安装部署插件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>配置 <code>_config.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-GitHub-Actions自动部署"><a href="#3-GitHub-Actions自动部署" class="headerlink" title="3. GitHub Actions自动部署"></a>3. GitHub Actions自动部署</h3><p>创建 <code>.github/workflows/deploy.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">Blog</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span> [ <span class="string">main</span> ]</span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v3</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;18&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">and</span> <span class="string">Build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install</span></span><br><span class="line"><span class="string">          npm run build</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="🔧-优化建议"><a href="#🔧-优化建议" class="headerlink" title="🔧 优化建议"></a>🔧 优化建议</h2><h3 id="1-SEO优化"><a href="#1-SEO优化" class="headerlink" title="1. SEO优化"></a>1. SEO优化</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装SEO插件</span></span><br><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-generator-sitemap</span> <span class="string">--save</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置站点地图</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-性能优化"><a href="#2-性能优化" class="headerlink" title="2. 性能优化"></a>2. 性能优化</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启用懒加载</span></span><br><span class="line"><span class="attr">lazyload:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-搜索优化"><a href="#3-搜索优化" class="headerlink" title="3. 搜索优化"></a>3. 搜索优化</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="📝-写作技巧"><a href="#📝-写作技巧" class="headerlink" title="📝 写作技巧"></a>📝 写作技巧</h2><h3 id="1-文章Front-matter"><a href="#1-文章Front-matter" class="headerlink" title="1. 文章Front-matter"></a>1. 文章Front-matter</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">文章标题</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2024-09-14 10:00:00</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">标签1</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">标签2</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">分类名称</span></span><br><span class="line"><span class="attr">cover:</span> <span class="string">/img/cover.jpg</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">文章描述</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2. 常用命令"></a>2. 常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建文章</span></span><br><span class="line">hexo new post <span class="string">&quot;文章标题&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建页面</span></span><br><span class="line">hexo new page <span class="string">&quot;页面名称&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动本地服务器</span></span><br><span class="line">hexo server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署</span></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="🌐-自定义域名配置"><a href="#🌐-自定义域名配置" class="headerlink" title="🌐 自定义域名配置"></a>🌐 自定义域名配置</h2><h3 id="1-添加CNAME文件"><a href="#1-添加CNAME文件" class="headerlink" title="1. 添加CNAME文件"></a>1. 添加CNAME文件</h3><p>在 <code>source/</code> 目录下创建 <code>CNAME</code> 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yourdomain.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-配置DNS解析"><a href="#2-配置DNS解析" class="headerlink" title="2. 配置DNS解析"></a>2. 配置DNS解析</h3><p>在域名提供商处添加CNAME记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">类型: CNAME</span><br><span class="line">名称: @（或www）</span><br><span class="line">值: username.github.io</span><br></pre></td></tr></table></figure>
+
+<h2 id="🔍-常见问题解决"><a href="#🔍-常见问题解决" class="headerlink" title="🔍 常见问题解决"></a>🔍 常见问题解决</h2><h3 id="1-主题更新问题"><a href="#1-主题更新问题" class="headerlink" title="1. 主题更新问题"></a>1. 主题更新问题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm update hexo-theme-butterfly</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-构建失败"><a href="#2-构建失败" class="headerlink" title="2. 构建失败"></a>2. 构建失败</h3><p>检查配置文件语法，确保YAML格式正确。</p>
+<h3 id="3-图片不显示"><a href="#3-图片不显示" class="headerlink" title="3. 图片不显示"></a>3. 图片不显示</h3><p>检查图片路径，确保相对路径正确。</p>
+<h2 id="🎊-总结"><a href="#🎊-总结" class="headerlink" title="🎊 总结"></a>🎊 总结</h2><p>通过以上步骤，我们成功搭建了一个功能完整、界面优雅的个人博客。Hexo + Butterfly 的组合为我们提供了：</p>
+<ul>
+<li>🚀 <strong>快速生成</strong>: 秒级的静态文件生成</li>
+<li>🎨 <strong>美观界面</strong>: 现代化的UI设计</li>
+<li>📱 <strong>响应式设计</strong>: 完美适配各种设备</li>
+<li>🔍 <strong>SEO友好</strong>: 良好的搜索引擎优化</li>
+<li>🛠️ <strong>高度可定制</strong>: 丰富的配置选项</li>
+</ul>
+<h3 id="下一步计划"><a href="#下一步计划" class="headerlink" title="下一步计划"></a>下一步计划</h3><ul>
+<li>学习Markdown语法，提升写作效率</li>
+<li>探索更多主题功能，如评论系统、统计分析</li>
+<li>定期备份博客数据，保障内容安全</li>
+<li>持续创作优质内容，建立个人品牌</li>
+</ul>
+<hr>
+<blockquote>
+<p>“The best blogs are those that teach you something new every time you visit.”</p>
+<p>最好的博客是那些每次访问都能让你学到新东西的博客。</p>
+</blockquote>
+<p><strong>愿你的博客之旅充满收获与快乐！</strong> ✨</p>
+<h2 id="📚-参考资源"><a href="#📚-参考资源" class="headerlink" title="📚 参考资源"></a>📚 参考资源</h2><ul>
+<li><a href="https://hexo.io/docs/">Hexo官方文档</a></li>
+<li><a href="https://butterfly.js.org/">Butterfly主题文档</a></li>
+<li><a href="https://pages.github.com/">GitHub Pages文档</a></li>
+<li><a href="https://www.markdownguide.org/">Markdown语法指南</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术教程</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+        <tag>Hexo</tag>
+        <tag>Butterfly</tag>
+        <tag>GitHub Pages</tag>
+        <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🚀 欢迎来到重启纪元</title>
+    <url>/2025/09/14/welcome-to-reboot-era/</url>
+    <content><![CDATA[<h2 id="🎉-重启纪元，全新开始"><a href="#🎉-重启纪元，全新开始" class="headerlink" title="🎉 重启纪元，全新开始"></a>🎉 重启纪元，全新开始</h2><p>欢迎来到我的个人博客「重启纪元」！</p>
+<p>正如古人所言：”<strong>自能生羽翼，何必仰云梯</strong>“。每个人都有属于自己的成长轨迹，无需依赖他人的阶梯，关键是要有勇气展开自己的翅膀。</p>
+<h3 id="✨-关于这个博客"><a href="#✨-关于这个博客" class="headerlink" title="✨ 关于这个博客"></a>✨ 关于这个博客</h3><p>这个博客基于 <strong>Hexo</strong> 框架搭建，使用了优雅的 <strong>Butterfly</strong> 主题。在这里，我将：</p>
+<ul>
+<li>📝 <strong>记录学习心得</strong>：分享技术学习过程中的思考和总结</li>
+<li>🛠️ <strong>展示项目作品</strong>：展示一些有趣的技术项目和创意实现</li>
+<li>💭 <strong>分享生活感悟</strong>：记录日常生活中的所思所想</li>
+<li>🌱 <strong>追踪成长轨迹</strong>：见证自己在技术和人生路上的成长</li>
+</ul>
+<h3 id="🎯-我的技术栈"><a href="#🎯-我的技术栈" class="headerlink" title="🎯 我的技术栈"></a>🎯 我的技术栈</h3><p>目前主要专注于以下技术领域：</p>
+<ul>
+<li><strong>编程语言</strong>: Python、C++</li>
+<li><strong>数据库</strong>: MySQL、MongoDB</li>
+<li><strong>开发工具</strong>: Git、Docker、VS Code</li>
+<li><strong>其他技术</strong>: 嵌入式开发、机器学习</li>
+</ul>
+<h3 id="🌟-博客特色"><a href="#🌟-博客特色" class="headerlink" title="🌟 博客特色"></a>🌟 博客特色</h3><ul>
+<li><strong>简洁美观</strong>: 采用现代化设计，注重阅读体验</li>
+<li><strong>响应式布局</strong>: 完美适配各种设备</li>
+<li><strong>功能丰富</strong>: 支持搜索、分类、标签、深色模式等</li>
+<li><strong>SEO优化</strong>: 更好的搜索引擎收录表现</li>
+</ul>
+<h3 id="🚀-未来规划"><a href="#🚀-未来规划" class="headerlink" title="🚀 未来规划"></a>🚀 未来规划</h3><p>在接下来的日子里，我计划：</p>
+<ol>
+<li><strong>定期更新</strong>: 保持文章的更新频率，分享最新的学习成果</li>
+<li><strong>技术深度</strong>: 不断深入学习，提升技术广度和深度</li>
+<li><strong>交流互动</strong>: 与更多技术爱好者交流学习心得</li>
+<li><strong>项目实践</strong>: 通过实际项目来验证和应用所学知识</li>
+</ol>
+<h3 id="💬-联系方式"><a href="#💬-联系方式" class="headerlink" title="💬 联系方式"></a>💬 联系方式</h3><p>如果你对我的文章有任何建议，或者想要交流技术问题，欢迎通过以下方式联系我：</p>
+<ul>
+<li><strong>GitHub</strong>: <a href="https://github.com/maomao725">https://github.com/maomao725</a></li>
+<li><strong>Email</strong>: yejiale25@gmail</li>
+</ul>
+<h3 id="🎊-写在最后"><a href="#🎊-写在最后" class="headerlink" title="🎊 写在最后"></a>🎊 写在最后</h3><p>感谢每一位访问者的到来！希望这个博客能够成为我们共同学习、成长的平台。</p>
+<p>记住那句话：<strong>自能生羽翼，何必仰云梯</strong>。</p>
+<p>让我们一起在技术的海洋中展翅高飞，创造属于自己的精彩人生！</p>
+<hr>
+<blockquote>
+<p>“The best time to plant a tree was 20 years ago. The second best time is now.”</p>
+<p>种一棵树最好的时间是二十年前，其次是现在。</p>
+</blockquote>
+<p><strong>重启纪元，从今天开始！</strong> ✨</p>
+]]></content>
+      <categories>
+        <category>生活感悟</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>开始</tag>
+        <tag>个人感悟</tag>
+      </tags>
+  </entry>
+</search>
