@@ -1,0 +1,248 @@
+/* 自定义样式 - 完整版 */
+
+/* ========== 1. 首页全屏背景设置 ========== */
+/* 确保首页背景真正全屏，内容在第二屏 */
+#page-header.full_page {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  background-position: center !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 首页内容区域推到第二屏 */
+.layout > div:first-child {
+  margin-top: 0 !important;
+}
+
+#recent-posts {
+  margin-top: 20px;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  #page-header.full_page {
+    height: 100vh !important;
+    min-height: 100vh !important;
+  }
+}
+
+/* ========== 2. 彻底禁用头像自动旋转 ========== */
+/* 移除所有头像旋转动画 */
+.avatar-img img,
+#sidebar .avatar-img img,
+.card-avatar .avatar-img img,
+#aside-content .avatar-img img {
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  -ms-animation: none !important;
+  animation: none !important;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* 只在鼠标悬停时旋转 */
+.avatar-img:hover img,
+#sidebar .avatar-img:hover img,
+.card-avatar .avatar-img:hover img,
+#aside-content .avatar-img:hover img {
+  transform: rotate(360deg);
+}
+
+/* 禁用Butterfly主题的rotate动画 */
+@keyframes rotate {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(0); }
+}
+
+/* ========== 3. 背景渐变色效果 ========== */
+/* 页面背景渐变 */
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #fbc2eb 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+}
+
+/* 深色模式背景渐变 */
+[data-theme="dark"] body {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #7e57c2 50%, #aa6da3 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* 文章卡片背景 */
+.recent-post-item,
+#aside-content .card-widget,
+.layout > .recent-posts .recent-post-item {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+/* 深色模式卡片背景 */
+[data-theme="dark"] .recent-post-item,
+[data-theme="dark"] #aside-content .card-widget {
+  background: rgba(30, 30, 30, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 导航栏背景 */
+#nav {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1) !important;
+}
+
+[data-theme="dark"] #nav {
+  background: rgba(30, 30, 30, 0.92) !important;
+}
+
+/* ========== 4. 页脚样式美化 ========== */
+#footer {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%) !important;
+  color: #ffffff !important;
+  padding: 40px 0 30px 0 !important;
+  margin-top: 40px;
+}
+
+#footer .footer-separator {
+  display: none !important;
+}
+
+#footer-wrap {
+  color: #ffffff !important;
+}
+
+#footer-wrap a {
+  color: #ffffff !important;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+#footer-wrap a:hover {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+/* 页脚文字颜色 */
+.footer_custom_text,
+#footer .footer_custom_text,
+#footer-wrap .footer_custom_text {
+  color: #ffffff !important;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+/* 深色模式页脚 */
+[data-theme="dark"] #footer {
+  background: linear-gradient(135deg, rgba(30, 60, 114, 0.9) 0%, rgba(42, 82, 152, 0.9) 100%) !important;
+}
+
+/* ========== 5. 首页标题和箭头优化 ========== */
+#site-info {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+#site-title {
+  color: #ffffff !important;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3) !important;
+  font-size: 3em !important;
+  margin-bottom: 10px !important;
+}
+
+#site-subtitle {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3) !important;
+  font-size: 1.5em !important;
+}
+
+/* 滚动箭头 */
+#scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+#scroll-down i {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 30px;
+  animation: scroll-down-effect 1.5s infinite;
+}
+
+@keyframes scroll-down-effect {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+}
+
+/* ========== 6. 内容区域优化 ========== */
+/* 主内容区域 */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 文章列表间距 */
+.recent-post-item {
+  margin-bottom: 25px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.recent-post-item:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25) !important;
+}
+
+/* ========== 7. 其他优化 ========== */
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* 选中文字颜色 */
+::selection {
+  background: rgba(118, 75, 162, 0.3);
+  color: #333;
+}
+
+::-moz-selection {
+  background: rgba(118, 75, 162, 0.3);
+  color: #333;
+}
