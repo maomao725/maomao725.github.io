@@ -1,0 +1,31 @@
+# 评论系统页面控制配置
+# 设置哪些页面显示评论
+
+# 文章页面 - 显示评论
+post: true
+
+# 独立页面配置
+pages:
+  # 关于页面 - 显示评论
+  about: true
+
+  # 标签页面 - 不显示评论
+  tags: false
+
+  # 分类页面 - 不显示评论
+  categories: false
+
+  # 归档页面 - 显示评论
+  archives: true
+
+  # 更新日志页面 - 显示评论
+  update: true
+
+  # 友链页面 - 显示评论（如果有的话）
+  link: true
+
+  # 留言板页面 - 显示评论（如果有的话）
+  message: true
+
+# 首页 - 不显示评论
+index: false

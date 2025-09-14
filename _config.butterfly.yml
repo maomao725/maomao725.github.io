@@ -92,16 +92,12 @@ comments:
 # Utterances
 # https://utteranc.es/
 utterances:
-  repo: maomao725.github.io
+  repo: maomao725/maomao725.github.io
   # Issue Mapping: pathname/url/title/og:title
   issue_term: pathname
   # Theme: github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
   light_theme: github-light
   dark_theme: photon-dark
-  text: true
-  lazyload: false
-  count: false
-  card_post_count: false
 
 # Online Chat
 chat:
@@ -163,6 +159,7 @@ aside:
     enable: true
     post_count: true
     last_push_date: true
+    total_wordcount: true
     sort_order:
 
 # Post settings
@@ -180,6 +177,11 @@ post:
       enable: true
     tags:
       enable: true
+    wordcount:
+      enable: true
+      post_wordcount: true
+      min2read: true
+      total_wordcount: true
   award:
     enable: false
   copyright:
@@ -273,6 +275,7 @@ inject:
   bottom:
     - <script src="/js/nav-scroll.js"></script>
     - <script src="/js/runtime.js"></script>
+    - <script src="/js/wordcount.js"></script>
 
 # Disable copy
 disable_copy: false
