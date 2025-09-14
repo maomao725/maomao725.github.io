@@ -87,8 +87,8 @@ theme: butterfly
 # Deployment
 deploy:
   type: git
-  repo: https://github.com/maomao725/maomao725.github.io
-  branch: main
+  repo: https://github.com/maomao725/maomao725.github.io.git
+  branch: gh-pages
 
 # Search
 search:

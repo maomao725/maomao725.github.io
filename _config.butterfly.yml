@@ -25,6 +25,22 @@ default_top_img: /img/background.png
 index_top_img_height: 100vh
 footer_img: false
 
+# Site subtitle settings
+subtitle:
+  enable: true
+  # Typewriter Effect
+  effect: true
+  # Customize typed.js (https://github.com/mattboldt/typed.js/)
+  typed_option:
+    strings: ['不敢相信～', '簡直八點檔！']
+    startDelay: 300
+    typeSpeed: 150
+    loop: true
+    loopCount: Infinity
+    backSpeed: 50
+    showCursor: true
+    cursorChar: '|'
+
 # Cover image settings
 cover:
   index_enable: true
@@ -82,7 +98,7 @@ footer:
   owner:
     enable: true
     since: 2025
-  custom_text: © 2025 By 毛毛
+  custom_text: '<div id="runtime"></div><div style="margin-top: 5px;">Copyright © 2025 毛毛</div>'
   copyright: true
 
 # Aside widget settings
@@ -235,6 +251,8 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css">
   bottom:
+    - <script src="/js/nav-scroll.js"></script>
+    - <script src="/js/runtime.js"></script>
 
 # Disable copy
 disable_copy: false
