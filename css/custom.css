@@ -356,139 +356,186 @@ body {
   margin-bottom: 15px !important;
 }
 
-/* ========== 9. 小剪刀分割线样式 ========== */
-.custom-hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(to right, transparent, #e0e0e0, transparent);
-  margin: 30px 0;
+/* ========== 9. 小剪刀分割线样式 (完全复制目标网站) ========== */
+.custom-hr,
+#article-container.post-content hr {
   position: relative;
+  margin: 40px auto;
+  border: 2px dashed var(--hr-border);
+  width: calc(100% - 4px);
 }
 
-.custom-hr::before {
-  content: "✂";
+.custom-hr:hover:before,
+#article-container.post-content hr:hover:before {
+  left: calc(95% - 20px);
+}
+
+.custom-hr:before,
+#article-container.post-content hr:before {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--card-bg);
-  padding: 0 15px;
-  color: #87CEEB;
-  font-size: 18px;
-}
-
-/* 深色模式下的剪刀样式 */
-[data-theme="dark"] .custom-hr {
-  background: linear-gradient(to right, transparent, #4a4a4a, transparent);
-}
-
-[data-theme="dark"] .custom-hr::before {
-  color: #87CEEB;
-}
-
-/* ========== 10. 相关推荐文章样式 ========== */
-.relatedPosts {
-  margin: 40px 0;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.relatedPosts .headline {
-  font-size: 1.2em;
+  top: -10px;
+  left: 5%;
+  z-index: 1;
+  color: var(--hr-before-color);
+  content: '\f0c4';
+  font-size: 20px;
+  line-height: 1;
+  display: inline-block;
   font-weight: 600;
+  font-family: 'Font Awesome 6 Free';
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+/* ========== 10. 相关推荐文章样式 (完全复制目标网站) ========== */
+.relatedPosts {
+  margin-top: 40px;
+  padding: 0;
+}
+
+.relatedPosts > .headline {
   margin-bottom: 20px;
-  color: #4682B4;
+  font-weight: 700;
+  font-size: 1.43em;
+  color: var(--font-color);
   display: flex;
   align-items: center;
 }
 
-.relatedPosts .headline i {
+.relatedPosts > .headline i {
   margin-right: 8px;
+  color: #49b1f5;
 }
 
-.relatedPosts .relatedPosts-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.relatedPosts > .relatedPosts-list {
+  display: flex;
+  flex-wrap: wrap;
   gap: 15px;
+  margin: 0;
+  padding: 0;
 }
 
-.relatedPosts .relatedPosts-list .relatedPosts-item {
+.relatedPosts > .relatedPosts-list > div {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: calc(33.333% - 10px);
+  height: 200px;
+  background: #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.relatedPosts > .relatedPosts-list > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 768px) {
+  .relatedPosts > .relatedPosts-list > div {
+    width: calc(50% - 7.5px);
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .relatedPosts > .relatedPosts-list > div {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+.relatedPosts > .relatedPosts-list .content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: #fff;
+  z-index: 2;
+}
+
+.relatedPosts > .relatedPosts-list .content.is-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  text-align: left;
+}
+
+.relatedPosts > .relatedPosts-list .content .date {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.relatedPosts .relatedPosts-list .relatedPosts-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(31, 38, 135, 0.2);
+.relatedPosts > .relatedPosts-list .content .date i {
+  margin-right: 5px;
+  font-size: 11px;
 }
 
-.relatedPosts .relatedPosts-list .relatedPosts-item .cover {
-  width: 60px;
-  height: 60px;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-right: 15px;
-  flex-shrink: 0;
-}
-
-.relatedPosts .relatedPosts-list .relatedPosts-item .cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.relatedPosts .relatedPosts-list .relatedPosts-item .content .title {
-  font-size: 0.95em;
-  font-weight: 500;
-  color: #333;
-  text-decoration: none;
+.relatedPosts > .relatedPosts-list .content .title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.4;
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-decoration: none;
 }
 
-.relatedPosts .relatedPosts-list .relatedPosts-item .content .title:hover {
-  color: #4682B4;
+.relatedPosts > .relatedPosts-list > div:hover .cover {
+  opacity: 0.8;
+  transform: scale(1.05);
 }
 
-.relatedPosts .relatedPosts-list .relatedPosts-item .content .date {
-  font-size: 0.8em;
-  color: #999;
-  margin-top: 5px;
+.relatedPosts > .relatedPosts-list > div .cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  z-index: 1;
 }
 
-/* 深色模式相关推荐样式 */
-[data-theme="dark"] .relatedPosts {
-  background: rgba(30, 30, 30, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.relatedPosts > .relatedPosts-list > div a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
 }
 
-[data-theme="dark"] .relatedPosts .headline {
-  color: #87CEEB;
+.relatedPosts > .relatedPosts-list > div a:hover {
+  text-decoration: none;
 }
 
-[data-theme="dark"] .relatedPosts .relatedPosts-list .relatedPosts-item {
-  background: rgba(40, 40, 40, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* 深色模式适配 */
+[data-theme="dark"] .relatedPosts > .headline {
+  color: var(--font-color);
 }
 
-[data-theme="dark"] .relatedPosts .relatedPosts-list .relatedPosts-item .content .title {
-  color: #e0e0e0;
+[data-theme="dark"] .relatedPosts > .relatedPosts-list > div {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="dark"] .relatedPosts .relatedPosts-list .relatedPosts-item .content .title:hover {
-  color: #87CEEB;
+[data-theme="dark"] .relatedPosts > .relatedPosts-list > div:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 /* 移动端适配 */
