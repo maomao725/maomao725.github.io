@@ -1,62 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>🚀 欢迎来到重启纪元</title>
-    <url>/2025/09/14/welcome-to-reboot-era/</url>
-    <content><![CDATA[<h2 id="🎉-重启纪元，全新开始"><a href="#🎉-重启纪元，全新开始" class="headerlink" title="🎉 重启纪元，全新开始"></a>🎉 重启纪元，全新开始</h2><p>欢迎来到我的个人博客「重启纪元」！</p>
-<p>正如古人所言：”<strong>自能生羽翼，何必仰云梯</strong>“。每个人都有属于自己的成长轨迹，无需依赖他人的阶梯，关键是要有勇气展开自己的翅膀。</p>
-<h3 id="✨-关于这个博客"><a href="#✨-关于这个博客" class="headerlink" title="✨ 关于这个博客"></a>✨ 关于这个博客</h3><p>这个博客基于 <strong>Hexo</strong> 框架搭建，使用了优雅的 <strong>Butterfly</strong> 主题。在这里，我将：</p>
-<ul>
-<li>📝 <strong>记录学习心得</strong>：分享技术学习过程中的思考和总结</li>
-<li>🛠️ <strong>展示项目作品</strong>：展示一些有趣的技术项目和创意实现</li>
-<li>💭 <strong>分享生活感悟</strong>：记录日常生活中的所思所想</li>
-<li>🌱 <strong>追踪成长轨迹</strong>：见证自己在技术和人生路上的成长</li>
-</ul>
-<h3 id="🎯-我的技术栈"><a href="#🎯-我的技术栈" class="headerlink" title="🎯 我的技术栈"></a>🎯 我的技术栈</h3><p>目前主要专注于以下技术领域：</p>
-<ul>
-<li><strong>编程语言</strong>: Python、C++</li>
-<li><strong>数据库</strong>: MySQL、MongoDB</li>
-<li><strong>开发工具</strong>: Git、Docker、VS Code</li>
-<li><strong>其他技术</strong>: 嵌入式开发、机器学习</li>
-</ul>
-<h3 id="🌟-博客特色"><a href="#🌟-博客特色" class="headerlink" title="🌟 博客特色"></a>🌟 博客特色</h3><ul>
-<li><strong>简洁美观</strong>: 采用现代化设计，注重阅读体验</li>
-<li><strong>响应式布局</strong>: 完美适配各种设备</li>
-<li><strong>功能丰富</strong>: 支持搜索、分类、标签、深色模式等</li>
-<li><strong>SEO优化</strong>: 更好的搜索引擎收录表现</li>
-</ul>
-<h3 id="🚀-未来规划"><a href="#🚀-未来规划" class="headerlink" title="🚀 未来规划"></a>🚀 未来规划</h3><p>在接下来的日子里，我计划：</p>
-<ol>
-<li><strong>定期更新</strong>: 保持文章的更新频率，分享最新的学习成果</li>
-<li><strong>技术深度</strong>: 不断深入学习，提升技术广度和深度</li>
-<li><strong>交流互动</strong>: 与更多技术爱好者交流学习心得</li>
-<li><strong>项目实践</strong>: 通过实际项目来验证和应用所学知识</li>
-</ol>
-<h3 id="💬-联系方式"><a href="#💬-联系方式" class="headerlink" title="💬 联系方式"></a>💬 联系方式</h3><p>如果你对我的文章有任何建议，或者想要交流技术问题，欢迎通过以下方式联系我：</p>
-<ul>
-<li><strong>GitHub</strong>: <a href="https://github.com/maomao725">https://github.com/maomao725</a></li>
-<li><strong>Email</strong>: yejiale25@gmail</li>
-</ul>
-<h3 id="🎊-写在最后"><a href="#🎊-写在最后" class="headerlink" title="🎊 写在最后"></a>🎊 写在最后</h3><p>感谢每一位访问者的到来！希望这个博客能够成为我们共同学习、成长的平台。</p>
-<p>记住那句话：<strong>自能生羽翼，何必仰云梯</strong>。</p>
-<p>让我们一起在技术的海洋中展翅高飞，创造属于自己的精彩人生！</p>
-<hr>
-<blockquote>
-<p>“The best time to plant a tree was 20 years ago. The second best time is now.”</p>
-<p>种一棵树最好的时间是二十年前，其次是现在。</p>
-</blockquote>
-<p><strong>重启纪元，从今天开始！</strong> ✨</p>
-]]></content>
-      <categories>
-        <category>生活感悟</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-        <tag>开始</tag>
-        <tag>个人感悟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>🦋 基于Hexo+Butterfly搭建优雅博客完整指南</title>
     <url>/2025/09/14/hexo-butterfly-blog-setup/</url>
     <content><![CDATA[<h2 id="🎯-前言"><a href="#🎯-前言" class="headerlink" title="🎯 前言"></a>🎯 前言</h2><p>在这个信息爆炸的时代，拥有一个属于自己的博客平台变得越来越重要。今天我将分享如何使用 <strong>Hexo</strong> + <strong>Butterfly主题</strong> 搭建一个既美观又功能强大的个人博客。</p>
@@ -172,6 +116,62 @@
         <tag>博客搭建</tag>
         <tag>GitHub Pages</tag>
         <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🚀 欢迎来到重启纪元</title>
+    <url>/2025/09/14/welcome-to-reboot-era/</url>
+    <content><![CDATA[<h2 id="🎉-重启纪元，全新开始"><a href="#🎉-重启纪元，全新开始" class="headerlink" title="🎉 重启纪元，全新开始"></a>🎉 重启纪元，全新开始</h2><p>欢迎来到我的个人博客「重启纪元」！</p>
+<p>正如古人所言：”<strong>自能生羽翼，何必仰云梯</strong>“。每个人都有属于自己的成长轨迹，无需依赖他人的阶梯，关键是要有勇气展开自己的翅膀。</p>
+<h3 id="✨-关于这个博客"><a href="#✨-关于这个博客" class="headerlink" title="✨ 关于这个博客"></a>✨ 关于这个博客</h3><p>这个博客基于 <strong>Hexo</strong> 框架搭建，使用了优雅的 <strong>Butterfly</strong> 主题。在这里，我将：</p>
+<ul>
+<li>📝 <strong>记录学习心得</strong>：分享技术学习过程中的思考和总结</li>
+<li>🛠️ <strong>展示项目作品</strong>：展示一些有趣的技术项目和创意实现</li>
+<li>💭 <strong>分享生活感悟</strong>：记录日常生活中的所思所想</li>
+<li>🌱 <strong>追踪成长轨迹</strong>：见证自己在技术和人生路上的成长</li>
+</ul>
+<h3 id="🎯-我的技术栈"><a href="#🎯-我的技术栈" class="headerlink" title="🎯 我的技术栈"></a>🎯 我的技术栈</h3><p>目前主要专注于以下技术领域：</p>
+<ul>
+<li><strong>编程语言</strong>: Python、C++</li>
+<li><strong>数据库</strong>: MySQL、MongoDB</li>
+<li><strong>开发工具</strong>: Git、Docker、VS Code</li>
+<li><strong>其他技术</strong>: 嵌入式开发、机器学习</li>
+</ul>
+<h3 id="🌟-博客特色"><a href="#🌟-博客特色" class="headerlink" title="🌟 博客特色"></a>🌟 博客特色</h3><ul>
+<li><strong>简洁美观</strong>: 采用现代化设计，注重阅读体验</li>
+<li><strong>响应式布局</strong>: 完美适配各种设备</li>
+<li><strong>功能丰富</strong>: 支持搜索、分类、标签、深色模式等</li>
+<li><strong>SEO优化</strong>: 更好的搜索引擎收录表现</li>
+</ul>
+<h3 id="🚀-未来规划"><a href="#🚀-未来规划" class="headerlink" title="🚀 未来规划"></a>🚀 未来规划</h3><p>在接下来的日子里，我计划：</p>
+<ol>
+<li><strong>定期更新</strong>: 保持文章的更新频率，分享最新的学习成果</li>
+<li><strong>技术深度</strong>: 不断深入学习，提升技术广度和深度</li>
+<li><strong>交流互动</strong>: 与更多技术爱好者交流学习心得</li>
+<li><strong>项目实践</strong>: 通过实际项目来验证和应用所学知识</li>
+</ol>
+<h3 id="💬-联系方式"><a href="#💬-联系方式" class="headerlink" title="💬 联系方式"></a>💬 联系方式</h3><p>如果你对我的文章有任何建议，或者想要交流技术问题，欢迎通过以下方式联系我：</p>
+<ul>
+<li><strong>GitHub</strong>: <a href="https://github.com/maomao725">https://github.com/maomao725</a></li>
+<li><strong>Email</strong>: yejiale25@gmail</li>
+</ul>
+<h3 id="🎊-写在最后"><a href="#🎊-写在最后" class="headerlink" title="🎊 写在最后"></a>🎊 写在最后</h3><p>感谢每一位访问者的到来！希望这个博客能够成为我们共同学习、成长的平台。</p>
+<p>记住那句话：<strong>自能生羽翼，何必仰云梯</strong>。</p>
+<p>让我们一起在技术的海洋中展翅高飞，创造属于自己的精彩人生！</p>
+<hr>
+<blockquote>
+<p>“The best time to plant a tree was 20 years ago. The second best time is now.”</p>
+<p>种一棵树最好的时间是二十年前，其次是现在。</p>
+</blockquote>
+<p><strong>重启纪元，从今天开始！</strong> ✨</p>
+]]></content>
+      <categories>
+        <category>生活感悟</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>开始</tag>
+        <tag>个人感悟</tag>
       </tags>
   </entry>
 </search>
