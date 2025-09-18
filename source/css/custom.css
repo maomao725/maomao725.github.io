@@ -116,20 +116,25 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 导航栏背景 - 初始透明，滚动后显示 */
+/* 导航栏背景 - 完全透明不遮挡文字 */
 #nav {
   background: transparent !important;
   backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
   transition: all 0.3s ease !important;
+  position: fixed !important;
+  width: 100% !important;
+  top: 0 !important;
+  z-index: 999 !important;
 }
 
-/* 滚动后的导航栏样式 */
+/* 滚动后的导航栏样式 - 轻微背景不遮挡文字 */
 #nav.nav-fixed {
-  background: rgba(255, 255, 255, 0.45) !important;
-  backdrop-filter: blur(25px) saturate(1.5) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(1.5) !important;
-  box-shadow: 0 2px 15px 0 rgba(31, 38, 135, 0.03) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(20px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08) !important;
 }
 
 /* 深色模式导航栏 */
@@ -138,7 +143,7 @@ body {
 }
 
 [data-theme="dark"] #nav.nav-fixed {
-  background: rgba(30, 30, 30, 0.45) !important;
+  background: rgba(30, 30, 30, 0.9) !important;
 }
 
 /* ========== 4. 页脚样式美化 ========== */
@@ -322,10 +327,10 @@ body {
 }
 
 /* ========== 8. 导航栏文字样式优化 ========== */
-/* 初始状态导航栏文字颜色和大小 */
+/* 初始状态导航栏文字颜色和大小 - 透明背景时用深色文字 */
 #nav .menus_items .menus_item .menus_item_child {
-  color: #ffffff !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+  color: #4C4948 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8) !important;
   font-size: 18px !important;
   font-weight: 500 !important;
 }
@@ -343,10 +348,10 @@ body {
   color: #4682B4 !important;
 }
 
-/* 站点标题初始颜色和大小 */
+/* 站点标题初始颜色和大小 - 透明背景时用深色文字 */
 #nav #blog-info > a {
-  color: #ffffff !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+  color: #4C4948 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8) !important;
   font-size: 24px !important;
   font-weight: 600 !important;
 }
@@ -653,4 +658,45 @@ body {
 [data-theme="dark"] .recent-post-info .article-meta__categories:hover,
 [data-theme="dark"] .recent-post-info .article-meta__tags a:hover {
   color: #ffffff !important;
+}
+/* ========== 内容区域间距调整 - 防止被导航栏遮挡 ========== */
+
+/* 页面头部间距（非全屏页面） */
+#page-header:not(.full_page) {
+  margin-top: 65px !important;
+}
+
+/* 文章内容区域的顶部间距 */
+.layout #post,
+.layout #page,
+.layout #archive,
+.layout #tag,
+.layout #category {
+  padding-top: 80px !important;
+}
+
+/* 首页特殊处理 - 因为有全屏背景 */
+body:has(#page-header.full_page) .layout {
+  padding-top: 0 !important;
+}
+
+/* 文章内容区域的标题不被遮挡 */
+#post .post-title,
+#page h1 {
+  padding-top: 20px;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  .layout #post,
+  .layout #page,
+  .layout #archive,
+  .layout #tag,
+  .layout #category {
+    padding-top: 70px !important;
+  }
+
+  #page-header:not(.full_page) {
+    margin-top: 50px !important;
+  }
 }
