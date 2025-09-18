@@ -60,17 +60,42 @@
 }
 
 /* ========== 3. 背景渐变色效果 ========== */
-/* 页面背景渐变 - 蓝色天空主题 */
+/* 页面背景渐变 - Whimsical柔和渐变主题 */
 body {
-  background: linear-gradient(135deg, #89CFF0 0%, #6495ED 25%, #4682B4 50%, #87CEEB 100%) !important;
+  background: linear-gradient(135deg,
+    #FFE5EC 0%,     /* 柔和粉色 */
+    #E8D5F2 20%,    /* 淡紫色 */
+    #D4F1E8 40%,    /* 薄荷绿 */
+    #FFF3D6 60%,    /* 浅黄色 */
+    #FFE0E6 80%,    /* 淡粉色 */
+    #E8D5F2 100%    /* 回到淡紫色 */
+  ) !important;
   background-attachment: fixed !important;
+  background-size: 400% 400% !important;
   min-height: 100vh;
+  animation: whimsicalGradient 20s ease infinite;
 }
 
-/* 深色模式背景渐变 - 深蓝夜空主题 */
+/* 渐变动画 */
+@keyframes whimsicalGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 深色模式背景渐变 - 深色Whimsical主题 */
 [data-theme="dark"] body {
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #3B5998 50%, #4169E1 100%) !important;
+  background: linear-gradient(135deg,
+    #2D2535 0%,     /* 深紫灰 */
+    #3A2F4D 20%,    /* 深紫 */
+    #2B4840 40%,    /* 深绿 */
+    #3D3629 60%,    /* 深黄灰 */
+    #362939 80%,    /* 深粉灰 */
+    #3A2F4D 100%    /* 回到深紫 */
+  ) !important;
   background-attachment: fixed !important;
+  background-size: 400% 400% !important;
+  animation: whimsicalGradient 20s ease infinite;
 }
 
 /* 文章卡片背景 */
@@ -101,9 +126,10 @@ body {
 
 /* 滚动后的导航栏样式 */
 #nav.nav-fixed {
-  background: rgba(255, 255, 255, 0.75) !important;
-  backdrop-filter: blur(15px) !important;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08) !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(25px) saturate(1.5) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(1.5) !important;
+  box-shadow: 0 2px 15px 0 rgba(31, 38, 135, 0.03) !important;
 }
 
 /* 深色模式导航栏 */
@@ -112,7 +138,7 @@ body {
 }
 
 [data-theme="dark"] #nav.nav-fixed {
-  background: rgba(30, 30, 30, 0.75) !important;
+  background: rgba(30, 30, 30, 0.45) !important;
 }
 
 /* ========== 4. 页脚样式美化 ========== */
