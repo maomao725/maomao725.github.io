@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 计算网站总字数（示例函数，实际应从后端获取）
 function calculateSiteWordCount() {
-  // 这里返回一个估算值，您可以根据实际文章内容计算
-  // 4篇文章，每篇平均约500-1000字
-  return 3256; // 示例值
+  // 基于实际文章内容的统计值
+  // 4篇文章的总字符数约为11833
+  return 11833; // 实际统计值
 }
 
 // 格式化字数显示
