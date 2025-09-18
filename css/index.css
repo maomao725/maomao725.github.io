@@ -3013,6 +3013,14 @@ h1.page-title + .tag-cloud-list {
   -webkit-order: 'desc';
   order: 'desc';
 }
+.page .card-webinfo {
+  -webkit-box-ordinal-group: 'post_count' 'last_push_date';
+  -moz-box-ordinal-group: 'post_count' 'last_push_date';
+  -o-box-ordinal-group: 'post_count' 'last_push_date';
+  -ms-flex-order: 'post_count' 'last_push_date';
+  -webkit-order: 'post_count' 'last_push_date';
+  order: 'post_count' 'last_push_date';
+}
 @-moz-keyframes more-btn-move {
   0%, 100% {
     -webkit-transform: translateX(0);

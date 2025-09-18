@@ -562,3 +562,69 @@ body {
     margin-right: 12px;
   }
 }
+
+/* ========== 18. 深色模式文字颜色修复 ========== */
+/* 修复深色模式下文章封面标题文字颜色 */
+[data-theme="dark"] .recent-post-info .article-title {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .recent-post-info .article-title:hover {
+  color: #87CEEB !important;
+}
+
+/* 修复深色模式下文章元信息文字颜色 */
+[data-theme="dark"] .recent-post-info .article-meta-wrap {
+  color: #d0d0d0 !important;
+}
+
+[data-theme="dark"] .recent-post-info .article-meta-wrap span,
+[data-theme="dark"] .recent-post-info .article-meta-wrap a,
+[data-theme="dark"] .recent-post-info .article-meta-wrap time {
+  color: #d0d0d0 !important;
+}
+
+/* 修复深色模式下文章内容预览文字颜色 */
+[data-theme="dark"] .recent-post-info .content {
+  color: #e0e0e0 !important;
+}
+
+/* 修复深色模式下关注我按钮文字颜色 */
+[data-theme="dark"] #card-info-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: #ffffff !important;
+  border: 2px solid #667eea !important;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #card-info-btn:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+[data-theme="dark"] #card-info-btn i {
+  color: #ffffff !important;
+}
+
+/* 修复深色模式下侧边栏文字颜色 */
+[data-theme="dark"] .card-info .author-info__name {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .card-info .author-info__description {
+  color: #e0e0e0 !important;
+}
+
+/* 修复深色模式下分类和标签链接颜色 */
+[data-theme="dark"] .recent-post-info .article-meta__categories,
+[data-theme="dark"] .recent-post-info .article-meta__tags a {
+  color: #87CEEB !important;
+}
+
+[data-theme="dark"] .recent-post-info .article-meta__categories:hover,
+[data-theme="dark"] .recent-post-info .article-meta__tags a:hover {
+  color: #ffffff !important;
+}

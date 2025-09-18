@@ -36,7 +36,7 @@
       totalWordItem.className = 'webinfo-item';
 
       // 计算总字数（您的4篇文章大约的字数）
-      const totalWords = 3256;
+      const totalWords = 11833;
 
       totalWordItem.innerHTML = `
         <div class="item-name">本站总字数</div>
