@@ -1,122 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>博客功能大升级：评论系统与用户体验优化</title>
-    <url>/2025/09/14/blog-features-upgrade/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天为博客进行了一次重大的功能升级，主要添加了三个核心功能：GitHub评论系统、相关推荐文章和小剪刀分割线装饰。这些功能的加入让博客的用户体验得到了显著提升。</p>
-<h2 id="功能亮点"><a href="#功能亮点" class="headerlink" title="功能亮点"></a>功能亮点</h2><h3 id="1-GitHub评论系统"><a href="#1-GitHub评论系统" class="headerlink" title="1. GitHub评论系统"></a>1. GitHub评论系统</h3><p>使用Utterances评论系统，基于GitHub Issues实现：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://utteranc.es/client.js&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">repo</span>=<span class="string">&quot;maomao725.github.io&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">issue-term</span>=<span class="string">&quot;pathname&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">theme</span>=<span class="string">&quot;github-light&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">async</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>优势：</strong></p>
-<ul>
-<li>无需额外注册，使用GitHub账号即可评论</li>
-<li>支持Markdown语法和代码高亮</li>
-<li>自动适配深色&#x2F;浅色主题</li>
-<li>完全免费且稳定</li>
-</ul>
-<h3 id="2-相关推荐文章"><a href="#2-相关推荐文章" class="headerlink" title="2. 相关推荐文章"></a>2. 相关推荐文章</h3><p>在文章底部智能推荐相关内容，提高用户粘性：</p>
-<ul>
-<li>基于标签和分类的智能匹配</li>
-<li>卡片式布局，包含封面图片</li>
-<li>悬停动画效果</li>
-<li>响应式设计</li>
-</ul>
-<h3 id="3-小剪刀分割线"><a href="#3-小剪刀分割线" class="headerlink" title="3. 小剪刀分割线"></a>3. 小剪刀分割线</h3><p>精美的装饰性分割线，用于分隔不同内容区域：</p>
-<ul>
-<li>渐变背景效果</li>
-<li>中间带小剪刀图标 ✂</li>
-<li>支持主题切换</li>
-<li>提升视觉层次感</li>
-</ul>
-<h2 id="技术实现"><a href="#技术实现" class="headerlink" title="技术实现"></a>技术实现</h2><h3 id="CSS样式优化"><a href="#CSS样式优化" class="headerlink" title="CSS样式优化"></a>CSS样式优化</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.custom-hr</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, transparent, <span class="number">#e0e0e0</span>, transparent);</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">30px</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.custom-hr</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&quot;✂&quot;</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--card-bg);</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#87CEEB</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置优化"><a href="#配置优化" class="headerlink" title="配置优化"></a>配置优化</h3><p>在Butterfly主题配置中启用相关功能：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 评论系统</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="attr">use:</span> <span class="string">Utterances</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 相关推荐</span></span><br><span class="line"><span class="attr">related_post:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="用户体验提升"><a href="#用户体验提升" class="headerlink" title="用户体验提升"></a>用户体验提升</h2><ol>
-<li><strong>互动性增强</strong>：评论功能让读者可以直接参与讨论</li>
-<li><strong>内容发现</strong>：相关推荐帮助用户发现更多感兴趣的内容</li>
-<li><strong>视觉美化</strong>：精美的装饰元素提升整体观感</li>
-<li><strong>响应式设计</strong>：在各种设备上都有良好的显示效果</li>
-</ol>
-<h2 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h2><ul>
-<li><input disabled="" type="checkbox"> 添加文章搜索功能</li>
-<li><input disabled="" type="checkbox"> 完善友链页面</li>
-<li><input disabled="" type="checkbox"> 优化SEO设置</li>
-<li><input disabled="" type="checkbox"> 添加访客统计</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次功能升级让博客从一个简单的展示平台变成了一个真正的交互式网站。GitHub评论系统的加入让读者可以方便地参与讨论，相关推荐功能提高了内容的可发现性，而精美的视觉装饰则让整个网站更加美观。</p>
-<p>希望这些改进能为访问者带来更好的阅读体验！</p>
-<hr>
-<p><em>如果您对这些功能有任何建议或问题，欢迎在下方评论区留言讨论！</em></p>
-]]></content>
-      <categories>
-        <category>技术教程</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
-        <tag>Utterances</tag>
-        <tag>用户体验</tag>
-        <tag>GitHub</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>🚀 欢迎来到重启纪元</title>
-    <url>/2025/09/14/welcome-to-reboot-era/</url>
-    <content><![CDATA[<h2 id="🎉-重启纪元，全新开始"><a href="#🎉-重启纪元，全新开始" class="headerlink" title="🎉 重启纪元，全新开始"></a>🎉 重启纪元，全新开始</h2><p>欢迎来到我的个人博客「重启纪元」！</p>
-<p>正如古人所言：”<strong>自能生羽翼，何必仰云梯</strong>“。每个人都有属于自己的成长轨迹，无需依赖他人的阶梯，关键是要有勇气展开自己的翅膀。</p>
-<h3 id="✨-关于这个博客"><a href="#✨-关于这个博客" class="headerlink" title="✨ 关于这个博客"></a>✨ 关于这个博客</h3><p>这个博客基于 <strong>Hexo</strong> 框架搭建，使用了优雅的 <strong>Butterfly</strong> 主题。在这里，我将：</p>
-<ul>
-<li>📝 <strong>记录学习心得</strong>：分享技术学习过程中的思考和总结</li>
-<li>🛠️ <strong>展示项目作品</strong>：展示一些有趣的技术项目和创意实现</li>
-<li>💭 <strong>分享生活感悟</strong>：记录日常生活中的所思所想</li>
-<li>🌱 <strong>追踪成长轨迹</strong>：见证自己在技术和人生路上的成长</li>
-</ul>
-<h3 id="🎯-我的技术栈"><a href="#🎯-我的技术栈" class="headerlink" title="🎯 我的技术栈"></a>🎯 我的技术栈</h3><p>目前主要专注于以下技术领域：</p>
-<ul>
-<li><strong>编程语言</strong>: Python、C++</li>
-<li><strong>数据库</strong>: MySQL、MongoDB</li>
-<li><strong>开发工具</strong>: Git、Docker、VS Code</li>
-<li><strong>其他技术</strong>: 嵌入式开发、机器学习</li>
-</ul>
-<h3 id="🌟-博客特色"><a href="#🌟-博客特色" class="headerlink" title="🌟 博客特色"></a>🌟 博客特色</h3><ul>
-<li><strong>简洁美观</strong>: 采用现代化设计，注重阅读体验</li>
-<li><strong>响应式布局</strong>: 完美适配各种设备</li>
-<li><strong>功能丰富</strong>: 支持搜索、分类、标签、深色模式等</li>
-<li><strong>SEO优化</strong>: 更好的搜索引擎收录表现</li>
-</ul>
-<h3 id="🚀-未来规划"><a href="#🚀-未来规划" class="headerlink" title="🚀 未来规划"></a>🚀 未来规划</h3><p>在接下来的日子里，我计划：</p>
-<ol>
-<li><strong>定期更新</strong>: 保持文章的更新频率，分享最新的学习成果</li>
-<li><strong>技术深度</strong>: 不断深入学习，提升技术广度和深度</li>
-<li><strong>交流互动</strong>: 与更多技术爱好者交流学习心得</li>
-<li><strong>项目实践</strong>: 通过实际项目来验证和应用所学知识</li>
-</ol>
-<h3 id="💬-联系方式"><a href="#💬-联系方式" class="headerlink" title="💬 联系方式"></a>💬 联系方式</h3><p>如果你对我的文章有任何建议，或者想要交流技术问题，欢迎通过以下方式联系我：</p>
-<ul>
-<li><strong>GitHub</strong>: <a href="https://github.com/maomao725">https://github.com/maomao725</a></li>
-<li><strong>Email</strong>: yejiale25@gmail</li>
-</ul>
-<h3 id="🎊-写在最后"><a href="#🎊-写在最后" class="headerlink" title="🎊 写在最后"></a>🎊 写在最后</h3><p>感谢每一位访问者的到来！希望这个博客能够成为我们共同学习、成长的平台。</p>
-<p>记住那句话：<strong>自能生羽翼，何必仰云梯</strong>。</p>
-<p>让我们一起在技术的海洋中展翅高飞，创造属于自己的精彩人生！</p>
-<hr>
-<blockquote>
-<p>“The best time to plant a tree was 20 years ago. The second best time is now.”</p>
-<p>种一棵树最好的时间是二十年前，其次是现在。</p>
-</blockquote>
-<p><strong>重启纪元，从今天开始！</strong> ✨</p>
-]]></content>
-      <categories>
-        <category>生活感悟</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-        <tag>开始</tag>
-        <tag>个人感悟</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GitHub Pages部署指南：从零到一搭建个人博客</title>
     <url>/2025/09/14/github-pages-deployment-guide/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GitHub Pages是GitHub提供的免费静态网站托管服务，非常适合用来部署个人博客、项目文档等静态网站。本文将详细介绍如何使用GitHub Pages部署博客。</p>
@@ -196,9 +80,9 @@
         <category>技术教程</category>
       </categories>
       <tags>
-        <tag>博客搭建</tag>
         <tag>GitHub-Pages</tag>
         <tag>部署</tag>
+        <tag>博客搭建</tag>
         <tag>Git</tag>
       </tags>
   </entry>
@@ -318,6 +202,309 @@
         <tag>Butterfly</tag>
         <tag>GitHub Pages</tag>
         <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客功能大升级：评论系统与用户体验优化</title>
+    <url>/2025/09/14/blog-features-upgrade/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天为博客进行了一次重大的功能升级，主要添加了三个核心功能：GitHub评论系统、相关推荐文章和小剪刀分割线装饰。这些功能的加入让博客的用户体验得到了显著提升。</p>
+<h2 id="功能亮点"><a href="#功能亮点" class="headerlink" title="功能亮点"></a>功能亮点</h2><h3 id="1-GitHub评论系统"><a href="#1-GitHub评论系统" class="headerlink" title="1. GitHub评论系统"></a>1. GitHub评论系统</h3><p>使用Utterances评论系统，基于GitHub Issues实现：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://utteranc.es/client.js&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">repo</span>=<span class="string">&quot;maomao725.github.io&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">issue-term</span>=<span class="string">&quot;pathname&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">theme</span>=<span class="string">&quot;github-light&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">async</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>优势：</strong></p>
+<ul>
+<li>无需额外注册，使用GitHub账号即可评论</li>
+<li>支持Markdown语法和代码高亮</li>
+<li>自动适配深色&#x2F;浅色主题</li>
+<li>完全免费且稳定</li>
+</ul>
+<h3 id="2-相关推荐文章"><a href="#2-相关推荐文章" class="headerlink" title="2. 相关推荐文章"></a>2. 相关推荐文章</h3><p>在文章底部智能推荐相关内容，提高用户粘性：</p>
+<ul>
+<li>基于标签和分类的智能匹配</li>
+<li>卡片式布局，包含封面图片</li>
+<li>悬停动画效果</li>
+<li>响应式设计</li>
+</ul>
+<h3 id="3-小剪刀分割线"><a href="#3-小剪刀分割线" class="headerlink" title="3. 小剪刀分割线"></a>3. 小剪刀分割线</h3><p>精美的装饰性分割线，用于分隔不同内容区域：</p>
+<ul>
+<li>渐变背景效果</li>
+<li>中间带小剪刀图标 ✂</li>
+<li>支持主题切换</li>
+<li>提升视觉层次感</li>
+</ul>
+<h2 id="技术实现"><a href="#技术实现" class="headerlink" title="技术实现"></a>技术实现</h2><h3 id="CSS样式优化"><a href="#CSS样式优化" class="headerlink" title="CSS样式优化"></a>CSS样式优化</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.custom-hr</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, transparent, <span class="number">#e0e0e0</span>, transparent);</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">30px</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.custom-hr</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&quot;✂&quot;</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">var</span>(--card-bg);</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#87CEEB</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置优化"><a href="#配置优化" class="headerlink" title="配置优化"></a>配置优化</h3><p>在Butterfly主题配置中启用相关功能：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 评论系统</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="attr">use:</span> <span class="string">Utterances</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 相关推荐</span></span><br><span class="line"><span class="attr">related_post:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="用户体验提升"><a href="#用户体验提升" class="headerlink" title="用户体验提升"></a>用户体验提升</h2><ol>
+<li><strong>互动性增强</strong>：评论功能让读者可以直接参与讨论</li>
+<li><strong>内容发现</strong>：相关推荐帮助用户发现更多感兴趣的内容</li>
+<li><strong>视觉美化</strong>：精美的装饰元素提升整体观感</li>
+<li><strong>响应式设计</strong>：在各种设备上都有良好的显示效果</li>
+</ol>
+<h2 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h2><ul>
+<li><input disabled="" type="checkbox"> 添加文章搜索功能</li>
+<li><input disabled="" type="checkbox"> 完善友链页面</li>
+<li><input disabled="" type="checkbox"> 优化SEO设置</li>
+<li><input disabled="" type="checkbox"> 添加访客统计</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次功能升级让博客从一个简单的展示平台变成了一个真正的交互式网站。GitHub评论系统的加入让读者可以方便地参与讨论，相关推荐功能提高了内容的可发现性，而精美的视觉装饰则让整个网站更加美观。</p>
+<p>希望这些改进能为访问者带来更好的阅读体验！</p>
+<hr>
+<p><em>如果您对这些功能有任何建议或问题，欢迎在下方评论区留言讨论！</em></p>
+]]></content>
+      <categories>
+        <category>技术教程</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+        <tag>Utterances</tag>
+        <tag>用户体验</tag>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>📊 机器学习第一次大作业：线性回归详解</title>
+    <url>/2025/09/28/machine-learning-homework-1/</url>
+    <content><![CDATA[<h2 id="📚-作业背景"><a href="#📚-作业背景" class="headerlink" title="📚 作业背景"></a>📚 作业背景</h2><p>这是我学习<strong>Machine Learning Specialization by Andrew Ng</strong>课程的第一次编程作业记录。</p>
+<h3 id="🎯-问题描述"><a href="#🎯-问题描述" class="headerlink" title="🎯 问题描述"></a>🎯 问题描述</h3><p>假设你是一家餐饮连锁店的CEO，正在考虑在不同城市开设新的食品车网点。你希望将业务扩展到能够带来更高利润的城市。</p>
+<ul>
+<li>连锁店已经在各个城市有餐厅，拥有这些城市的利润和人口数据</li>
+<li>还有一些候选城市的人口数据</li>
+<li><strong>目标</strong>：使用数据帮助识别哪些城市可能为业务带来更高的利润</li>
+</ul>
+<h3 id="📊-数据集说明"><a href="#📊-数据集说明" class="headerlink" title="📊 数据集说明"></a>📊 数据集说明</h3><p><strong>文件</strong>: <code>ex1data1.txt</code></p>
+<ul>
+<li><strong>x_train</strong>: 城市人口（单位：万人）<ul>
+<li>例如：6.1101 表示该城市人口为 61,101 人</li>
+</ul>
+</li>
+<li><strong>y_train</strong>: 该城市餐厅的月平均利润（单位：万美元）<ul>
+<li>例如：17.592 表示月平均利润为 $175,920</li>
+<li>负值表示亏损，如 -2.6807 表示月平均亏损 $26,807</li>
+</ul>
+</li>
+<li><strong>数据规模</strong>: 97个训练样本</li>
+</ul>
+<h2 id="🔧-任务要求"><a href="#🔧-任务要求" class="headerlink" title="🔧 任务要求"></a>🔧 任务要求</h2><h3 id="Exercise-1-实现代价函数（Compute-Cost）"><a href="#Exercise-1-实现代价函数（Compute-Cost）" class="headerlink" title="Exercise 1: 实现代价函数（Compute Cost）"></a>Exercise 1: 实现代价函数（Compute Cost）</h3><p><strong>任务</strong>: 完成<code>compute_cost</code>函数，计算线性回归的代价函数J(w,b)</p>
+<p><strong>代价函数公式</strong>:<br>$$J(w,b) &#x3D; \frac{1}{2m} \sum_{i&#x3D;1}^{m} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$</p>
+<p>其中：</p>
+<ul>
+<li>$f_{w,b}(x^{(i)}) &#x3D; wx^{(i)} + b$ 是模型的预测值</li>
+<li>$y^{(i)}$ 是实际值</li>
+<li>$m$ 是训练样本数量</li>
+</ul>
+<h3 id="Exercise-2-实现梯度计算（Compute-Gradient）"><a href="#Exercise-2-实现梯度计算（Compute-Gradient）" class="headerlink" title="Exercise 2: 实现梯度计算（Compute Gradient）"></a>Exercise 2: 实现梯度计算（Compute Gradient）</h3><p><strong>任务</strong>: 完成<code>compute_gradient</code>函数，计算代价函数对参数的梯度</p>
+<p><strong>梯度公式</strong>:</p>
+<ul>
+<li>对w的偏导数: $\frac{\partial J}{\partial w} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (f_{w,b}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}$</li>
+<li>对b的偏导数: $\frac{\partial J}{\partial b} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (f_{w,b}(x^{(i)}) - y^{(i)})$</li>
+</ul>
+<h3 id="🎛️-梯度下降参数设置"><a href="#🎛️-梯度下降参数设置" class="headerlink" title="🎛️ 梯度下降参数设置"></a>🎛️ 梯度下降参数设置</h3><ul>
+<li>学习率 α &#x3D; 0.01</li>
+<li>迭代次数 &#x3D; 1500</li>
+<li>初始值：w &#x3D; 0, b &#x3D; 0</li>
+</ul>
+<p><strong>预期结果</strong>:</p>
+<ul>
+<li>最终参数：w ≈ 1.166, b ≈ -3.630</li>
+<li>人口35,000的城市预测利润：$4,519.77</li>
+<li>人口70,000的城市预测利润：$45,342.45</li>
+</ul>
+<h2 id="📈-单变量线性回归详解"><a href="#📈-单变量线性回归详解" class="headerlink" title="📈 单变量线性回归详解"></a>📈 单变量线性回归详解</h2><h3 id="🧮-代价函数-Cost-Function"><a href="#🧮-代价函数-Cost-Function" class="headerlink" title="🧮 代价函数 (Cost Function)"></a>🧮 代价函数 (Cost Function)</h3><h4 id="参数表示法说明"><a href="#参数表示法说明" class="headerlink" title="参数表示法说明"></a>参数表示法说明</h4><p>在机器学习中，有两种常见的参数表示方法：</p>
+<ol>
+<li><strong>吴恩达课程表示法</strong>: $y &#x3D; wx + b$（w是权重weight，b是偏置bias）</li>
+<li><strong>统一向量表示法</strong>: $h_\theta(x) &#x3D; \theta_0 + \theta_1 x$（使用theta向量）</li>
+</ol>
+<p><strong>参数对应关系</strong>：</p>
+<ul>
+<li>$\theta_0 &#x3D; b$ (偏置项)</li>
+<li>$\theta_1 &#x3D; w$ (权重)</li>
+</ul>
+<p>为了使用统一的theta表示法，我们需要在原始数据前添加一列全1（偏置列）：</p>
+<ul>
+<li>$\theta &#x3D; [\theta_0, \theta_1]^T$</li>
+<li>$X &#x3D; [1, x]$ （每个样本前添加1）</li>
+</ul>
+<h4 id="代价函数公式（theta表示法）"><a href="#代价函数公式（theta表示法）" class="headerlink" title="代价函数公式（theta表示法）"></a>代价函数公式（theta表示法）</h4><p><strong>假设函数（Hypothesis Function）</strong>:<br>$$h_\theta(x) &#x3D; \theta^T x &#x3D; \theta_0 + \theta_1 x_1$$</p>
+<p>对于m个训练样本，<strong>代价函数（Cost Function）</strong>为：<br>$$J(\theta) &#x3D; \frac{1}{2m} \sum_{i&#x3D;1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2$$</p>
+<p><strong>向量化表示</strong>：<br>$$J(\theta) &#x3D; \frac{1}{2m}(X\theta - y)^T(X\theta - y)$$</p>
+<h3 id="⚡-梯度下降-Gradient-Descent"><a href="#⚡-梯度下降-Gradient-Descent" class="headerlink" title="⚡ 梯度下降 (Gradient Descent)"></a>⚡ 梯度下降 (Gradient Descent)</h3><h4 id="梯度计算（theta表示法）"><a href="#梯度计算（theta表示法）" class="headerlink" title="梯度计算（theta表示法）"></a>梯度计算（theta表示法）</h4><p><strong>对$\theta_0$的偏导数</strong>:<br>$$\frac{\partial J(\theta)}{\partial \theta_0} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (h_\theta(x^{(i)}) - y^{(i)})$$</p>
+<p><strong>对$\theta_1$的偏导数</strong>:<br>$$\frac{\partial J(\theta)}{\partial \theta_1} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}$$</p>
+<p><strong>统一的向量形式</strong>:<br>$$\frac{\partial J(\theta)}{\partial \theta_j} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)}$$</p>
+<h4 id="梯度下降更新规则"><a href="#梯度下降更新规则" class="headerlink" title="梯度下降更新规则"></a>梯度下降更新规则</h4><p><strong>批量梯度下降（Batch Gradient Descent）</strong>:</p>
+<p>重复执行直到收敛：<br>$$\theta_j :&#x3D; \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}$$</p>
+<p><strong>向量化形式</strong>：<br>$$\theta :&#x3D; \theta - \alpha \frac{1}{m} X^T(X\theta - y)$$</p>
+<p>其中α是学习率（learning rate）</p>
+<h2 id="💻-编程实现要点"><a href="#💻-编程实现要点" class="headerlink" title="💻 编程实现要点"></a>💻 编程实现要点</h2><h3 id="1-导入必要的库"><a href="#1-导入必要的库" class="headerlink" title="1. 导入必要的库"></a>1. 导入必要的库</h3><p>机器学习项目需要三个核心库：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline  <span class="comment"># 在Jupyter中内嵌显示图形</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>小贴士</strong>: <code>as</code> 就是缩写的意思，将numpy缩写成np，方便写代码！（好吧本人基础真的很烂，我其实现在才知道😂）</p>
+<h3 id="2-读取数据-pd-read-csv"><a href="#2-读取数据-pd-read-csv" class="headerlink" title="2. 读取数据 - pd.read_csv()"></a>2. 读取数据 - pd.read_csv()</h3><p><code>pd.read_csv()</code>是pandas最常用的函数之一：</p>
+<p><strong>重要参数</strong>：</p>
+<ul>
+<li><code>names=[&#39;列名1&#39;, &#39;列名2&#39;]</code>：给没有表头的数据添加列名（注意是names不是name！）</li>
+<li><code>header=None</code>：告诉pandas文件没有表头</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读取没有表头的数据文件，并添加列名</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;ex1data1.txt&#x27;</span>, names=[<span class="string">&#x27;Population&#x27;</span>, <span class="string">&#x27;Profit&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-数据探索"><a href="#3-数据探索" class="headerlink" title="3. 数据探索"></a>3. 数据探索</h3><p>获取数据后的第一件事：<strong>查看数据长什么样！</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看前几行</span></span><br><span class="line">data.head()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看数据结构信息</span></span><br><span class="line">data.info()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看统计信息</span></span><br><span class="line">data.describe()</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-数据可视化"><a href="#4-数据可视化" class="headerlink" title="4. 数据可视化"></a>4. 数据可视化</h3><p>可视化是理解数据的关键！我其实不太会用，每次就背下来或者复制粘贴~</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绘制散点图</span></span><br><span class="line">plt.scatter(data[<span class="string">&#x27;Population&#x27;</span>], data[<span class="string">&#x27;Profit&#x27;</span>], marker=<span class="string">&#x27;x&#x27;</span>, c=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Population of City in 10,000s&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Profit in $10,000s&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Scatter plot of training data&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-添加偏置列-关键步骤"><a href="#5-添加偏置列-关键步骤" class="headerlink" title="5. 添加偏置列 - 关键步骤"></a>5. 添加偏置列 - 关键步骤</h3><p>为了使用向量化计算，需要在特征矩阵X前面添加一列全1（偏置列）：</p>
+<p><strong>为什么要添加偏置列？</strong></p>
+<ul>
+<li>让θ₀（偏置项）可以参与向量运算</li>
+<li>统一计算：$h_θ(x) &#x3D; θ^T X &#x3D; [θ_0, θ_1] \cdot [1, x] &#x3D; θ_0 + θ_1x$</li>
+</ul>
+<p><strong>三种添加方法</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 方法1：np.column_stack (最推荐✅)</span></span><br><span class="line">ones = np.ones(m)</span><br><span class="line">X = np.column_stack([ones, x])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法2：np.insert</span></span><br><span class="line">x_reshaped = x.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">X = np.insert(x_reshaped, <span class="number">0</span>, <span class="number">1</span>, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法3：手动创建</span></span><br><span class="line">X = np.zeros((m, <span class="number">2</span>))</span><br><span class="line">X[:, <span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">X[:, <span class="number">1</span>] = x</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-核心函数实现"><a href="#6-核心函数实现" class="headerlink" title="6. 核心函数实现"></a>6. 核心函数实现</h3><h4 id="np-power-和-np-sum-计算代价函数的利器"><a href="#np-power-和-np-sum-计算代价函数的利器" class="headerlink" title="np.power() 和 np.sum() - 计算代价函数的利器"></a>np.power() 和 np.sum() - 计算代价函数的利器</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">compute_cost_vectorized</span>(<span class="params">X, y, theta</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;向量化计算代价函数&quot;&quot;&quot;</span></span><br><span class="line">    m = <span class="built_in">len</span>(y)</span><br><span class="line">    errors = X.dot(theta) - y</span><br><span class="line">    cost = np.<span class="built_in">sum</span>(np.power(errors, <span class="number">2</span>)) / (<span class="number">2</span> * m)</span><br><span class="line">    <span class="keyword">return</span> cost</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_gradient</span>(<span class="params">X, y, theta</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;计算梯度&quot;&quot;&quot;</span></span><br><span class="line">    m = <span class="built_in">len</span>(y)</span><br><span class="line">    errors = X.dot(theta) - y</span><br><span class="line">    gradient = X.T.dot(errors) / m</span><br><span class="line">    <span class="keyword">return</span> gradient</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-数据结构转换"><a href="#7-数据结构转换" class="headerlink" title="7. 数据结构转换"></a>7. 数据结构转换</h3><p>在DataFrame和NumPy数组之间转换：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># DataFrame → NumPy数组</span></span><br><span class="line">X = data[<span class="string">&#x27;Population&#x27;</span>].values  <span class="comment"># 一维数组</span></span><br><span class="line">y = data[<span class="string">&#x27;Profit&#x27;</span>].values</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意维度问题！</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;X shape: <span class="subst">&#123;X.shape&#125;</span>&quot;</span>)  <span class="comment"># (97,) - 一维数组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="🔢-多变量线性回归"><a href="#🔢-多变量线性回归" class="headerlink" title="🔢 多变量线性回归"></a>🔢 多变量线性回归</h2><h3 id="特征归一化-Feature-Normalization"><a href="#特征归一化-Feature-Normalization" class="headerlink" title="特征归一化 (Feature Normalization)"></a>特征归一化 (Feature Normalization)</h3><p>当特征的数值范围差异很大时，梯度下降会很慢。<strong>特征归一化可以让梯度下降更快收敛！</strong></p>
+<h4 id="Z-score标准化（推荐）"><a href="#Z-score标准化（推荐）" class="headerlink" title="Z-score标准化（推荐）"></a>Z-score标准化（推荐）</h4><p>$$x_j &#x3D; \frac{x_j - \mu_j}{\sigma_j}$$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">normalize_features</span>(<span class="params">X</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;特征归一化&quot;&quot;&quot;</span></span><br><span class="line">    mu = np.mean(X[:, <span class="number">1</span>:], axis=<span class="number">0</span>)  <span class="comment"># 跳过偏置列</span></span><br><span class="line">    sigma = np.std(X[:, <span class="number">1</span>:], axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    X_norm = X.copy()</span><br><span class="line">    X_norm[:, <span class="number">1</span>:] = (X[:, <span class="number">1</span>:] - mu) / sigma</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> X_norm, mu, sigma</span><br></pre></td></tr></table></figure>
+
+<h3 id="学习率选择"><a href="#学习率选择" class="headerlink" title="学习率选择"></a>学习率选择</h3><h4 id="表格测试法"><a href="#表格测试法" class="headerlink" title="表格测试法"></a>表格测试法</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">test_learning_rates</span>(<span class="params">X, y, iterations=<span class="number">100</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;测试不同学习率的效果&quot;&quot;&quot;</span></span><br><span class="line">    learning_rates = [<span class="number">0.001</span>, <span class="number">0.003</span>, <span class="number">0.01</span>, <span class="number">0.03</span>, <span class="number">0.1</span>, <span class="number">0.3</span>, <span class="number">1.0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> alpha <span class="keyword">in</span> learning_rates:</span><br><span class="line">        <span class="comment"># 测试每个学习率的收敛情况</span></span><br><span class="line">        theta = np.zeros(X.shape[<span class="number">1</span>])</span><br><span class="line">        J_history = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">            predictions = X.dot(theta)</span><br><span class="line">            errors = predictions - y</span><br><span class="line">            theta = theta - alpha * (<span class="number">1</span>/<span class="built_in">len</span>(y)) * X.T.dot(errors)</span><br><span class="line">            cost = np.<span class="built_in">sum</span>(errors**<span class="number">2</span>) / (<span class="number">2</span>*<span class="built_in">len</span>(y))</span><br><span class="line">            J_history.append(cost)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 分析收敛结果</span></span><br><span class="line">        <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="正规方程-Normal-Equation"><a href="#正规方程-Normal-Equation" class="headerlink" title="正规方程 (Normal Equation)"></a>正规方程 (Normal Equation)</h3><p>正规方程是通过解析方法一次性求解θ的方法：</p>
+<p>$$\theta &#x3D; (X^T X)^{-1} X^T y$$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">normal_equation</span>(<span class="params">X, y</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;使用正规方程求解theta&quot;&quot;&quot;</span></span><br><span class="line">    theta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)</span><br><span class="line">    <span class="keyword">return</span> theta</span><br></pre></td></tr></table></figure>
+
+<h4 id="梯度下降-vs-正规方程"><a href="#梯度下降-vs-正规方程" class="headerlink" title="梯度下降 vs 正规方程"></a>梯度下降 vs 正规方程</h4><table>
+<thead>
+<tr>
+<th>梯度下降</th>
+<th>正规方程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>需要选择学习率α</td>
+<td>不需要选择学习率</td>
+</tr>
+<tr>
+<td>需要多次迭代</td>
+<td>一次计算得出</td>
+</tr>
+<tr>
+<td>当特征数量n很大时也能工作良好</td>
+<td>需要计算$(X^T X)^{-1}$，复杂度$O(n^3)$</td>
+</tr>
+<tr>
+<td><strong>n &gt; 10,000时推荐</strong></td>
+<td><strong>n &lt; 10,000时推荐</strong></td>
+</tr>
+</tbody></table>
+<h2 id="💡-学习心得"><a href="#💡-学习心得" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h2><h3 id="过程中的一些感悟"><a href="#过程中的一些感悟" class="headerlink" title="过程中的一些感悟"></a>过程中的一些感悟</h3><ul>
+<li>一开始连<code>as</code>是缩写的意思都不知道😂</li>
+<li>plot函数总是记不住，每次都要复制粘贴</li>
+<li>B站的up主们真的帮了很大忙</li>
+<li>从(w,b)到θ向量的转换理解花了不少时间</li>
+<li>矩阵乘法真的很优雅，一行代码搞定所有计算！</li>
+</ul>
+<h3 id="重要提醒"><a href="#重要提醒" class="headerlink" title="重要提醒"></a>重要提醒</h3><p><strong>数据结构转换</strong>：</p>
+<ul>
+<li>DataFrame适合数据预处理和探索</li>
+<li>numpy数组适合数值计算</li>
+<li>结构不匹配是常见错误来源！</li>
+</ul>
+<p><strong>向量化计算</strong>：</p>
+<ul>
+<li>比循环快得多</li>
+<li>代码更简洁优雅</li>
+<li>是机器学习的基础技能</li>
+</ul>
+<p><strong>特征工程</strong>：</p>
+<ul>
+<li>特征归一化很重要</li>
+<li>保存归一化参数用于新数据</li>
+<li>不要归一化偏置列</li>
+</ul>
+<h2 id="🎉-总结"><a href="#🎉-总结" class="headerlink" title="🎉 总结"></a>🎉 总结</h2><p>这次作业让我深入理解了线性回归的核心概念：</p>
+<ol>
+<li><strong>代价函数</strong>: 衡量模型预测与实际值的差距</li>
+<li><strong>梯度下降</strong>: 通过迭代优化找到最优参数</li>
+<li><strong>向量化</strong>: 高效的矩阵运算实现</li>
+<li><strong>特征工程</strong>: 数据预处理的重要性</li>
+</ol>
+<p>从单变量到多变量，从基础概念到实际编程，这个过程让我对机器学习有了更深的认识。</p>
+<p>继续加油💪</p>
+<hr>
+<p><em>机器学习之旅刚刚开始，每一步都是成长！</em></p>
+]]></content>
+      <categories>
+        <category>技术教程</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>线性回归</tag>
+        <tag>Python</tag>
+        <tag>数学</tag>
+        <tag>作业笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🚀 欢迎来到重启纪元</title>
+    <url>/2025/09/14/welcome-to-reboot-era/</url>
+    <content><![CDATA[<h2 id="🎉-重启纪元，全新开始"><a href="#🎉-重启纪元，全新开始" class="headerlink" title="🎉 重启纪元，全新开始"></a>🎉 重启纪元，全新开始</h2><p>欢迎来到我的个人博客「重启纪元」！</p>
+<p>正如古人所言：”<strong>自能生羽翼，何必仰云梯</strong>“。每个人都有属于自己的成长轨迹，无需依赖他人的阶梯，关键是要有勇气展开自己的翅膀。</p>
+<h3 id="✨-关于这个博客"><a href="#✨-关于这个博客" class="headerlink" title="✨ 关于这个博客"></a>✨ 关于这个博客</h3><p>这个博客基于 <strong>Hexo</strong> 框架搭建，使用了优雅的 <strong>Butterfly</strong> 主题。在这里，我将：</p>
+<ul>
+<li>📝 <strong>记录学习心得</strong>：分享技术学习过程中的思考和总结</li>
+<li>🛠️ <strong>展示项目作品</strong>：展示一些有趣的技术项目和创意实现</li>
+<li>💭 <strong>分享生活感悟</strong>：记录日常生活中的所思所想</li>
+<li>🌱 <strong>追踪成长轨迹</strong>：见证自己在技术和人生路上的成长</li>
+</ul>
+<h3 id="🎯-我的技术栈"><a href="#🎯-我的技术栈" class="headerlink" title="🎯 我的技术栈"></a>🎯 我的技术栈</h3><p>目前主要专注于以下技术领域：</p>
+<ul>
+<li><strong>编程语言</strong>: Python、C++</li>
+<li><strong>数据库</strong>: MySQL、MongoDB</li>
+<li><strong>开发工具</strong>: Git、Docker、VS Code</li>
+<li><strong>其他技术</strong>: 嵌入式开发、机器学习</li>
+</ul>
+<h3 id="🌟-博客特色"><a href="#🌟-博客特色" class="headerlink" title="🌟 博客特色"></a>🌟 博客特色</h3><ul>
+<li><strong>简洁美观</strong>: 采用现代化设计，注重阅读体验</li>
+<li><strong>响应式布局</strong>: 完美适配各种设备</li>
+<li><strong>功能丰富</strong>: 支持搜索、分类、标签、深色模式等</li>
+<li><strong>SEO优化</strong>: 更好的搜索引擎收录表现</li>
+</ul>
+<h3 id="🚀-未来规划"><a href="#🚀-未来规划" class="headerlink" title="🚀 未来规划"></a>🚀 未来规划</h3><p>在接下来的日子里，我计划：</p>
+<ol>
+<li><strong>定期更新</strong>: 保持文章的更新频率，分享最新的学习成果</li>
+<li><strong>技术深度</strong>: 不断深入学习，提升技术广度和深度</li>
+<li><strong>交流互动</strong>: 与更多技术爱好者交流学习心得</li>
+<li><strong>项目实践</strong>: 通过实际项目来验证和应用所学知识</li>
+</ol>
+<h3 id="💬-联系方式"><a href="#💬-联系方式" class="headerlink" title="💬 联系方式"></a>💬 联系方式</h3><p>如果你对我的文章有任何建议，或者想要交流技术问题，欢迎通过以下方式联系我：</p>
+<ul>
+<li><strong>GitHub</strong>: <a href="https://github.com/maomao725">https://github.com/maomao725</a></li>
+<li><strong>Email</strong>: yejiale25@gmail</li>
+</ul>
+<h3 id="🎊-写在最后"><a href="#🎊-写在最后" class="headerlink" title="🎊 写在最后"></a>🎊 写在最后</h3><p>感谢每一位访问者的到来！希望这个博客能够成为我们共同学习、成长的平台。</p>
+<p>记住那句话：<strong>自能生羽翼，何必仰云梯</strong>。</p>
+<p>让我们一起在技术的海洋中展翅高飞，创造属于自己的精彩人生！</p>
+<hr>
+<blockquote>
+<p>“The best time to plant a tree was 20 years ago. The second best time is now.”</p>
+<p>种一棵树最好的时间是二十年前，其次是现在。</p>
+</blockquote>
+<p><strong>重启纪元，从今天开始！</strong> ✨</p>
+]]></content>
+      <categories>
+        <category>生活感悟</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>开始</tag>
+        <tag>个人感悟</tag>
       </tags>
   </entry>
 </search>

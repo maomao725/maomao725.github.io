@@ -1,0 +1,366 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>📊 机器学习第一次大作业：线性回归详解 | 重启纪元</title><meta name="author" content="毛毛"><meta name="copyright" content="毛毛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="吴恩达机器学习课程第一次大作业完整记录，从单变量到多变量线性回归的详细实现过程和学习心得。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="📊 机器学习第一次大作业：线性回归详解">
+<meta property="og:url" content="https://maomao725.top/2025/09/28/machine-learning-homework-1/index.html">
+<meta property="og:site_name" content="重启纪元">
+<meta property="og:description" content="吴恩达机器学习课程第一次大作业完整记录，从单变量到多变量线性回归的详细实现过程和学习心得。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maomao725.top/img/background.png">
+<meta property="article:published_time" content="2025-09-28T04:30:00.000Z">
+<meta property="article:modified_time" content="2025-09-27T18:21:12.511Z">
+<meta property="article:author" content="毛毛">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="线性回归">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="作业笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://maomao725.top/img/background.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://maomao725.top/2025/09/28/machine-learning-homework-1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 毛毛","link":"链接: ","source":"来源: 重启纪元","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '📊 机器学习第一次大作业：线性回归详解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-28 02:21:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/background.png')"><nav id="nav"><span id="blog-info"><a href="/" title="重启纪元"><span class="site-name">重启纪元</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">📊 机器学习第一次大作业：线性回归详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-28T04:30:00.000Z" title="发表于 2025-09-28 12:30:00">2025-09-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-27T18:21:12.511Z" title="更新于 2025-09-28 02:21:12">2025-09-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="📊 机器学习第一次大作业：线性回归详解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="📚-作业背景"><a href="#📚-作业背景" class="headerlink" title="📚 作业背景"></a>📚 作业背景</h2><p>这是我学习<strong>Machine Learning Specialization by Andrew Ng</strong>课程的第一次编程作业记录。</p>
+<h3 id="🎯-问题描述"><a href="#🎯-问题描述" class="headerlink" title="🎯 问题描述"></a>🎯 问题描述</h3><p>假设你是一家餐饮连锁店的CEO，正在考虑在不同城市开设新的食品车网点。你希望将业务扩展到能够带来更高利润的城市。</p>
+<ul>
+<li>连锁店已经在各个城市有餐厅，拥有这些城市的利润和人口数据</li>
+<li>还有一些候选城市的人口数据</li>
+<li><strong>目标</strong>：使用数据帮助识别哪些城市可能为业务带来更高的利润</li>
+</ul>
+<h3 id="📊-数据集说明"><a href="#📊-数据集说明" class="headerlink" title="📊 数据集说明"></a>📊 数据集说明</h3><p><strong>文件</strong>: <code>ex1data1.txt</code></p>
+<ul>
+<li><strong>x_train</strong>: 城市人口（单位：万人）<ul>
+<li>例如：6.1101 表示该城市人口为 61,101 人</li>
+</ul>
+</li>
+<li><strong>y_train</strong>: 该城市餐厅的月平均利润（单位：万美元）<ul>
+<li>例如：17.592 表示月平均利润为 $175,920</li>
+<li>负值表示亏损，如 -2.6807 表示月平均亏损 $26,807</li>
+</ul>
+</li>
+<li><strong>数据规模</strong>: 97个训练样本</li>
+</ul>
+<h2 id="🔧-任务要求"><a href="#🔧-任务要求" class="headerlink" title="🔧 任务要求"></a>🔧 任务要求</h2><h3 id="Exercise-1-实现代价函数（Compute-Cost）"><a href="#Exercise-1-实现代价函数（Compute-Cost）" class="headerlink" title="Exercise 1: 实现代价函数（Compute Cost）"></a>Exercise 1: 实现代价函数（Compute Cost）</h3><p><strong>任务</strong>: 完成<code>compute_cost</code>函数，计算线性回归的代价函数J(w,b)</p>
+<p><strong>代价函数公式</strong>:<br>$$J(w,b) &#x3D; \frac{1}{2m} \sum_{i&#x3D;1}^{m} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$</p>
+<p>其中：</p>
+<ul>
+<li>$f_{w,b}(x^{(i)}) &#x3D; wx^{(i)} + b$ 是模型的预测值</li>
+<li>$y^{(i)}$ 是实际值</li>
+<li>$m$ 是训练样本数量</li>
+</ul>
+<h3 id="Exercise-2-实现梯度计算（Compute-Gradient）"><a href="#Exercise-2-实现梯度计算（Compute-Gradient）" class="headerlink" title="Exercise 2: 实现梯度计算（Compute Gradient）"></a>Exercise 2: 实现梯度计算（Compute Gradient）</h3><p><strong>任务</strong>: 完成<code>compute_gradient</code>函数，计算代价函数对参数的梯度</p>
+<p><strong>梯度公式</strong>:</p>
+<ul>
+<li>对w的偏导数: $\frac{\partial J}{\partial w} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (f_{w,b}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}$</li>
+<li>对b的偏导数: $\frac{\partial J}{\partial b} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (f_{w,b}(x^{(i)}) - y^{(i)})$</li>
+</ul>
+<h3 id="🎛️-梯度下降参数设置"><a href="#🎛️-梯度下降参数设置" class="headerlink" title="🎛️ 梯度下降参数设置"></a>🎛️ 梯度下降参数设置</h3><ul>
+<li>学习率 α &#x3D; 0.01</li>
+<li>迭代次数 &#x3D; 1500</li>
+<li>初始值：w &#x3D; 0, b &#x3D; 0</li>
+</ul>
+<p><strong>预期结果</strong>:</p>
+<ul>
+<li>最终参数：w ≈ 1.166, b ≈ -3.630</li>
+<li>人口35,000的城市预测利润：$4,519.77</li>
+<li>人口70,000的城市预测利润：$45,342.45</li>
+</ul>
+<h2 id="📈-单变量线性回归详解"><a href="#📈-单变量线性回归详解" class="headerlink" title="📈 单变量线性回归详解"></a>📈 单变量线性回归详解</h2><h3 id="🧮-代价函数-Cost-Function"><a href="#🧮-代价函数-Cost-Function" class="headerlink" title="🧮 代价函数 (Cost Function)"></a>🧮 代价函数 (Cost Function)</h3><h4 id="参数表示法说明"><a href="#参数表示法说明" class="headerlink" title="参数表示法说明"></a>参数表示法说明</h4><p>在机器学习中，有两种常见的参数表示方法：</p>
+<ol>
+<li><strong>吴恩达课程表示法</strong>: $y &#x3D; wx + b$（w是权重weight，b是偏置bias）</li>
+<li><strong>统一向量表示法</strong>: $h_\theta(x) &#x3D; \theta_0 + \theta_1 x$（使用theta向量）</li>
+</ol>
+<p><strong>参数对应关系</strong>：</p>
+<ul>
+<li>$\theta_0 &#x3D; b$ (偏置项)</li>
+<li>$\theta_1 &#x3D; w$ (权重)</li>
+</ul>
+<p>为了使用统一的theta表示法，我们需要在原始数据前添加一列全1（偏置列）：</p>
+<ul>
+<li>$\theta &#x3D; [\theta_0, \theta_1]^T$</li>
+<li>$X &#x3D; [1, x]$ （每个样本前添加1）</li>
+</ul>
+<h4 id="代价函数公式（theta表示法）"><a href="#代价函数公式（theta表示法）" class="headerlink" title="代价函数公式（theta表示法）"></a>代价函数公式（theta表示法）</h4><p><strong>假设函数（Hypothesis Function）</strong>:<br>$$h_\theta(x) &#x3D; \theta^T x &#x3D; \theta_0 + \theta_1 x_1$$</p>
+<p>对于m个训练样本，<strong>代价函数（Cost Function）</strong>为：<br>$$J(\theta) &#x3D; \frac{1}{2m} \sum_{i&#x3D;1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2$$</p>
+<p><strong>向量化表示</strong>：<br>$$J(\theta) &#x3D; \frac{1}{2m}(X\theta - y)^T(X\theta - y)$$</p>
+<h3 id="⚡-梯度下降-Gradient-Descent"><a href="#⚡-梯度下降-Gradient-Descent" class="headerlink" title="⚡ 梯度下降 (Gradient Descent)"></a>⚡ 梯度下降 (Gradient Descent)</h3><h4 id="梯度计算（theta表示法）"><a href="#梯度计算（theta表示法）" class="headerlink" title="梯度计算（theta表示法）"></a>梯度计算（theta表示法）</h4><p><strong>对$\theta_0$的偏导数</strong>:<br>$$\frac{\partial J(\theta)}{\partial \theta_0} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (h_\theta(x^{(i)}) - y^{(i)})$$</p>
+<p><strong>对$\theta_1$的偏导数</strong>:<br>$$\frac{\partial J(\theta)}{\partial \theta_1} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x^{(i)}$$</p>
+<p><strong>统一的向量形式</strong>:<br>$$\frac{\partial J(\theta)}{\partial \theta_j} &#x3D; \frac{1}{m} \sum_{i&#x3D;1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)}$$</p>
+<h4 id="梯度下降更新规则"><a href="#梯度下降更新规则" class="headerlink" title="梯度下降更新规则"></a>梯度下降更新规则</h4><p><strong>批量梯度下降（Batch Gradient Descent）</strong>:</p>
+<p>重复执行直到收敛：<br>$$\theta_j :&#x3D; \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}$$</p>
+<p><strong>向量化形式</strong>：<br>$$\theta :&#x3D; \theta - \alpha \frac{1}{m} X^T(X\theta - y)$$</p>
+<p>其中α是学习率（learning rate）</p>
+<h2 id="💻-编程实现要点"><a href="#💻-编程实现要点" class="headerlink" title="💻 编程实现要点"></a>💻 编程实现要点</h2><h3 id="1-导入必要的库"><a href="#1-导入必要的库" class="headerlink" title="1. 导入必要的库"></a>1. 导入必要的库</h3><p>机器学习项目需要三个核心库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline  <span class="comment"># 在Jupyter中内嵌显示图形</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>小贴士</strong>: <code>as</code> 就是缩写的意思，将numpy缩写成np，方便写代码！（好吧本人基础真的很烂，我其实现在才知道😂）</p>
+<h3 id="2-读取数据-pd-read-csv"><a href="#2-读取数据-pd-read-csv" class="headerlink" title="2. 读取数据 - pd.read_csv()"></a>2. 读取数据 - pd.read_csv()</h3><p><code>pd.read_csv()</code>是pandas最常用的函数之一：</p>
+<p><strong>重要参数</strong>：</p>
+<ul>
+<li><code>names=[&#39;列名1&#39;, &#39;列名2&#39;]</code>：给没有表头的数据添加列名（注意是names不是name！）</li>
+<li><code>header=None</code>：告诉pandas文件没有表头</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取没有表头的数据文件，并添加列名</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;ex1data1.txt&#x27;</span>, names=[<span class="string">&#x27;Population&#x27;</span>, <span class="string">&#x27;Profit&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-数据探索"><a href="#3-数据探索" class="headerlink" title="3. 数据探索"></a>3. 数据探索</h3><p>获取数据后的第一件事：<strong>查看数据长什么样！</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看前几行</span></span><br><span class="line">data.head()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看数据结构信息</span></span><br><span class="line">data.info()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看统计信息</span></span><br><span class="line">data.describe()</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-数据可视化"><a href="#4-数据可视化" class="headerlink" title="4. 数据可视化"></a>4. 数据可视化</h3><p>可视化是理解数据的关键！我其实不太会用，每次就背下来或者复制粘贴~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制散点图</span></span><br><span class="line">plt.scatter(data[<span class="string">&#x27;Population&#x27;</span>], data[<span class="string">&#x27;Profit&#x27;</span>], marker=<span class="string">&#x27;x&#x27;</span>, c=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Population of City in 10,000s&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Profit in $10,000s&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Scatter plot of training data&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-添加偏置列-关键步骤"><a href="#5-添加偏置列-关键步骤" class="headerlink" title="5. 添加偏置列 - 关键步骤"></a>5. 添加偏置列 - 关键步骤</h3><p>为了使用向量化计算，需要在特征矩阵X前面添加一列全1（偏置列）：</p>
+<p><strong>为什么要添加偏置列？</strong></p>
+<ul>
+<li>让θ₀（偏置项）可以参与向量运算</li>
+<li>统一计算：$h_θ(x) &#x3D; θ^T X &#x3D; [θ_0, θ_1] \cdot [1, x] &#x3D; θ_0 + θ_1x$</li>
+</ul>
+<p><strong>三种添加方法</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1：np.column_stack (最推荐✅)</span></span><br><span class="line">ones = np.ones(m)</span><br><span class="line">X = np.column_stack([ones, x])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法2：np.insert</span></span><br><span class="line">x_reshaped = x.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">X = np.insert(x_reshaped, <span class="number">0</span>, <span class="number">1</span>, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法3：手动创建</span></span><br><span class="line">X = np.zeros((m, <span class="number">2</span>))</span><br><span class="line">X[:, <span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">X[:, <span class="number">1</span>] = x</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-核心函数实现"><a href="#6-核心函数实现" class="headerlink" title="6. 核心函数实现"></a>6. 核心函数实现</h3><h4 id="np-power-和-np-sum-计算代价函数的利器"><a href="#np-power-和-np-sum-计算代价函数的利器" class="headerlink" title="np.power() 和 np.sum() - 计算代价函数的利器"></a>np.power() 和 np.sum() - 计算代价函数的利器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">compute_cost_vectorized</span>(<span class="params">X, y, theta</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;向量化计算代价函数&quot;&quot;&quot;</span></span><br><span class="line">    m = <span class="built_in">len</span>(y)</span><br><span class="line">    errors = X.dot(theta) - y</span><br><span class="line">    cost = np.<span class="built_in">sum</span>(np.power(errors, <span class="number">2</span>)) / (<span class="number">2</span> * m)</span><br><span class="line">    <span class="keyword">return</span> cost</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compute_gradient</span>(<span class="params">X, y, theta</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;计算梯度&quot;&quot;&quot;</span></span><br><span class="line">    m = <span class="built_in">len</span>(y)</span><br><span class="line">    errors = X.dot(theta) - y</span><br><span class="line">    gradient = X.T.dot(errors) / m</span><br><span class="line">    <span class="keyword">return</span> gradient</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-数据结构转换"><a href="#7-数据结构转换" class="headerlink" title="7. 数据结构转换"></a>7. 数据结构转换</h3><p>在DataFrame和NumPy数组之间转换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DataFrame → NumPy数组</span></span><br><span class="line">X = data[<span class="string">&#x27;Population&#x27;</span>].values  <span class="comment"># 一维数组</span></span><br><span class="line">y = data[<span class="string">&#x27;Profit&#x27;</span>].values</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意维度问题！</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;X shape: <span class="subst">&#123;X.shape&#125;</span>&quot;</span>)  <span class="comment"># (97,) - 一维数组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="🔢-多变量线性回归"><a href="#🔢-多变量线性回归" class="headerlink" title="🔢 多变量线性回归"></a>🔢 多变量线性回归</h2><h3 id="特征归一化-Feature-Normalization"><a href="#特征归一化-Feature-Normalization" class="headerlink" title="特征归一化 (Feature Normalization)"></a>特征归一化 (Feature Normalization)</h3><p>当特征的数值范围差异很大时，梯度下降会很慢。<strong>特征归一化可以让梯度下降更快收敛！</strong></p>
+<h4 id="Z-score标准化（推荐）"><a href="#Z-score标准化（推荐）" class="headerlink" title="Z-score标准化（推荐）"></a>Z-score标准化（推荐）</h4><p>$$x_j &#x3D; \frac{x_j - \mu_j}{\sigma_j}$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">normalize_features</span>(<span class="params">X</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;特征归一化&quot;&quot;&quot;</span></span><br><span class="line">    mu = np.mean(X[:, <span class="number">1</span>:], axis=<span class="number">0</span>)  <span class="comment"># 跳过偏置列</span></span><br><span class="line">    sigma = np.std(X[:, <span class="number">1</span>:], axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    X_norm = X.copy()</span><br><span class="line">    X_norm[:, <span class="number">1</span>:] = (X[:, <span class="number">1</span>:] - mu) / sigma</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> X_norm, mu, sigma</span><br></pre></td></tr></table></figure>
+
+<h3 id="学习率选择"><a href="#学习率选择" class="headerlink" title="学习率选择"></a>学习率选择</h3><h4 id="表格测试法"><a href="#表格测试法" class="headerlink" title="表格测试法"></a>表格测试法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">test_learning_rates</span>(<span class="params">X, y, iterations=<span class="number">100</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;测试不同学习率的效果&quot;&quot;&quot;</span></span><br><span class="line">    learning_rates = [<span class="number">0.001</span>, <span class="number">0.003</span>, <span class="number">0.01</span>, <span class="number">0.03</span>, <span class="number">0.1</span>, <span class="number">0.3</span>, <span class="number">1.0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> alpha <span class="keyword">in</span> learning_rates:</span><br><span class="line">        <span class="comment"># 测试每个学习率的收敛情况</span></span><br><span class="line">        theta = np.zeros(X.shape[<span class="number">1</span>])</span><br><span class="line">        J_history = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">            predictions = X.dot(theta)</span><br><span class="line">            errors = predictions - y</span><br><span class="line">            theta = theta - alpha * (<span class="number">1</span>/<span class="built_in">len</span>(y)) * X.T.dot(errors)</span><br><span class="line">            cost = np.<span class="built_in">sum</span>(errors**<span class="number">2</span>) / (<span class="number">2</span>*<span class="built_in">len</span>(y))</span><br><span class="line">            J_history.append(cost)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 分析收敛结果</span></span><br><span class="line">        <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="正规方程-Normal-Equation"><a href="#正规方程-Normal-Equation" class="headerlink" title="正规方程 (Normal Equation)"></a>正规方程 (Normal Equation)</h3><p>正规方程是通过解析方法一次性求解θ的方法：</p>
+<p>$$\theta &#x3D; (X^T X)^{-1} X^T y$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">normal_equation</span>(<span class="params">X, y</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;使用正规方程求解theta&quot;&quot;&quot;</span></span><br><span class="line">    theta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)</span><br><span class="line">    <span class="keyword">return</span> theta</span><br></pre></td></tr></table></figure>
+
+<h4 id="梯度下降-vs-正规方程"><a href="#梯度下降-vs-正规方程" class="headerlink" title="梯度下降 vs 正规方程"></a>梯度下降 vs 正规方程</h4><table>
+<thead>
+<tr>
+<th>梯度下降</th>
+<th>正规方程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>需要选择学习率α</td>
+<td>不需要选择学习率</td>
+</tr>
+<tr>
+<td>需要多次迭代</td>
+<td>一次计算得出</td>
+</tr>
+<tr>
+<td>当特征数量n很大时也能工作良好</td>
+<td>需要计算$(X^T X)^{-1}$，复杂度$O(n^3)$</td>
+</tr>
+<tr>
+<td><strong>n &gt; 10,000时推荐</strong></td>
+<td><strong>n &lt; 10,000时推荐</strong></td>
+</tr>
+</tbody></table>
+<h2 id="💡-学习心得"><a href="#💡-学习心得" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h2><h3 id="过程中的一些感悟"><a href="#过程中的一些感悟" class="headerlink" title="过程中的一些感悟"></a>过程中的一些感悟</h3><ul>
+<li>一开始连<code>as</code>是缩写的意思都不知道😂</li>
+<li>plot函数总是记不住，每次都要复制粘贴</li>
+<li>B站的up主们真的帮了很大忙</li>
+<li>从(w,b)到θ向量的转换理解花了不少时间</li>
+<li>矩阵乘法真的很优雅，一行代码搞定所有计算！</li>
+</ul>
+<h3 id="重要提醒"><a href="#重要提醒" class="headerlink" title="重要提醒"></a>重要提醒</h3><p><strong>数据结构转换</strong>：</p>
+<ul>
+<li>DataFrame适合数据预处理和探索</li>
+<li>numpy数组适合数值计算</li>
+<li>结构不匹配是常见错误来源！</li>
+</ul>
+<p><strong>向量化计算</strong>：</p>
+<ul>
+<li>比循环快得多</li>
+<li>代码更简洁优雅</li>
+<li>是机器学习的基础技能</li>
+</ul>
+<p><strong>特征工程</strong>：</p>
+<ul>
+<li>特征归一化很重要</li>
+<li>保存归一化参数用于新数据</li>
+<li>不要归一化偏置列</li>
+</ul>
+<h2 id="🎉-总结"><a href="#🎉-总结" class="headerlink" title="🎉 总结"></a>🎉 总结</h2><p>这次作业让我深入理解了线性回归的核心概念：</p>
+<ol>
+<li><strong>代价函数</strong>: 衡量模型预测与实际值的差距</li>
+<li><strong>梯度下降</strong>: 通过迭代优化找到最优参数</li>
+<li><strong>向量化</strong>: 高效的矩阵运算实现</li>
+<li><strong>特征工程</strong>: 数据预处理的重要性</li>
+</ol>
+<p>从单变量到多变量，从基础概念到实际编程，这个过程让我对机器学习有了更深的认识。</p>
+<p>继续加油💪</p>
+<hr>
+<p><em>机器学习之旅刚刚开始，每一步都是成长！</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://maomao725.top">毛毛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://maomao725.top/2025/09/28/machine-learning-homework-1/">https://maomao725.top/2025/09/28/machine-learning-homework-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://maomao725.top" target="_blank">重启纪元</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="post-meta__tags" href="/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">线性回归</a><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a><a class="post-meta__tags" href="/tags/%E4%BD%9C%E4%B8%9A%E7%AC%94%E8%AE%B0/">作业笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/background.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/09/14/blog-features-upgrade/" title="博客功能大升级：评论系统与用户体验优化"><img class="cover" src="/img/background.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">博客功能大升级：评论系统与用户体验优化</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">毛毛</div><div class="author-info__description">自能生羽翼，何必仰云梯</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/maomao725"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/maomao725" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:yejiale25@gmail" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">🚀 重启纪元，记录技术成长的点点滴滴</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E4%BD%9C%E4%B8%9A%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">📚 作业背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8E%AF-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">🎯 问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8A-%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%B4%E6%98%8E"><span class="toc-number">1.2.</span> <span class="toc-text">📊 数据集说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-%E4%BB%BB%E5%8A%A1%E8%A6%81%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">🔧 任务要求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-1-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%EF%BC%88Compute-Cost%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">Exercise 1: 实现代价函数（Compute Cost）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise-2-%E5%AE%9E%E7%8E%B0%E6%A2%AF%E5%BA%A6%E8%AE%A1%E7%AE%97%EF%BC%88Compute-Gradient%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">Exercise 2: 实现梯度计算（Compute Gradient）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8E%9B%EF%B8%8F-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.3.</span> <span class="toc-text">🎛️ 梯度下降参数设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%88-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">📈 单变量线性回归详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%AE-%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0-Cost-Function"><span class="toc-number">3.1.</span> <span class="toc-text">🧮 代价函数 (Cost Function)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%B3%95%E8%AF%B4%E6%98%8E"><span class="toc-number">3.1.1.</span> <span class="toc-text">参数表示法说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E5%85%AC%E5%BC%8F%EF%BC%88theta%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%89"><span class="toc-number">3.1.2.</span> <span class="toc-text">代价函数公式（theta表示法）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9A%A1-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D-Gradient-Descent"><span class="toc-number">3.2.</span> <span class="toc-text">⚡ 梯度下降 (Gradient Descent)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E8%AE%A1%E7%AE%97%EF%BC%88theta%E8%A1%A8%E7%A4%BA%E6%B3%95%EF%BC%89"><span class="toc-number">3.2.1.</span> <span class="toc-text">梯度计算（theta表示法）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%9B%B4%E6%96%B0%E8%A7%84%E5%88%99"><span class="toc-number">3.2.2.</span> <span class="toc-text">梯度下降更新规则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%BB-%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%A6%81%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">💻 编程实现要点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%BC%E5%85%A5%E5%BF%85%E8%A6%81%E7%9A%84%E5%BA%93"><span class="toc-number">4.1.</span> <span class="toc-text">1. 导入必要的库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE-pd-read-csv"><span class="toc-number">4.2.</span> <span class="toc-text">2. 读取数据 - pd.read_csv()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2"><span class="toc-number">4.3.</span> <span class="toc-text">3. 数据探索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">4.4.</span> <span class="toc-text">4. 数据可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%B7%BB%E5%8A%A0%E5%81%8F%E7%BD%AE%E5%88%97-%E5%85%B3%E9%94%AE%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.5.</span> <span class="toc-text">5. 添加偏置列 - 关键步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.6.</span> <span class="toc-text">6. 核心函数实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#np-power-%E5%92%8C-np-sum-%E8%AE%A1%E7%AE%97%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%A9%E5%99%A8"><span class="toc-number">4.6.1.</span> <span class="toc-text">np.power() 和 np.sum() - 计算代价函数的利器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.7.</span> <span class="toc-text">7. 数据结构转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A2-%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">5.</span> <span class="toc-text">🔢 多变量线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E5%BD%92%E4%B8%80%E5%8C%96-Feature-Normalization"><span class="toc-number">5.1.</span> <span class="toc-text">特征归一化 (Feature Normalization)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Z-score%E6%A0%87%E5%87%86%E5%8C%96%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">5.1.1.</span> <span class="toc-text">Z-score标准化（推荐）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%8E%87%E9%80%89%E6%8B%A9"><span class="toc-number">5.2.</span> <span class="toc-text">学习率选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%B5%8B%E8%AF%95%E6%B3%95"><span class="toc-number">5.2.1.</span> <span class="toc-text">表格测试法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B-Normal-Equation"><span class="toc-number">5.3.</span> <span class="toc-text">正规方程 (Normal Equation)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D-vs-%E6%AD%A3%E8%A7%84%E6%96%B9%E7%A8%8B"><span class="toc-number">5.3.1.</span> <span class="toc-text">梯度下降 vs 正规方程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97"><span class="toc-number">6.</span> <span class="toc-text">💡 学习心得</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F"><span class="toc-number">6.1.</span> <span class="toc-text">过程中的一些感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E6%8F%90%E9%86%92"><span class="toc-number">6.2.</span> <span class="toc-text">重要提醒</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%89-%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">🎉 总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/28/machine-learning-homework-1/" title="📊 机器学习第一次大作业：线性回归详解"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="📊 机器学习第一次大作业：线性回归详解"/></a><div class="content"><a class="title" href="/2025/09/28/machine-learning-homework-1/" title="📊 机器学习第一次大作业：线性回归详解">📊 机器学习第一次大作业：线性回归详解</a><time datetime="2025-09-28T04:30:00.000Z" title="发表于 2025-09-28 12:30:00">2025-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/14/blog-features-upgrade/" title="博客功能大升级：评论系统与用户体验优化"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="博客功能大升级：评论系统与用户体验优化"/></a><div class="content"><a class="title" href="/2025/09/14/blog-features-upgrade/" title="博客功能大升级：评论系统与用户体验优化">博客功能大升级：评论系统与用户体验优化</a><time datetime="2025-09-14T13:00:00.000Z" title="发表于 2025-09-14 21:00:00">2025-09-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/14/github-pages-deployment-guide/" title="GitHub Pages部署指南：从零到一搭建个人博客"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="GitHub Pages部署指南：从零到一搭建个人博客"/></a><div class="content"><a class="title" href="/2025/09/14/github-pages-deployment-guide/" title="GitHub Pages部署指南：从零到一搭建个人博客">GitHub Pages部署指南：从零到一搭建个人博客</a><time datetime="2025-09-14T12:30:00.000Z" title="发表于 2025-09-14 20:30:00">2025-09-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/14/hexo-butterfly-blog-setup/" title="🦋 基于Hexo+Butterfly搭建优雅博客完整指南"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="🦋 基于Hexo+Butterfly搭建优雅博客完整指南"/></a><div class="content"><a class="title" href="/2025/09/14/hexo-butterfly-blog-setup/" title="🦋 基于Hexo+Butterfly搭建优雅博客完整指南">🦋 基于Hexo+Butterfly搭建优雅博客完整指南</a><time datetime="2025-09-14T09:35:00.000Z" title="发表于 2025-09-14 17:35:00">2025-09-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/14/welcome-to-reboot-era/" title="🚀 欢迎来到重启纪元"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="🚀 欢迎来到重启纪元"/></a><div class="content"><a class="title" href="/2025/09/14/welcome-to-reboot-era/" title="🚀 欢迎来到重启纪元">🚀 欢迎来到重启纪元</a><time datetime="2025-09-14T09:30:00.000Z" title="发表于 2025-09-14 17:30:00">2025-09-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By 毛毛</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><div id="runtime"></div><div style="margin-top: 5px;">Copyright © 2025 毛毛</div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@4.13.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@4.13.0/source/js/main.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadUtterances = () => {
+    let ele = document.createElement('script')
+    ele.id = 'utterances_comment'
+    ele.src = 'https://utteranc.es/client.js'
+    ele.setAttribute('repo', 'maomao725/maomao725.github.io')
+    ele.setAttribute('issue-term', 'pathname')
+    const nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    ele.setAttribute('theme', nowTheme)
+    ele.crossOrigin = 'anonymous'
+    ele.async = true
+    document.getElementById('utterances-wrap').appendChild(ele)
+  }
+
+  const utterancesTheme = theme => {
+    const iframe = document.querySelector('.utterances-frame')
+    if (iframe) {
+      const theme = theme === 'dark' ? 'photon-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  btf.addGlobalFn('themeChange', utterancesTheme, 'utterances')
+
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script src="/js/nav-scroll.js"></script><script src="/js/runtime.js"></script><script src="/js/wordcount.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@4.13.0/source/js/search/local-search.min.js"></script></div></div></body></html>
