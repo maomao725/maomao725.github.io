@@ -12,6 +12,7 @@ categories:
 cover: /img/background.png
 top_img: /img/background.png
 description: 吴恩达机器学习课程第一次大作业完整记录，从单变量到多变量线性回归的详细实现过程和学习心得。
+mathjax: true
 ---
 
 ## 📚 作业背景

@@ -207,13 +207,13 @@ CDN:
 
 # Math (KaTeX)
 math:
-  enable: false
-  per_page: false
+  enable: true
+  per_page: true
   hide_scrollbar: false
   engine: mathjax
   mathjax:
     enableMenu: true
-    tags: false
+    tags: none
 
 # Medium Zoom
 medium_zoom: false
