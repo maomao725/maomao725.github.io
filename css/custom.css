@@ -693,7 +693,7 @@ body {
   margin-top: 65px !important;
 }
 
-/* 文章内容区域的顶部间距 */
+/* 所有页面的主内容区域顶部间距统一 */
 .layout #post,
 .layout #page,
 .layout #archive,
@@ -705,6 +705,18 @@ body {
 /* 首页特殊处理 - 因为有全屏背景 */
 body:has(#page-header.full_page) .layout {
   padding-top: 0 !important;
+}
+
+/* 所有页面的侧边栏统一对齐 */
+#aside-content {
+  margin-top: 0 !important; /* 重置侧边栏顶部间距 */
+  padding-top: 0 !important; /* 重置侧边栏内边距 */
+}
+
+/* 首页侧边栏单独设置 */
+body:has(#page-header.full_page) #aside-content {
+  margin-top: 30px !important; /* 首页侧边栏间距 */
+  padding-top: 20px !important; /* 首页侧边栏内边距 */
 }
 
 /* 文章内容区域的标题不被遮挡 */
@@ -725,5 +737,11 @@ body:has(#page-header.full_page) .layout {
 
   #page-header:not(.full_page) {
     margin-top: 50px !important;
+  }
+
+  /* 首页移动端侧边栏 */
+  body:has(#page-header.full_page) #aside-content {
+    margin-top: 25px !important;
+    padding-top: 15px !important;
   }
 }
