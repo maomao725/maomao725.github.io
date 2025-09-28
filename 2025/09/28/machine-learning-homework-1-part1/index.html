@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>📊 机器学习第一次大作业系列1：基础概念与环境搭建 | 重启纪元</title><meta name="author" content="毛毛"><meta name="copyright" content="毛毛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="机器学习入门第一步，从零开始搭建Python环境，掌握数据处理基础知识，为后续的线性回归算法实现打下坚实基础。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="📊 机器学习第一次大作业系列1：基础概念与环境搭建">
+<meta property="og:url" content="https://maomao725.top/2025/09/28/machine-learning-homework-1-part1/index.html">
+<meta property="og:site_name" content="重启纪元">
+<meta property="og:description" content="机器学习入门第一步，从零开始搭建Python环境，掌握数据处理基础知识，为后续的线性回归算法实现打下坚实基础。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maomao725.top/img/background.png">
+<meta property="article:published_time" content="2025-09-28T06:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-28T07:00:48.663Z">
+<meta property="article:author" content="毛毛">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="环境搭建">
+<meta property="article:tag" content="数据处理">
+<meta property="article:tag" content="作业笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://maomao725.top/img/background.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://maomao725.top/2025/09/28/machine-learning-homework-1-part1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 毛毛","link":"链接: ","source":"来源: 重启纪元","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '📊 机器学习第一次大作业系列1：基础概念与环境搭建',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-28 15:00:48'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/background.png')"><nav id="nav"><span id="blog-info"><a href="/" title="重启纪元"><span class="site-name">重启纪元</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">📊 机器学习第一次大作业系列1：基础概念与环境搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-28T06:00:00.000Z" title="发表于 2025-09-28 14:00:00">2025-09-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-28T07:00:48.663Z" title="更新于 2025-09-28 15:00:48">2025-09-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="📊 机器学习第一次大作业系列1：基础概念与环境搭建"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="📚-系列介绍"><a href="#📚-系列介绍" class="headerlink" title="📚 系列介绍"></a>📚 系列介绍</h2><p>这是<strong>机器学习第一次大作业系列</strong>的第一篇文章。我将通过3篇详细的文章，完整地实现吴恩达Machine Learning课程的第一次编程作业。</p>
+<h3 id="🎯-系列规划"><a href="#🎯-系列规划" class="headerlink" title="🎯 系列规划"></a>🎯 系列规划</h3><ol>
+<li><strong>第一篇</strong>（本篇）：基础概念与环境搭建</li>
+<li><strong>第二篇</strong>：单变量线性回归实现</li>
+<li><strong>第三篇</strong>：多变量回归与优化技巧</li>
+</ol>
+<h2 id="🎯-作业背景"><a href="#🎯-作业背景" class="headerlink" title="🎯 作业背景"></a>🎯 作业背景</h2><h3 id="📝-问题描述"><a href="#📝-问题描述" class="headerlink" title="📝 问题描述"></a>📝 问题描述</h3><p>假设你是一家餐饮连锁店的CEO，正在考虑在不同城市开设新的食品车网点。你希望将业务扩展到能够带来更高利润的城市。</p>
+<ul>
+<li>连锁店已经在各个城市有餐厅，拥有这些城市的利润和人口数据</li>
+<li>还有一些候选城市的人口数据</li>
+<li><strong>目标</strong>：使用数据帮助识别哪些城市可能为业务带来更高的利润</li>
+</ul>
+<h3 id="📊-数据集说明"><a href="#📊-数据集说明" class="headerlink" title="📊 数据集说明"></a>📊 数据集说明</h3><p><strong>文件</strong>: <code>ex1data1.txt</code></p>
+<ul>
+<li><strong>x_train</strong>: 城市人口（单位：万人）<ul>
+<li>例如：6.1101 表示该城市人口为 61,101 人</li>
+</ul>
+</li>
+<li><strong>y_train</strong>: 该城市餐厅的月平均利润（单位：万美元）<ul>
+<li>例如：17.592 表示月平均利润为 $175,920</li>
+<li>负值表示亏损，如 -2.6807 表示月平均亏损 $26,807</li>
+</ul>
+</li>
+<li><strong>数据规模</strong>: 97个训练样本</li>
+</ul>
+<p>这个问题的本质是<strong>线性回归</strong>：通过城市人口来预测餐厅利润。</p>
+<h2 id="🛠️-Python环境搭建"><a href="#🛠️-Python环境搭建" class="headerlink" title="🛠️ Python环境搭建"></a>🛠️ Python环境搭建</h2><h3 id="必需的库"><a href="#必需的库" class="headerlink" title="必需的库"></a>必需的库</h3><p>机器学习项目需要三个核心库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd       <span class="comment"># 数据处理和分析</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np        <span class="comment"># 科学计算和矩阵运算</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt  <span class="comment"># 数据可视化</span></span><br><span class="line">%matplotlib inline        <span class="comment"># Jupyter中内嵌显示图形</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>小贴士</strong>: <code>as</code> 就是缩写的意思，将numpy缩写成np，方便写代码！（好吧本人基础真的很烂，我其实现在才知道😂）</p>
+<h3 id="各库的作用"><a href="#各库的作用" class="headerlink" title="各库的作用"></a>各库的作用</h3><ul>
+<li><strong>pandas</strong>：数据处理和分析，提供DataFrame结构，类似Excel表格</li>
+<li><strong>matplotlib</strong>：数据可视化，绘制各种图表</li>
+<li><strong>numpy</strong>：科学计算，矩阵运算必备，是机器学习的基础</li>
+</ul>
+<h2 id="📖-数据处理基础"><a href="#📖-数据处理基础" class="headerlink" title="📖 数据处理基础"></a>📖 数据处理基础</h2><h3 id="1-读取数据-pd-read-csv"><a href="#1-读取数据-pd-read-csv" class="headerlink" title="1. 读取数据 - pd.read_csv()"></a>1. 读取数据 - pd.read_csv()</h3><p><code>pd.read_csv()</code>是pandas最常用的函数之一，用于读取CSV和其他文本数据。</p>
+<p><strong>重要参数</strong>：</p>
+<ul>
+<li><code>names=['列名1', '列名2']</code>：给没有表头的数据添加列名（注意是names不是name！我就写成name…马上就报错）</li>
+<li><code>header=None</code>：告诉pandas文件没有表头，有表头方便处理数据</li>
+<li><code>sep=','</code>：指定分隔符（默认逗号）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取没有表头的数据文件，并添加列名</span></span><br><span class="line">data = pd.read_csv(<span class="string">'ex1data1.txt'</span>, names=[<span class="string">'Population'</span>, <span class="string">'Profit'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果文件有表头，直接读取</span></span><br><span class="line"><span class="comment"># data = pd.read_csv('data.csv')</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其他常用参数示例</span></span><br><span class="line"><span class="comment"># data = pd.read_csv('file.txt',</span></span><br><span class="line"><span class="comment">#                    names=['col1', 'col2'],</span></span><br><span class="line"><span class="comment">#                    header=None,</span></span><br><span class="line"><span class="comment">#                    sep='\t',  # tab分隔</span></span><br><span class="line"><span class="comment">#                    encoding='utf-8')</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-数据探索方法"><a href="#2-数据探索方法" class="headerlink" title="2. 数据探索方法"></a>2. 数据探索方法</h3><p>获取数据后的第一件事：<strong>查看数据长什么样！</strong>（这个很重要，B站的up主告诉我的）</p>
+<h4 id="head-和-tail"><a href="#head-和-tail" class="headerlink" title=".head() 和 .tail()"></a>.head() 和 .tail()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data.head()    <span class="comment"># 查看前5行数据</span></span><br><span class="line">data.head(<span class="number">10</span>)  <span class="comment"># 查看前10行数据</span></span><br><span class="line">data.tail()    <span class="comment"># 查看后5行数据</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="info-了解数据结构"><a href="#info-了解数据结构" class="headerlink" title=".info() - 了解数据结构"></a>.info() - 了解数据结构</h4><p><code>.info()</code>提供数据的完整结构信息，这一步<strong>非常重要</strong>！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看DataFrame的详细信息</span></span><br><span class="line">data.info()</span><br><span class="line"><span class="comment"># 输出示例：</span></span><br><span class="line"><span class="comment"># &lt;class 'pandas.core.frame.DataFrame'&gt;</span></span><br><span class="line"><span class="comment"># RangeIndex: 97 entries, 0 to 96</span></span><br><span class="line"><span class="comment"># Data columns (total 2 columns):</span></span><br><span class="line"><span class="comment">#  #   Column      Non-Null Count  Dtype</span></span><br><span class="line"><span class="comment"># ---  ------      --------------  -----</span></span><br><span class="line"><span class="comment">#  0   Population  97 non-null     float64</span></span><br><span class="line"><span class="comment">#  1   Profit      97 non-null     float64</span></span><br><span class="line"><span class="comment"># dtypes: float64(2)</span></span><br><span class="line"><span class="comment"># memory usage: 1.6 KB</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数据类型查看"><a href="#数据类型查看" class="headerlink" title="数据类型查看"></a>数据类型查看</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(data.dtypes)</span><br><span class="line"><span class="comment"># Population    float64</span></span><br><span class="line"><span class="comment"># Profit        float64</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-DataFrame-vs-NumPy数组"><a href="#3-DataFrame-vs-NumPy数组" class="headerlink" title="3. DataFrame vs NumPy数组"></a>3. DataFrame vs NumPy数组</h3><p><strong>pandas是DataFrame结构，numpy是ndarray结构</strong>，两者经常需要转换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># DataFrame转numpy数组（重要！）</span></span><br><span class="line">X = data[<span class="string">'Population'</span>].values  <span class="comment"># 转为numpy数组</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(X))  <span class="comment"># &lt;class 'numpy.ndarray'&gt;</span></span><br><span class="line"><span class="built_in">print</span>(X.shape)  <span class="comment"># (97,)  一维数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者转换整个DataFrame</span></span><br><span class="line">data_array = data.values  <span class="comment"># 转为numpy二维数组</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(data_array))  <span class="comment"># &lt;class 'numpy.ndarray'&gt;</span></span><br><span class="line"><span class="built_in">print</span>(data_array.shape)  <span class="comment"># (97, 2)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>DataFrame适合数据预处理和探索</li>
+<li>numpy数组适合数值计算</li>
+<li>很多机器学习算法需要numpy数组格式</li>
+<li>结构不匹配是常见错误来源！</li>
+</ul>
+<h2 id="📊-数据可视化基础"><a href="#📊-数据可视化基础" class="headerlink" title="📊 数据可视化基础"></a>📊 数据可视化基础</h2><h3 id="绘图方法"><a href="#绘图方法" class="headerlink" title="绘图方法"></a>绘图方法</h3><p>可视化是理解数据的关键！matplotlib提供了两种绘图方式：<br>我其实不太会用，每次就背下来或者复制粘贴~</p>
+<h4 id="方式1：使用pyplot接口（简单快速）"><a href="#方式1：使用pyplot接口（简单快速）" class="headerlink" title="方式1：使用pyplot接口（简单快速）"></a>方式1：使用pyplot接口（简单快速）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制散点图</span></span><br><span class="line">plt.scatter(data[<span class="string">'Population'</span>], data[<span class="string">'Profit'</span>], marker=<span class="string">'x'</span>, c=<span class="string">'r'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Population of City in 10,000s'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Profit in $10,000s'</span>)</span><br><span class="line">plt.title(<span class="string">'Scatter plot of training data'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式2：使用面向对象的方式（更灵活）"><a href="#方式2：使用面向对象的方式（更灵活）" class="headerlink" title="方式2：使用面向对象的方式（更灵活）"></a>方式2：使用面向对象的方式（更灵活）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建图形和坐标轴</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在ax上绘制</span></span><br><span class="line">ax.scatter(data[<span class="string">'Population'</span>], data[<span class="string">'Profit'</span>], marker=<span class="string">'x'</span>, c=<span class="string">'r'</span>, label=<span class="string">'Training data'</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">'Population of City in 10,000s'</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">'Profit in $10,000s'</span>)</span><br><span class="line">ax.set_title(<span class="string">'Scatter plot of training data'</span>)</span><br><span class="line">ax.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用参数说明"><a href="#常用参数说明" class="headerlink" title="常用参数说明"></a>常用参数说明</h3><ul>
+<li><code>marker='x'</code>：标记样式（’o’, ‘x’, ‘*’, ‘^’等）</li>
+<li><code>c='r'</code>：颜色（’r’红色, ‘b’蓝色, ‘g’绿色）</li>
+<li><code>figsize=(8,6)</code>：图形大小（宽，高）</li>
+<li><code>label='名称'</code>：图例标签</li>
+</ul>
+<h2 id="🔢-NumPy数组基础"><a href="#🔢-NumPy数组基础" class="headerlink" title="🔢 NumPy数组基础"></a>🔢 NumPy数组基础</h2><h3 id="数组创建函数对比"><a href="#数组创建函数对比" class="headerlink" title="数组创建函数对比"></a>数组创建函数对比</h3><p>在机器学习中，经常需要创建各种初始数组。理解不同创建函数的区别很重要！</p>
+<h4 id="np-zeros-创建全0数组"><a href="#np-zeros-创建全0数组" class="headerlink" title="np.zeros() - 创建全0数组"></a>np.zeros() - 创建全0数组</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 创建一维数组</span></span><br><span class="line">a = np.zeros(<span class="number">5</span>)  <span class="comment"># 传入整数5</span></span><br><span class="line"><span class="built_in">print</span>(a)         <span class="comment"># [0. 0. 0. 0. 0.]</span></span><br><span class="line"><span class="built_in">print</span>(a.shape)   <span class="comment"># (5,) - 一维数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 创建二维数组 - 必须用元组！</span></span><br><span class="line">b = np.zeros((<span class="number">5</span>, <span class="number">2</span>))  <span class="comment"># 传入元组(5,2)</span></span><br><span class="line"><span class="built_in">print</span>(b.shape)        <span class="comment"># (5, 2) - 二维数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 常见错误</span></span><br><span class="line"><span class="comment"># np.zeros(5, 2)  # ❌ 错误！不能传两个参数</span></span><br><span class="line"><span class="comment"># 正确写法：</span></span><br><span class="line">np.zeros((<span class="number">5</span>, <span class="number">2</span>))  <span class="comment"># ✅ 用元组包起来</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="常用数组创建函数"><a href="#常用数组创建函数" class="headerlink" title="常用数组创建函数"></a>常用数组创建函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. np.zeros() - 创建全0数组</span></span><br><span class="line">zeros_1d = np.zeros(<span class="number">5</span>)           <span class="comment"># 一维：[0. 0. 0. 0. 0.]</span></span><br><span class="line">zeros_2d = np.zeros((<span class="number">3</span>, <span class="number">2</span>))      <span class="comment"># 二维：3行2列的0矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. np.ones() - 创建全1数组（用法同zeros）</span></span><br><span class="line">ones_1d = np.ones(<span class="number">5</span>)             <span class="comment"># 一维：[1. 1. 1. 1. 1.]</span></span><br><span class="line">ones_2d = np.ones((<span class="number">3</span>, <span class="number">2</span>))        <span class="comment"># 二维：3行2列的1矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. np.arange() - 创建等差数列（类似Python的range）</span></span><br><span class="line">arr1 = np.arange(<span class="number">5</span>)              <span class="comment"># [0 1 2 3 4] - 从0开始，到5结束（不含5）</span></span><br><span class="line">arr2 = np.arange(<span class="number">2</span>, <span class="number">10</span>)          <span class="comment"># [2 3 4 5 6 7 8 9] - 从2到10</span></span><br><span class="line">arr3 = np.arange(<span class="number">0</span>, <span class="number">10</span>, <span class="number">2</span>)       <span class="comment"># [0 2 4 6 8] - 步长为2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. np.linspace() - 创建均匀间隔的数（包含终点！）</span></span><br><span class="line">lin1 = np.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">5</span>)     <span class="comment"># [0. 2.5 5. 7.5 10.] - 从0到10均分5个点</span></span><br><span class="line">lin2 = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">11</span>)     <span class="comment"># 从0到1均分11个点（包含0和1）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="实际应用场景"><a href="#实际应用场景" class="headerlink" title="实际应用场景"></a>实际应用场景</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 场景1：初始化参数（线性回归）</span></span><br><span class="line">m = <span class="number">97</span>  <span class="comment"># 样本数量</span></span><br><span class="line">n = <span class="number">2</span>   <span class="comment"># 特征数量（含偏置项）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化theta参数</span></span><br><span class="line">theta = np.zeros(n)  <span class="comment"># [0. 0.] - theta0和theta1都初始化为0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 场景2：创建偏置列</span></span><br><span class="line">bias = np.ones(m)  <span class="comment"># 创建m个1，用于添加偏置列</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 场景3：创建测试数据范围</span></span><br><span class="line">population_test = np.linspace(<span class="number">4</span>, <span class="number">24</span>, <span class="number">100</span>)  <span class="comment"># 创建100个测试点，从4到24</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="🔄-数据结构转换"><a href="#🔄-数据结构转换" class="headerlink" title="🔄 数据结构转换"></a>🔄 数据结构转换</h2><h3 id="DataFrame和NumPy数组互换"><a href="#DataFrame和NumPy数组互换" class="headerlink" title="DataFrame和NumPy数组互换"></a>DataFrame和NumPy数组互换</h3><p>在机器学习项目中，经常需要在pandas的DataFrame和NumPy的ndarray之间转换。</p>
+<h4 id="DataFrame-→-NumPy数组"><a href="#DataFrame-→-NumPy数组" class="headerlink" title="DataFrame → NumPy数组"></a>DataFrame → NumPy数组</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1：使用.values属性（简单直接）</span></span><br><span class="line">array1 = df.values</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(array1))  <span class="comment"># &lt;class 'numpy.ndarray'&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法2：使用.to_numpy()方法（推荐，更明确）</span></span><br><span class="line">array2 = df.to_numpy()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(array2))  <span class="comment"># &lt;class 'numpy.ndarray'&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法3：转换特定列</span></span><br><span class="line">X = df[<span class="string">'Population'</span>].values  <span class="comment"># 一维数组 (3,)</span></span><br><span class="line">y = df[<span class="string">'Profit'</span>].values      <span class="comment"># 一维数组 (3,)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法4：转换多列</span></span><br><span class="line">features = df[[<span class="string">'Population'</span>]].values  <span class="comment"># 二维数组 (3, 1)</span></span><br><span class="line"><span class="comment"># 注意：双方括号[[]]返回DataFrame，再.values得到二维数组</span></span><br><span class="line"><span class="comment"># 单方括号[]返回Series，再.values得到一维数组</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="NumPy数组-→-DataFrame"><a href="#NumPy数组-→-DataFrame" class="headerlink" title="NumPy数组 → DataFrame"></a>NumPy数组 → DataFrame</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1：直接传入数组，指定列名</span></span><br><span class="line">df1 = pd.DataFrame(data_array, columns=[<span class="string">'Population'</span>, <span class="string">'Profit'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法2：从字典创建（当有多个一维数组时）</span></span><br><span class="line">population = np.array([<span class="number">6.1101</span>, <span class="number">5.5277</span>, <span class="number">8.5186</span>])</span><br><span class="line">profit = np.array([<span class="number">17.5920</span>, <span class="number">9.1302</span>, <span class="number">13.6620</span>])</span><br><span class="line"></span><br><span class="line">df2 = pd.DataFrame({</span><br><span class="line">    <span class="string">'Population'</span>: population,</span><br><span class="line">    <span class="string">'Profit'</span>: profit</span><br><span class="line">})</span><br></pre></td></tr></table></figure>
+
+<h3 id="维度问题处理"><a href="#维度问题处理" class="headerlink" title="维度问题处理"></a>维度问题处理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 问题1：一维vs二维</span></span><br><span class="line">df = pd.DataFrame({<span class="string">'A'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]})</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一维数组</span></span><br><span class="line">arr_1d = df[<span class="string">'A'</span>].values  <span class="comment"># shape: (3,)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取二维数组</span></span><br><span class="line">arr_2d = df[[<span class="string">'A'</span>]].values  <span class="comment"># shape: (3, 1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 问题2：reshape转换</span></span><br><span class="line">arr_1d = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">arr_2d_col = arr_1d.reshape(-<span class="number">1</span>, <span class="number">1</span>)  <span class="comment"># 列向量 (5, 1)</span></span><br><span class="line">arr_2d_row = arr_1d.reshape(<span class="number">1</span>, -<span class="number">1</span>)  <span class="comment"># 行向量 (1, 5)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="💡-学习心得"><a href="#💡-学习心得" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h2><h3 id="重要概念总结"><a href="#重要概念总结" class="headerlink" title="重要概念总结"></a>重要概念总结</h3><ol>
+<li><p><strong>数据结构选择</strong>：</p>
+<ul>
+<li>DataFrame适合数据清理、探索性分析、特征工程</li>
+<li>NumPy数组适合数值计算、机器学习算法输入</li>
+</ul>
+</li>
+<li><p><strong>常见陷阱</strong>：</p>
+<ul>
+<li><code>df['col']</code>返回Series（一维），<code>df[['col']]</code>返回DataFrame（二维）</li>
+<li><code>np.zeros(5)</code>vs<code>np.zeros((5,2))</code>的参数传递方式</li>
+<li>DataFrame与NumPy数组的来回转换</li>
+</ul>
+</li>
+<li><p><strong>最佳实践</strong>：</p>
+<ul>
+<li>数据加载和预处理用DataFrame</li>
+<li>数值计算和模型训练用NumPy数组</li>
+<li>结果展示和分析再转回DataFrame</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><em>后面还有哦！！！</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://maomao725.top">毛毛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://maomao725.top/2025/09/28/machine-learning-homework-1-part1/">https://maomao725.top/2025/09/28/machine-learning-homework-1-part1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://maomao725.top" target="_blank">重启纪元</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a><a class="post-meta__tags" href="/tags/%E4%BD%9C%E4%B8%9A%E7%AC%94%E8%AE%B0/">作业笔记</a></div><div class="post_share"><div class="social-share" data-image="/img/background.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/09/28/machine-learning-homework-1-part2/" title="📊 机器学习第一次大作业系列2：单变量线性回归实现"><img class="cover" src="/img/background.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">📊 机器学习第一次大作业系列2：单变量线性回归实现</div></div></a></div><div class="next-post pull-right"><a href="/2025/09/28/machine-learning-homework-1/" title="📊 机器学习第一次大作业：线性回归详解"><img class="cover" src="/img/background.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">📊 机器学习第一次大作业：线性回归详解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/09/28/machine-learning-homework-1/" title="📊 机器学习第一次大作业：线性回归详解"><img class="cover" src="/img/background.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-28</div><div class="title">📊 机器学习第一次大作业：线性回归详解</div></div></a></div><div><a href="/2025/09/28/machine-learning-homework-1-part3/" title="📊 机器学习第一次大作业系列3：多变量回归与优化技巧"><img class="cover" src="/img/background.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-28</div><div class="title">📊 机器学习第一次大作业系列3：多变量回归与优化技巧</div></div></a></div><div><a href="/2025/09/28/machine-learning-homework-1-part2/" title="📊 机器学习第一次大作业系列2：单变量线性回归实现"><img class="cover" src="/img/background.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-28</div><div class="title">📊 机器学习第一次大作业系列2：单变量线性回归实现</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">毛毛</div><div class="author-info__description">自能生羽翼，何必仰云梯</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/maomao725"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/maomao725" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:yejiale25@gmail" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">🚀 重启纪元，记录技术成长的点点滴滴</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%B3%BB%E5%88%97%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">📚 系列介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8E%AF-%E7%B3%BB%E5%88%97%E8%A7%84%E5%88%92"><span class="toc-number">1.1.</span> <span class="toc-text">🎯 系列规划</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E4%BD%9C%E4%B8%9A%E8%83%8C%E6%99%AF"><span class="toc-number">2.</span> <span class="toc-text">🎯 作业背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%9D-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">📝 问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8A-%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%B4%E6%98%8E"><span class="toc-number">2.2.</span> <span class="toc-text">📊 数据集说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9B%A0%EF%B8%8F-Python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">🛠️ Python环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%85%E9%9C%80%E7%9A%84%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text">必需的库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E5%BA%93%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">各库的作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%96-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%9F%BA%E7%A1%80"><span class="toc-number">4.</span> <span class="toc-text">📖 数据处理基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE-pd-read-csv"><span class="toc-number">4.1.</span> <span class="toc-text">1. 读取数据 - pd.read_csv()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%96%B9%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">2. 数据探索方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#head-%E5%92%8C-tail"><span class="toc-number">4.2.1.</span> <span class="toc-text">.head() 和 .tail()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#info-%E4%BA%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">4.2.2.</span> <span class="toc-text">.info() - 了解数据结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9F%A5%E7%9C%8B"><span class="toc-number">4.2.3.</span> <span class="toc-text">数据类型查看</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-DataFrame-vs-NumPy%E6%95%B0%E7%BB%84"><span class="toc-number">4.3.</span> <span class="toc-text">3. DataFrame vs NumPy数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8A-%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80"><span class="toc-number">5.</span> <span class="toc-text">📊 数据可视化基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.</span> <span class="toc-text">绘图方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F1%EF%BC%9A%E4%BD%BF%E7%94%A8pyplot%E6%8E%A5%E5%8F%A3%EF%BC%88%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F%EF%BC%89"><span class="toc-number">5.1.1.</span> <span class="toc-text">方式1：使用pyplot接口（简单快速）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F2%EF%BC%9A%E4%BD%BF%E7%94%A8%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E6%9B%B4%E7%81%B5%E6%B4%BB%EF%BC%89"><span class="toc-number">5.1.2.</span> <span class="toc-text">方式2：使用面向对象的方式（更灵活）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-number">5.2.</span> <span class="toc-text">常用参数说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A2-NumPy%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80"><span class="toc-number">6.</span> <span class="toc-text">🔢 NumPy数组基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA%E5%87%BD%E6%95%B0%E5%AF%B9%E6%AF%94"><span class="toc-number">6.1.</span> <span class="toc-text">数组创建函数对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#np-zeros-%E5%88%9B%E5%BB%BA%E5%85%A80%E6%95%B0%E7%BB%84"><span class="toc-number">6.1.1.</span> <span class="toc-text">np.zeros() - 创建全0数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA%E5%87%BD%E6%95%B0"><span class="toc-number">6.1.2.</span> <span class="toc-text">常用数组创建函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">6.2.</span> <span class="toc-text">实际应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">7.</span> <span class="toc-text">🔄 数据结构转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DataFrame%E5%92%8CNumPy%E6%95%B0%E7%BB%84%E4%BA%92%E6%8D%A2"><span class="toc-number">7.1.</span> <span class="toc-text">DataFrame和NumPy数组互换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DataFrame-%E2%86%92-NumPy%E6%95%B0%E7%BB%84"><span class="toc-number">7.1.1.</span> <span class="toc-text">DataFrame → NumPy数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NumPy%E6%95%B0%E7%BB%84-%E2%86%92-DataFrame"><span class="toc-number">7.1.2.</span> <span class="toc-text">NumPy数组 → DataFrame</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E5%BA%A6%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="toc-number">7.2.</span> <span class="toc-text">维度问题处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97"><span class="toc-number">8.</span> <span class="toc-text">💡 学习心得</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93"><span class="toc-number">8.1.</span> <span class="toc-text">重要概念总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/28/machine-learning-homework-1-part3/" title="📊 机器学习第一次大作业系列3：多变量回归与优化技巧"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="📊 机器学习第一次大作业系列3：多变量回归与优化技巧"/></a><div class="content"><a class="title" href="/2025/09/28/machine-learning-homework-1-part3/" title="📊 机器学习第一次大作业系列3：多变量回归与优化技巧">📊 机器学习第一次大作业系列3：多变量回归与优化技巧</a><time datetime="2025-09-28T08:00:00.000Z" title="发表于 2025-09-28 16:00:00">2025-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/28/machine-learning-homework-1-part2/" title="📊 机器学习第一次大作业系列2：单变量线性回归实现"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="📊 机器学习第一次大作业系列2：单变量线性回归实现"/></a><div class="content"><a class="title" href="/2025/09/28/machine-learning-homework-1-part2/" title="📊 机器学习第一次大作业系列2：单变量线性回归实现">📊 机器学习第一次大作业系列2：单变量线性回归实现</a><time datetime="2025-09-28T07:00:00.000Z" title="发表于 2025-09-28 15:00:00">2025-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/28/machine-learning-homework-1-part1/" title="📊 机器学习第一次大作业系列1：基础概念与环境搭建"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="📊 机器学习第一次大作业系列1：基础概念与环境搭建"/></a><div class="content"><a class="title" href="/2025/09/28/machine-learning-homework-1-part1/" title="📊 机器学习第一次大作业系列1：基础概念与环境搭建">📊 机器学习第一次大作业系列1：基础概念与环境搭建</a><time datetime="2025-09-28T06:00:00.000Z" title="发表于 2025-09-28 14:00:00">2025-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/28/machine-learning-homework-1/" title="📊 机器学习第一次大作业：线性回归详解"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="📊 机器学习第一次大作业：线性回归详解"/></a><div class="content"><a class="title" href="/2025/09/28/machine-learning-homework-1/" title="📊 机器学习第一次大作业：线性回归详解">📊 机器学习第一次大作业：线性回归详解</a><time datetime="2025-09-28T04:30:00.000Z" title="发表于 2025-09-28 12:30:00">2025-09-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/14/blog-features-upgrade/" title="博客功能大升级：评论系统与用户体验优化"><img src="/img/background.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="博客功能大升级：评论系统与用户体验优化"/></a><div class="content"><a class="title" href="/2025/09/14/blog-features-upgrade/" title="博客功能大升级：评论系统与用户体验优化">博客功能大升级：评论系统与用户体验优化</a><time datetime="2025-09-14T13:00:00.000Z" title="发表于 2025-09-14 21:00:00">2025-09-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By 毛毛</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><div id="runtime"></div><div style="margin-top: 5px;">Copyright © 2025 毛毛</div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@4.13.0/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@4.13.0/source/js/main.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadUtterances = () => {
+    let ele = document.createElement('script')
+    ele.id = 'utterances_comment'
+    ele.src = 'https://utteranc.es/client.js'
+    ele.setAttribute('repo', 'maomao725/maomao725.github.io')
+    ele.setAttribute('issue-term', 'pathname')
+    const nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    ele.setAttribute('theme', nowTheme)
+    ele.crossOrigin = 'anonymous'
+    ele.async = true
+    document.getElementById('utterances-wrap').appendChild(ele)
+  }
+
+  const utterancesTheme = theme => {
+    const iframe = document.querySelector('.utterances-frame')
+    if (iframe) {
+      const theme = theme === 'dark' ? 'photon-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  btf.addGlobalFn('themeChange', utterancesTheme, 'utterances')
+
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script src="/js/nav-scroll.js"></script><script src="/js/runtime.js"></script><script src="/js/wordcount.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@4.13.0/source/js/search/local-search.min.js"></script></div></div></body></html>
