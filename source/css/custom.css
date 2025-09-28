@@ -19,8 +19,21 @@
   margin-top: 0 !important;
 }
 
+/* 主页文章列表区域增加间距 */
 #recent-posts {
-  margin-top: 20px;
+  margin-top: 60px !important; /* 从20px增加到60px */
+  padding-top: 40px !important; /* 新增内边距 */
+}
+
+/* 主页侧边栏增加间距 */
+#aside-content {
+  margin-top: 60px !important; /* 新增顶部间距 */
+  padding-top: 40px !important; /* 新增内边距 */
+}
+
+/* 首页文章列表容器整体下移 */
+.layout {
+  margin-top: 40px !important; /* 整体向下移动 */
 }
 
 /* 移动端适配 */
@@ -28,6 +41,20 @@
   #page-header.full_page {
     height: 100vh !important;
     min-height: 100vh !important;
+  }
+
+  #recent-posts {
+    margin-top: 40px !important;
+    padding-top: 30px !important;
+  }
+
+  #aside-content {
+    margin-top: 40px !important;
+    padding-top: 30px !important;
+  }
+
+  .layout {
+    margin-top: 30px !important;
   }
 }
 
