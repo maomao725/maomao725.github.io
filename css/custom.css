@@ -87,42 +87,25 @@
 }
 
 /* ========== 3. 背景渐变色效果 ========== */
-/* 页面背景渐变 - Whimsical柔和渐变主题 */
+/* 页面背景渐变 - 低饱和度渐变主题 */
 body {
   background: linear-gradient(135deg,
-    #FFE5EC 0%,     /* 柔和粉色 */
-    #E8D5F2 20%,    /* 淡紫色 */
-    #D4F1E8 40%,    /* 薄荷绿 */
-    #FFF3D6 60%,    /* 浅黄色 */
-    #FFE0E6 80%,    /* 淡粉色 */
-    #E8D5F2 100%    /* 回到淡紫色 */
+    #f7f8fa 0%,     /* 浅灰白 */
+    #e8eaf6 50%,    /* 淡蓝紫 */
+    #f0f4f8 100%    /* 淡蓝灰 */
   ) !important;
   background-attachment: fixed !important;
-  background-size: 400% 400% !important;
   min-height: 100vh;
-  animation: whimsicalGradient 20s ease infinite;
 }
 
-/* 渐变动画 */
-@keyframes whimsicalGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* 深色模式背景渐变 - 深色Whimsical主题 */
+/* 深色模式背景渐变 - 深色低饱和度主题 */
 [data-theme="dark"] body {
   background: linear-gradient(135deg,
-    #2D2535 0%,     /* 深紫灰 */
-    #3A2F4D 20%,    /* 深紫 */
-    #2B4840 40%,    /* 深绿 */
-    #3D3629 60%,    /* 深黄灰 */
-    #362939 80%,    /* 深粉灰 */
-    #3A2F4D 100%    /* 回到深紫 */
+    #1a1d23 0%,     /* 深蓝灰 */
+    #252a34 50%,    /* 深紫灰 */
+    #1f2329 100%    /* 深灰黑 */
   ) !important;
   background-attachment: fixed !important;
-  background-size: 400% 400% !important;
-  animation: whimsicalGradient 20s ease infinite;
 }
 
 /* 文章卡片背景 */
