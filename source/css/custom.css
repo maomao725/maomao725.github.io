@@ -705,9 +705,14 @@ body:has(#page-header.full_page) #recent-posts {
 }
 
 /* 文章内容区域的标题不被遮挡 */
+#post,
+#page {
+  padding-top: 80px !important; /* 增加顶部间距，避免被导航栏遮挡 */
+}
+
 #post .post-title,
 #page h1 {
-  padding-top: 20px;
+  padding-top: 0; /* 重置标题间距，因为容器已经有间距了 */
 }
 
 /* 移动端适配 */
@@ -717,7 +722,7 @@ body:has(#page-header.full_page) #recent-posts {
   .layout #archive,
   .layout #tag,
   .layout #category {
-    padding-top: 70px !important;
+    padding-top: 80px !important; /* 移动端也需要足够间距 */
   }
 
   #page-header:not(.full_page) {
