@@ -4,7 +4,8 @@
       "Bash(cat:*)",
       "Bash(npx hexo clean:*)",
       "Bash(npx hexo generate:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(test:*)"
     ],
     "deny": [],
     "ask": []
