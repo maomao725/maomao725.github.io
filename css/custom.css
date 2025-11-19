@@ -742,47 +742,60 @@ body:has(#page-header.full_page) #recent-posts {
 }
 
 /* ========== 修复文章页面左右对齐问题 ========== */
-/* 确保文章页面和首页内容区域宽度一致 */
+/* 文章页面整体布局 - 完全居中 */
+.layout {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* 文章页面主容器 */
 #post {
   width: 100% !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+
+/* 文章内容容器 - 与首页文章卡片宽度一致 */
+#article-container {
   max-width: 100% !important;
   margin: 0 !important;
+  padding: 20px 40px !important;
 }
 
-/* 文章内容容器居中对齐 */
-#article-container {
-  max-width: 780px !important;
-  margin: 0 auto !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-}
-
-/* 文章页面的 layout 容器保持一致 */
-.layout.hide-aside {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-}
-
-/* 文章卡片容器对齐 */
+/* 文章头部信息居中 */
 #post-info {
-  max-width: 780px !important;
-  margin: 0 auto 20px auto !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
+  max-width: 100% !important;
+  margin: 0 0 20px 0 !important;
+  padding: 20px 40px !important;
 }
 
-/* 移动端适配文章宽度 */
+/* 页面头部（封面）对齐 */
+#page-header.post-bg {
+  width: 100% !important;
+}
+
+/* 文章标题容器居中 */
+#post-info #post-title {
+  text-align: center !important;
+}
+
+/* 移动端适配 */
 @media screen and (max-width: 768px) {
-  #article-container {
+  #post {
     max-width: 100% !important;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+  }
+
+  #article-container {
+    padding: 15px 20px !important;
   }
 
   #post-info {
-    max-width: 100% !important;
+    padding: 15px 20px !important;
+  }
+
+  .layout {
     padding-left: 15px !important;
     padding-right: 15px !important;
   }
