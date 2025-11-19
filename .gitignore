@@ -7,6 +7,13 @@ public/
 .deploy*/
 _multiconfig.yml
 package-lock.json
-yarn.lock
+yarn.locks
+
+# AI 助手相关文件（不上传到 GitHub）
 CLAUDE.md
-"���˲���ά���̳�.md" 
+.claude/
+.spec-workflow/
+
+# 临时文件
+"机器学习：第一次大作业维护博主.md"
+"个人博客维护教程.md"
