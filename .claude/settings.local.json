@@ -5,7 +5,10 @@
       "Bash(npx hexo clean:*)",
       "Bash(npx hexo generate:*)",
       "Bash(git add:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(git rm:*)",
+      "WebFetch(domain:bokey.space)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

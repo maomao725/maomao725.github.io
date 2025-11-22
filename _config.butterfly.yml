@@ -271,18 +271,4 @@ wordcount:
 pwa:
   enable: false
 
-# Inject
-inject:
-  head:
-    - <link rel="stylesheet" href="/css/custom.css">
-  bottom:
-    - <script src="/js/nav-scroll.js"></script>
-    - <script src="/js/runtime.js"></script>
-    - <script src="/js/wordcount.js"></script>
-
-# Disable copy
-disable_copy: false
-disable_selection: false
-
-# Dev console
 console: false
