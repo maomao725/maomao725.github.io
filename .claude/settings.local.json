@@ -8,7 +8,10 @@
       "Bash(test:*)",
       "Bash(git rm:*)",
       "WebFetch(domain:bokey.space)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git config:*)",
+      "Bash(GIT_SSL_NO_VERIFY=true git push:*)"
     ],
     "deny": [],
     "ask": []
