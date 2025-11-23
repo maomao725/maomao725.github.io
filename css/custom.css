@@ -1,101 +1,104 @@
-/* 自定义样式 - Bokey Space 风格复刻版 */
+/* 自定义样式 - Avant-Garde Obsidian & Amber Edition */
 
 /* ========== 0. 全局变量定义 (Design Tokens) ========== */
 :root {
-  /* Light Mode Defaults */
-  --main-text-color: #333333;
-  --secondary-text-color: #777777;
-  --main-background-color: #fafafa;
-  --main-car-color: #ffffff;
-  --secondary-car-color: #fcfcfc;
-  --success-color: #FF6600;
+  /* Light Mode Defaults - Alabaster & Orange */
+  --main-text-color: #1d1d1f;
+  --secondary-text-color: #86868b;
+  --main-background-color: #f5f5f7;
+  --main-car-color: rgba(255, 255, 255, 0.8);
+  --secondary-car-color: #ffffff;
+  --success-color: #ff6600;
+  /* Vibrant Orange */
   --info-color: #ff983f;
+  --accent-shadow: rgba(255, 102, 0, 0.15);
 
   /* Typography */
-  --large-font-weight: 900;
-  --medium-font-weight: 400;
-  --small-font-weight: 100;
+  --font-family: 'Outfit', 'Inter', 'Noto Sans SC', sans-serif;
+  --large-font-weight: 800;
+  --medium-font-weight: 500;
+  --small-font-weight: 300;
 
   /* Layout */
-  --card-radius: 16px;
-  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  --card-hover-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  --card-radius: 24px;
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  --card-hover-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  --glass-blur: blur(20px);
 }
 
 [data-theme="dark"] {
-  /* Dark Mode Overrides */
-  --main-text-color: #ffffff;
-  --secondary-text-color: #cccccc;
-  --main-background-color: #0e0e0e;
-  --main-car-color: #161616;
-  --secondary-car-color: #181818;
-  --success-color: #0085ff;
-  /* Electric Blue */
-  --info-color: #71c4ef;
+  /* Dark Mode Overrides - Obsidian & Amber */
+  --main-text-color: #e5e5e5;
+  --secondary-text-color: #a1a1a1;
+  --main-background-color: #0a0a0a;
+  /* Obsidian */
+  --main-car-color: rgba(20, 20, 20, 0.6);
+  --secondary-car-color: #141414;
+  --success-color: #ffb700;
+  /* Amber Gold */
+  --info-color: #ffd000;
+  --accent-shadow: rgba(255, 183, 0, 0.15);
 
-  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  --card-hover-shadow: 0 12px 32px rgba(0, 133, 255, 0.15);
-  /* Blue glow */
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --card-hover-shadow: 0 20px 40px -10px rgba(255, 183, 0, 0.1);
 }
 
 /* ========== 1. 全局基础样式 ========== */
 body {
   background-color: var(--main-background-color) !important;
-  background-image: none !important;
-  /* 移除之前的渐变背景 */
+  background-image: radial-gradient(circle at 50% 0%, var(--accent-shadow), transparent 40%) !important;
   color: var(--main-text-color) !important;
-  font-family: 'Inter', 'Noto Sans SC', sans-serif;
-  /* 现代化字体 */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-family);
+  transition: background-color 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.5s ease;
 }
 
 /* 选中文本颜色 */
 ::selection {
   background: var(--success-color);
-  color: #fff;
+  color: #000;
 }
 
 /* 滚动条美化 */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--main-background-color);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--secondary-text-color);
-  border-radius: 3px;
-  opacity: 0.5;
+  border-radius: 2px;
+  opacity: 0.3;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--success-color);
 }
 
-/* ========== 2. 导航栏 (Glassmorphism) ========== */
+/* ========== 2. 导航栏 (Premium Glassmorphism) ========== */
 #nav {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.01) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.4s ease;
 }
 
 [data-theme="dark"] #nav {
-  background: rgba(14, 14, 14, 0.6) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 10, 0.3) !important;
 }
 
 #nav.nav-fixed {
-  background: var(--main-car-color) !important;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] #nav.nav-fixed {
-  background: rgba(22, 22, 22, 0.9) !important;
+  background: rgba(20, 20, 20, 0.7) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* 导航栏文字 */
@@ -104,29 +107,35 @@ body {
 #nav #nav-right div i {
   color: var(--main-text-color) !important;
   font-weight: 600;
+  letter-spacing: 0.5px;
   text-shadow: none !important;
 }
 
 #nav .menus_items .menus_item .menus_item_child:hover {
   color: var(--success-color) !important;
+  transform: translateY(-1px);
 }
 
-/* ========== 3. 卡片样式 (Cards) ========== */
+/* ========== 3. 卡片样式 (Avant-Garde Cards) ========== */
 .recent-post-item,
 #aside-content .card-widget,
 .layout>.recent-posts .recent-post-item {
   background: var(--main-car-color) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: var(--card-radius) !important;
   box-shadow: var(--card-shadow) !important;
   border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  margin-bottom: 24px !important;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  margin-bottom: 32px !important;
+  overflow: hidden;
+  /* For inner image zoom */
 }
 
-/* 悬停效果 */
+/* 悬停效果 - 3D Lift */
 .recent-post-item:hover,
 #aside-content .card-widget:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.01);
   box-shadow: var(--card-hover-shadow) !important;
   border-color: var(--success-color) !important;
 }
@@ -135,310 +144,198 @@ body {
 .recent-post-info .article-title {
   color: var(--main-text-color) !important;
   font-weight: var(--large-font-weight);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  line-height: 1.3;
+  margin-bottom: 12px;
 }
 
 .recent-post-info .article-title:hover {
   color: var(--success-color) !important;
+  background: linear-gradient(90deg, var(--success-color), var(--info-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* 文章元信息 */
 .recent-post-info .article-meta-wrap {
   color: var(--secondary-text-color) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .recent-post-info .article-meta-wrap i {
   color: var(--success-color) !important;
 }
 
-/* ========== 4. 首页头部 (Hero Section) ========== */
+/* ========== 4. 首页头部 (Dynamic Hero) ========== */
 #page-header.full_page {
-  background-color: var(--main-background-color) !important;
-  /* 这里可以添加一个动态背景图或Canvas动画，后续实现 */
+  background-color: transparent !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 动态背景光晕 */
+#page-header.full_page::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, var(--accent-shadow), transparent 50%);
+  animation: rotate 20s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 #site-title {
   color: var(--main-text-color) !important;
   font-weight: 900 !important;
-  font-size: 4rem !important;
+  font-size: 5rem !important;
   text-shadow: none !important;
-  letter-spacing: -2px;
+  letter-spacing: -3px;
+  line-height: 1;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--main-text-color) 30%, var(--secondary-text-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #site-subtitle {
-  color: var(--secondary-text-color) !important;
-  font-weight: 400 !important;
+  color: var(--success-color) !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* ========== 5. 页脚 (Footer) ========== */
+/* ========== 5. 页脚 (Minimalist Footer) ========== */
 #footer {
-  background: var(--secondary-car-color) !important;
+  background: transparent !important;
   color: var(--secondary-text-color) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
 }
 
 #footer::before {
   display: none;
-  /* 移除遮罩 */
 }
 
 #footer-wrap {
   color: var(--secondary-text-color) !important;
+  font-weight: 300;
 }
 
 #footer-wrap a {
   color: var(--main-text-color) !important;
+  font-weight: 600;
+  position: relative;
+}
+
+#footer-wrap a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--success-color);
+  transition: width 0.3s ease;
+}
+
+#footer-wrap a:hover::after {
+  width: 100%;
 }
 
 #footer-wrap a:hover {
   color: var(--success-color) !important;
-  text-decoration: underline;
+  text-decoration: none !important;
 }
 
 /* ========== 6. 侧边栏组件优化 ========== */
 /* 个人信息卡片 */
 .card-info .author-info__name {
   color: var(--main-text-color) !important;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.8rem;
 }
 
 .card-info .author-info__description {
   color: var(--secondary-text-color) !important;
+  font-weight: 500;
 }
 
-/* 按钮样式 */
+/* 按钮样式 - Neumorphism-ish */
 #card-info-btn {
   background: var(--success-color) !important;
-  color: #fff !important;
-  border-radius: 8px !important;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-#card-info-btn:hover {
-  background: var(--info-color) !important;
-  transform: scale(1.05);
-}
-
-/* 标签云 */
-/* 移除之前的渐变背景 */
-color: var(--main-text-color) !important;
-font-family: 'Inter',
-'Noto Sans SC',
-sans-serif;
-/* 现代化字体 */
-transition: background-color 0.3s ease,
-color 0.3s ease;
-}
-
-/* 选中文本颜色 */
-::selection {
-  background: var(--success-color);
-  color: #fff;
-}
-
-/* 滚动条美化 */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--main-background-color);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--secondary-text-color);
-  border-radius: 3px;
-  opacity: 0.5;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--success-color);
-}
-
-/* ========== 2. 导航栏 (Glassmorphism) ========== */
-#nav {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
-}
-
-[data-theme="dark"] #nav {
-  background: rgba(14, 14, 14, 0.6) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-#nav.nav-fixed {
-  background: var(--main-car-color) !important;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="dark"] #nav.nav-fixed {
-  background: rgba(22, 22, 22, 0.9) !important;
-}
-
-/* 导航栏文字 */
-#nav .menus_items .menus_item .menus_item_child,
-#nav #blog-info>a,
-#nav #nav-right div i {
-  color: var(--main-text-color) !important;
-  font-weight: 600;
-  text-shadow: none !important;
-}
-
-#nav .menus_items .menus_item .menus_item_child:hover {
-  color: var(--success-color) !important;
-}
-
-/* ========== 3. 卡片样式 (Cards) ========== */
-.recent-post-item,
-#aside-content .card-widget,
-.layout>.recent-posts .recent-post-item {
-  background: var(--main-car-color) !important;
-  border-radius: var(--card-radius) !important;
-  box-shadow: var(--card-shadow) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  margin-bottom: 24px !important;
-}
-
-/* 悬停效果 */
-.recent-post-item:hover,
-#aside-content .card-widget:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--card-hover-shadow) !important;
-  border-color: var(--success-color) !important;
-}
-
-/* 文章标题 */
-.recent-post-info .article-title {
-  color: var(--main-text-color) !important;
-  font-weight: var(--large-font-weight);
-  font-size: 1.5rem;
-}
-
-.recent-post-info .article-title:hover {
-  color: var(--success-color) !important;
-}
-
-/* 文章元信息 */
-.recent-post-info .article-meta-wrap {
-  color: var(--secondary-text-color) !important;
-}
-
-.recent-post-info .article-meta-wrap i {
-  color: var(--success-color) !important;
-}
-
-/* ========== 4. 首页头部 (Hero Section) ========== */
-#page-header.full_page {
-  background-color: var(--main-background-color) !important;
-  /* 这里可以添加一个动态背景图或Canvas动画，后续实现 */
-}
-
-#site-title {
-  color: var(--main-text-color) !important;
-  font-weight: 900 !important;
-  font-size: 4rem !important;
-  text-shadow: none !important;
-  letter-spacing: -2px;
-}
-
-#site-subtitle {
-  color: var(--secondary-text-color) !important;
-  font-weight: 400 !important;
-}
-
-/* ========== 5. 页脚 (Footer) ========== */
-#footer {
-  background: var(--secondary-car-color) !important;
-  color: var(--secondary-text-color) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-#footer::before {
-  display: none;
-  /* 移除遮罩 */
-}
-
-#footer-wrap {
-  color: var(--secondary-text-color) !important;
-}
-
-#footer-wrap a {
-  color: var(--main-text-color) !important;
-}
-
-#footer-wrap a:hover {
-  color: var(--success-color) !important;
-  text-decoration: underline;
-}
-
-/* ========== 6. 侧边栏组件优化 ========== */
-/* 个人信息卡片 */
-.card-info .author-info__name {
-  color: var(--main-text-color) !important;
+  color: #000 !important;
+  /* Contrast text for Amber/Orange */
+  border-radius: 12px !important;
   font-weight: 700;
-}
-
-.card-info .author-info__description {
-  color: var(--secondary-text-color) !important;
-}
-
-/* 按钮样式 */
-#card-info-btn {
-  background: var(--success-color) !important;
-  color: #fff !important;
-  border-radius: 8px !important;
-  font-weight: 600;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--accent-shadow);
 }
 
 #card-info-btn:hover {
   background: var(--info-color) !important;
-  transform: scale(1.05);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px var(--accent-shadow);
 }
 
 /* 标签云 */
 .card-tag-cloud a {
   color: var(--secondary-text-color) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin: 4px !important;
   transition: all 0.3s ease;
 }
 
 .card-tag-cloud a:hover {
-  color: var(--success-color) !important;
-  font-size: 1.2em !important;
+  color: #000 !important;
+  background: var(--success-color) !important;
+  border-color: var(--success-color) !important;
+  transform: scale(1.1);
 }
 
 /* ========== 7. 移动端适配 ========== */
 @media screen and (max-width: 768px) {
   #site-title {
-    font-size: 2.5rem !important;
+    font-size: 3rem !important;
   }
 
   .recent-post-item {
-    border-radius: 12px !important;
+    border-radius: 16px !important;
+    margin-bottom: 20px !important;
   }
 }
 
 /* ========== 8. 动态交互动画 (Animations) ========== */
-/* 初始隐藏状态 */
+/* 基础淡入动画 */
 .scroll-animation {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
-/* 触发动画状态 */
 .scroll-animation.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
-/* 依次延迟，制造层叠感 */
+/* 延迟类 */
 .scroll-animation.delay-100 {
   transition-delay: 100ms;
 }
@@ -450,10 +347,3 @@ color 0.3s ease;
 .scroll-animation.delay-300 {
   transition-delay: 300ms;
 }
-
-/* 鼠标跟随光标 (可选，如果用户需要) */
-/* 
-body {
-  cursor: url('path/to/cursor.png'), auto;
-}
-*/

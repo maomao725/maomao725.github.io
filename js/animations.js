@@ -1,63 +1,115 @@
 /**
- * 动态交互动画脚本
- * 仿照 Bokey Space 的 vueuse/motion 效果
+ * 动态交互动画脚本 - Avant-Garde Edition
+ * 包含：Scroll Reveal, 3D Tilt, Parallax Hero
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 需要添加动画的元素选择器
+    initAnimations();
+});
+
+// 监听 PJAX 完成事件 (适配 Hexo 的 PJAX)
+document.addEventListener('pjax:complete', () => {
+    initAnimations();
+});
+
+function initAnimations() {
+    initScrollReveal();
+    init3DTilt();
+    initParallax();
+}
+
+/**
+ * 1. 滚动显现动画 (Scroll Reveal)
+ */
+function initScrollReveal() {
     const animatedSelectors = [
-        '.recent-post-item', // 文章卡片
-        '#aside-content .card-widget', // 侧边栏卡片
-        '#page-header.full_page #site-title', // 首页标题
-        '#page-header.full_page #site-subtitle', // 首页副标题
-        '#footer' // 页脚
+        '.recent-post-item',
+        '#aside-content .card-widget',
+        '#page-header.full_page #site-title',
+        '#page-header.full_page #site-subtitle',
+        '#footer'
     ];
 
-    // 创建 Intersection Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                // 添加 visible 类触发动画
                 entry.target.classList.add('visible');
-                // 动画触发后停止观察，避免重复触发
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1, // 元素出现 10% 时触发
-        rootMargin: '0px 0px -50px 0px' // 稍微提前一点触发
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     });
 
-    // 为元素添加初始类并开始观察
     animatedSelectors.forEach((selector) => {
         const elements = document.querySelectorAll(selector);
         elements.forEach((el, index) => {
-            // 添加基础动画类
-            el.classList.add('scroll-animation');
-
-            // 添加延迟类，制造层叠效果 (每行3个或列表顺序)
-            // 简单的逻辑：根据 index % 3 来设置延迟
-            const delayClass = `delay-${(index % 3 + 1) * 100}`;
-            el.classList.add(delayClass);
-
-            // 开始观察
-            observer.observe(el);
+            if (!el.classList.contains('scroll-animation')) {
+                el.classList.add('scroll-animation');
+                // 瀑布流延迟
+                const delayClass = `delay-${(index % 3 + 1) * 100}`;
+                el.classList.add(delayClass);
+                observer.observe(el);
+            }
         });
     });
+}
 
-    // 监听 PJAX 完成事件 (如果开启了 PJAX)
-    document.addEventListener('pjax:complete', () => {
-        // 重新初始化动画
-        animatedSelectors.forEach((selector) => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach((el, index) => {
-                if (!el.classList.contains('scroll-animation')) {
-                    el.classList.add('scroll-animation');
-                    const delayClass = `delay-${(index % 3 + 1) * 100}`;
-                    el.classList.add(delayClass);
-                    observer.observe(el);
-                }
-            });
-        });
+/**
+ * 2. 3D 倾斜效果 (Vanilla 3D Tilt)
+ * 应用于文章卡片和侧边栏卡片
+ */
+function init3DTilt() {
+    const cards = document.querySelectorAll('.recent-post-item, #aside-content .card-widget');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', handleMouseMove);
+        card.addEventListener('mouseleave', handleMouseLeave);
     });
-});
+
+    function handleMouseMove(e) {
+        const card = this;
+        const cardRect = card.getBoundingClientRect();
+        const cardWidth = cardRect.width;
+        const cardHeight = cardRect.height;
+        const centerX = cardRect.left + cardWidth / 2;
+        const centerY = cardRect.top + cardHeight / 2;
+        const mouseX = e.clientX - centerX;
+        const mouseY = e.clientY - centerY;
+
+        // 旋转角度计算 (最大旋转 5deg)
+        const rotateX = ((mouseY / cardHeight / 2) * -10).toFixed(2);
+        const rotateY = ((mouseX / cardWidth / 2) * 10).toFixed(2);
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    }
+
+    function handleMouseLeave(e) {
+        this.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
+    }
+}
+
+/**
+ * 3. 视差滚动效果 (Parallax Hero)
+ * 仅在首页全屏 Header 生效
+ */
+function initParallax() {
+    const hero = document.getElementById('page-header');
+    const siteTitle = document.getElementById('site-title');
+    const siteSubtitle = document.getElementById('site-subtitle');
+
+    if (hero && hero.classList.contains('full_page')) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            if (scrollY > window.innerHeight) return; // 离开首屏不计算
+
+            // 标题移动速度慢于滚动速度
+            if (siteTitle) siteTitle.style.transform = `translateY(${scrollY * 0.5}px)`;
+            if (siteSubtitle) siteSubtitle.style.transform = `translateY(${scrollY * 0.7}px)`;
+
+            // 背景也可以做视差，如果 CSS 中设置了背景图
+            // hero.style.backgroundPositionY = `${scrollY * 0.5}px`;
+        });
+    }
+}
