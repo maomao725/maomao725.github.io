@@ -413,3 +413,22 @@ body {
 .scroll-animation.delay-300 {
   transition-delay: 300ms;
 }
+
+/* ========== 9. 文章页与阅读模式间距优化 ========== */
+/* 避免导航栏遮挡文章标题与元信息 */
+#page-header.post-bg #post-info {
+  padding-top: 72px;
+}
+
+@media screen and (max-width: 768px) {
+  #page-header.post-bg #post-info {
+    padding-top: 60px;
+  }
+}
+
+/* 阅读模式下缩小标题与正文的间距 */
+.read-mode #page-header {
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 24px 0 12px;
+}

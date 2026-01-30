@@ -1,4 +1,4 @@
-.DS_Store
+﻿.DS_Store
 Thumbs.db
 db.json
 *.log
@@ -12,6 +12,7 @@ yarn.lock
 # Claude Code 相关文件
 .claude/
 CLAUDE.md
+CODEX.md
 个人博客维护教程.md
 *.md~
 
