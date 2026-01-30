@@ -116,28 +116,41 @@ body {
   transform: translateY(-1px);
 }
 
-/* ========== 3. 卡片样式 (Avant-Garde Cards) ========== */
+/* ========== 3. 卡片样式 (Avant-Garde Cards with Glass Effect) ========== */
 .recent-post-item,
 #aside-content .card-widget,
 .layout>.recent-posts .recent-post-item {
-  background: var(--main-car-color) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(20, 20, 20, 0.6) !important;
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
   border-radius: var(--card-radius) !important;
-  box-shadow: var(--card-shadow) !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: var(--card-shadow), 0 0 40px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   margin-bottom: 32px !important;
   overflow: hidden;
-  /* For inner image zoom */
+}
+
+/* 亮色模式卡片 */
+[data-theme="light"] .recent-post-item,
+[data-theme="light"] #aside-content .card-widget {
+  background: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: var(--card-shadow), 0 0 20px rgba(0, 0, 0, 0.05) !important;
 }
 
 /* 悬停效果 - 3D Lift */
 .recent-post-item:hover,
 #aside-content .card-widget:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: var(--card-hover-shadow) !important;
+  box-shadow: var(--card-hover-shadow), 0 0 60px rgba(255, 183, 0, 0.2) !important;
   border-color: var(--success-color) !important;
+  background: rgba(20, 20, 20, 0.75) !important;
+}
+
+[data-theme="light"] .recent-post-item:hover,
+[data-theme="light"] #aside-content .card-widget:hover {
+  background: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: var(--card-hover-shadow), 0 0 40px rgba(255, 102, 0, 0.15) !important;
 }
 
 /* 文章标题 */
@@ -167,35 +180,44 @@ body {
   color: var(--success-color) !important;
 }
 
-/* ========== 4. 首页头部 (Dynamic Hero) ========== */
+/* ========== 4. 首页头部 (Dynamic Hero with Fullscreen Background) ========== */
 #page-header.full_page {
-  background-color: transparent !important;
+  height: 100vh !important;
+  min-height: 600px !important;
   position: relative;
   overflow: hidden;
+  background: var(--main-background-color) url("/img/background.png") center/cover no-repeat !important;
 }
 
-/* 动态背景光晕 */
+/* 渐变遮罩层 - 从透明到背景色的平滑过渡 */
 #page-header.full_page::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, var(--accent-shadow), transparent 50%);
-  animation: rotate 20s linear infinite;
-  z-index: -1;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(10, 10, 10, 0.2) 0%,
+    rgba(10, 10, 10, 0.3) 50%,
+    rgba(10, 10, 10, 0.7) 85%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  z-index: 0;
   pointer-events: none;
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
+/* 亮色模式的遮罩 */
+[data-theme="light"] #page-header.full_page::before {
+  background: linear-gradient(180deg,
+    rgba(245, 245, 247, 0.2) 0%,
+    rgba(245, 245, 247, 0.3) 50%,
+    rgba(245, 245, 247, 0.7) 85%,
+    rgba(245, 245, 247, 0.95) 100%
+  );
+}
 
-  100% {
-    transform: rotate(360deg);
-  }
+/* 确保标题在遮罩层上方 */
+#page-header.full_page #site-info {
+  position: relative;
+  z-index: 1;
 }
 
 #site-title {
@@ -219,21 +241,43 @@ body {
   text-transform: uppercase;
 }
 
-/* ========== 5. 页脚 (Minimalist Footer) ========== */
+/* ========== 5. 页脚 (Minimalist Footer with Gradient Transition) ========== */
 #footer {
-  background: transparent !important;
+  background: linear-gradient(180deg,
+    rgba(10, 10, 10, 0) 0%,
+    rgba(10, 10, 10, 0.6) 20%,
+    rgba(10, 10, 10, 0.85) 50%,
+    rgba(8, 8, 8, 1) 100%
+  ) !important;
   color: var(--secondary-text-color) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+}
+
+[data-theme="light"] #footer {
+  background: linear-gradient(180deg,
+    rgba(245, 245, 247, 0) 0%,
+    rgba(245, 245, 247, 0.6) 20%,
+    rgba(245, 245, 247, 0.9) 50%,
+    rgba(245, 245, 247, 1) 100%
+  ) !important;
 }
 
 #footer::before {
-  display: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(1000px 300px at 50% 0%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
 }
 
 #footer-wrap {
   color: var(--secondary-text-color) !important;
   font-weight: 300;
+  position: relative;
+  z-index: 1;
 }
 
 #footer-wrap a {
@@ -311,6 +355,11 @@ body {
 
 /* ========== 7. 移动端适配 ========== */
 @media screen and (max-width: 768px) {
+  #page-header.full_page {
+    height: 100vh !important;
+    min-height: 500px !important;
+  }
+
   #site-title {
     font-size: 3rem !important;
   }
