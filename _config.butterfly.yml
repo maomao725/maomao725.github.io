@@ -259,3 +259,14 @@ pwa:
   enable: false
 
 console: false
+
+# Inject custom CSS and JS
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/custom.css">
+  bottom:
+    - <script src="/js/nav-scroll.js"></script>
+    - <script src="/js/runtime.js"></script>
+    - <script src="/js/wordcount.js"></script>
+    - <script src="/js/theme-toggle.js"></script>
+    - <script src="/js/animations.js"></script>
