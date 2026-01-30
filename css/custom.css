@@ -432,3 +432,16 @@ body {
   min-height: 0 !important;
   padding: 24px 0 12px;
 }
+
+/* ========== 10. 侧栏位置调整（右侧改为左侧） ========== */
+@media screen and (min-width: 900px) {
+  #aside-content {
+    order: -1;
+    padding-right: 15px;
+    padding-left: 0;
+  }
+
+  .layout > div:first-child {
+    order: 1;
+  }
+}
