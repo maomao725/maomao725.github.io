@@ -445,3 +445,84 @@ body {
     order: 1;
   }
 }
+
+/* ========== 11. 照片墙时间轴 ========== */
+.photo-timeline {
+  position: relative;
+  margin: 32px 0 16px;
+  padding-left: 28px;
+}
+
+.photo-timeline::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--success-color), rgba(255, 255, 255, 0));
+  opacity: 0.6;
+}
+
+.photo-timeline-item {
+  position: relative;
+  margin: 24px 0 32px;
+  padding-left: 32px;
+}
+
+.photo-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--success-color);
+  box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.18);
+}
+
+.photo-timeline-date {
+  font-weight: 700;
+  color: var(--main-text-color);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.photo-timeline-card {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  box-shadow: var(--card-shadow);
+  padding: 14px;
+  overflow: hidden;
+}
+
+[data-theme="light"] .photo-timeline-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.photo-timeline-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.photo-timeline-desc {
+  margin-top: 10px;
+  color: var(--secondary-text-color);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+@media screen and (max-width: 768px) {
+  .photo-timeline {
+    padding-left: 18px;
+  }
+
+  .photo-timeline-item {
+    padding-left: 24px;
+  }
+}
