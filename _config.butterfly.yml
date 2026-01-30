@@ -183,7 +183,7 @@ related_post:
 # Dark mode
 darkmode:
   enable: true
-  button: false
+  button: true
   autoChangeMode: false
 
 # CDN settings
@@ -268,5 +268,4 @@ inject:
     - <script src="/js/nav-scroll.js"></script>
     - <script src="/js/runtime.js"></script>
     - <script src="/js/wordcount.js"></script>
-    - <script src="/js/theme-toggle.js"></script>
     - <script src="/js/animations.js"></script>

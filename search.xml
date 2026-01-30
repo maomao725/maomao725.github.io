@@ -61,6 +61,92 @@
       </tags>
   </entry>
   <entry>
+    <title>GitHub Pages部署指南：从零到一搭建个人博客</title>
+    <url>/2025/09/14/github-pages-deployment-guide/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GitHub Pages是GitHub提供的免费静态网站托管服务，非常适合用来部署个人博客、项目文档等静态网站。本文将详细介绍如何使用GitHub Pages部署博客。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="1-创建GitHub仓库"><a href="#1-创建GitHub仓库" class="headerlink" title="1. 创建GitHub仓库"></a>1. 创建GitHub仓库</h3><p>首先需要在GitHub上创建一个新的仓库：</p>
+<ul>
+<li>仓库名格式：<code>username.github.io</code>（其中username是你的GitHub用户名）</li>
+<li>设置为Public仓库</li>
+<li>初始化时可以添加README文件</li>
+</ul>
+<h3 id="2-本地环境准备"><a href="#2-本地环境准备" class="headerlink" title="2. 本地环境准备"></a>2. 本地环境准备</h3><p>确保本地已安装：</p>
+<ul>
+<li>Git</li>
+<li>Node.js（如果使用Hexo等静态网站生成器）</li>
+</ul>
+<h2 id="部署方式"><a href="#部署方式" class="headerlink" title="部署方式"></a>部署方式</h2><h3 id="方式一：直接推送静态文件"><a href="#方式一：直接推送静态文件" class="headerlink" title="方式一：直接推送静态文件"></a>方式一：直接推送静态文件</h3><p>最简单的方式是直接将生成的静态文件推送到仓库的main分支：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/username/username.github.io.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> username.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span> &gt; index.html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交并推送</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit&quot;</span></span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式二：使用gh-pages分支"><a href="#方式二：使用gh-pages分支" class="headerlink" title="方式二：使用gh-pages分支"></a>方式二：使用gh-pages分支</h3><p>对于使用静态网站生成器的项目，推荐使用gh-pages分支：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装hexo-deployer-git</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置_config.yml</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/username/username.github.io.git</span><br><span class="line">  branch: gh-pages</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署</span></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义域名配置"><a href="#自定义域名配置" class="headerlink" title="自定义域名配置"></a>自定义域名配置</h2><h3 id="1-添加CNAME文件"><a href="#1-添加CNAME文件" class="headerlink" title="1. 添加CNAME文件"></a>1. 添加CNAME文件</h3><p>在仓库根目录创建CNAME文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yourdomain.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-DNS配置"><a href="#2-DNS配置" class="headerlink" title="2. DNS配置"></a>2. DNS配置</h3><p>在域名服务商处配置DNS记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># A记录</span><br><span class="line">@ 185.199.108.153</span><br><span class="line">@ 185.199.109.153</span><br><span class="line">@ 185.199.110.153</span><br><span class="line">@ 185.199.111.153</span><br><span class="line"></span><br><span class="line"># CNAME记录（可选）</span><br><span class="line">www username.github.io</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-启用HTTPS"><a href="#3-启用HTTPS" class="headerlink" title="3. 启用HTTPS"></a>3. 启用HTTPS</h3><p>在仓库Settings → Pages中：</p>
+<ul>
+<li>选择正确的分支</li>
+<li>勾选”Enforce HTTPS”</li>
+</ul>
+<h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><h3 id="GitHub-Actions配置"><a href="#GitHub-Actions配置" class="headerlink" title="GitHub Actions配置"></a>GitHub Actions配置</h3><p>创建<code>.github/workflows/deploy.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">to</span> <span class="string">GitHub</span> <span class="string">Pages</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span> [ <span class="string">main</span> ]</span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    </span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">    </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/setup-node@v2</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">node-version:</span> <span class="string">&#x27;16&#x27;</span></span><br><span class="line">        </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">      </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line">      </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常见问题解决"><a href="#常见问题解决" class="headerlink" title="常见问题解决"></a>常见问题解决</h2><h3 id="1-404错误"><a href="#1-404错误" class="headerlink" title="1. 404错误"></a>1. 404错误</h3><ul>
+<li>检查仓库名是否正确</li>
+<li>确认分支设置是否正确</li>
+<li>验证index.html文件是否存在</li>
+</ul>
+<h3 id="2-自定义域名不生效"><a href="#2-自定义域名不生效" class="headerlink" title="2. 自定义域名不生效"></a>2. 自定义域名不生效</h3><ul>
+<li>检查CNAME文件内容</li>
+<li>验证DNS配置是否正确</li>
+<li>等待DNS传播（可能需要24小时）</li>
+</ul>
+<h3 id="3-样式文件加载失败"><a href="#3-样式文件加载失败" class="headerlink" title="3. 样式文件加载失败"></a>3. 样式文件加载失败</h3><p>检查配置文件中的URL设置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://yourdomain.com</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="1-图片优化"><a href="#1-图片优化" class="headerlink" title="1. 图片优化"></a>1. 图片优化</h3><ul>
+<li>使用WebP格式</li>
+<li>压缩图片大小</li>
+<li>使用CDN加速</li>
+</ul>
+<h3 id="2-代码压缩"><a href="#2-代码压缩" class="headerlink" title="2. 代码压缩"></a>2. 代码压缩</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装压缩插件</span></span><br><span class="line">npm install hexo-html-minifier --save</span><br><span class="line">npm install hexo-clean-css --save</span><br><span class="line">npm install hexo-uglify --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-缓存策略"><a href="#3-缓存策略" class="headerlink" title="3. 缓存策略"></a>3. 缓存策略</h3><p>在<code>_config.yml</code>中配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 静态文件缓存</span></span><br><span class="line"><span class="attr">static_prefix:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">prefix:</span> <span class="string">/static</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="监控与分析"><a href="#监控与分析" class="headerlink" title="监控与分析"></a>监控与分析</h2><h3 id="1-Google-Analytics"><a href="#1-Google-Analytics" class="headerlink" title="1. Google Analytics"></a>1. Google Analytics</h3><p>添加跟踪代码到主题模板中：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Google Analytics --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">dataLayer</span> = <span class="variable language_">window</span>.<span class="property">dataLayer</span> || [];</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">gtag</span>(<span class="params"></span>)&#123;dataLayer.<span class="title function_">push</span>(<span class="variable language_">arguments</span>);&#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">gtag</span>(<span class="string">&#x27;js&#x27;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>());</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">gtag</span>(<span class="string">&#x27;config&#x27;</span>, <span class="string">&#x27;GA_TRACKING_ID&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-网站地图"><a href="#2-网站地图" class="headerlink" title="2. 网站地图"></a>2. 网站地图</h3><p>生成并提交sitemap.xml：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装sitemap插件</span></span><br><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置_config.yml</span></span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>GitHub Pages提供了一个简单、免费且可靠的静态网站托管解决方案。通过合理的配置和优化，可以搭建出性能优秀的个人博客。</p>
+<p>关键要点：</p>
+<ul>
+<li>选择合适的部署方式</li>
+<li>正确配置自定义域名</li>
+<li>使用自动化部署提高效率</li>
+<li>持续优化网站性能</li>
+</ul>
+<p>希望这份指南能帮助你成功部署自己的GitHub Pages博客！</p>
+<hr>
+<p><em>有任何问题欢迎在评论区讨论交流！</em></p>
+]]></content>
+      <categories>
+        <category>技术教程</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+        <tag>GitHub-Pages</tag>
+        <tag>部署</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>🦋 基于Hexo+Butterfly搭建优雅博客完整指南</title>
     <url>/2025/09/14/hexo-butterfly-blog-setup/</url>
     <content><![CDATA[<h2 id="🎯-前言"><a href="#🎯-前言" class="headerlink" title="🎯 前言"></a>🎯 前言</h2><p>在这个信息爆炸的时代，拥有一个属于自己的博客平台变得越来越重要。今天我将分享如何使用 <strong>Hexo</strong> + <strong>Butterfly主题</strong> 搭建一个既美观又功能强大的个人博客。</p>
@@ -176,196 +262,6 @@
         <tag>Butterfly</tag>
         <tag>GitHub Pages</tag>
         <tag>技术分享</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GitHub Pages部署指南：从零到一搭建个人博客</title>
-    <url>/2025/09/14/github-pages-deployment-guide/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GitHub Pages是GitHub提供的免费静态网站托管服务，非常适合用来部署个人博客、项目文档等静态网站。本文将详细介绍如何使用GitHub Pages部署博客。</p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="1-创建GitHub仓库"><a href="#1-创建GitHub仓库" class="headerlink" title="1. 创建GitHub仓库"></a>1. 创建GitHub仓库</h3><p>首先需要在GitHub上创建一个新的仓库：</p>
-<ul>
-<li>仓库名格式：<code>username.github.io</code>（其中username是你的GitHub用户名）</li>
-<li>设置为Public仓库</li>
-<li>初始化时可以添加README文件</li>
-</ul>
-<h3 id="2-本地环境准备"><a href="#2-本地环境准备" class="headerlink" title="2. 本地环境准备"></a>2. 本地环境准备</h3><p>确保本地已安装：</p>
-<ul>
-<li>Git</li>
-<li>Node.js（如果使用Hexo等静态网站生成器）</li>
-</ul>
-<h2 id="部署方式"><a href="#部署方式" class="headerlink" title="部署方式"></a>部署方式</h2><h3 id="方式一：直接推送静态文件"><a href="#方式一：直接推送静态文件" class="headerlink" title="方式一：直接推送静态文件"></a>方式一：直接推送静态文件</h3><p>最简单的方式是直接将生成的静态文件推送到仓库的main分支：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/username/username.github.io.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> username.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span> &gt; index.html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交并推送</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit&quot;</span></span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
-
-<h3 id="方式二：使用gh-pages分支"><a href="#方式二：使用gh-pages分支" class="headerlink" title="方式二：使用gh-pages分支"></a>方式二：使用gh-pages分支</h3><p>对于使用静态网站生成器的项目，推荐使用gh-pages分支：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装hexo-deployer-git</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置_config.yml</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/username/username.github.io.git</span><br><span class="line">  branch: gh-pages</span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署</span></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<h2 id="自定义域名配置"><a href="#自定义域名配置" class="headerlink" title="自定义域名配置"></a>自定义域名配置</h2><h3 id="1-添加CNAME文件"><a href="#1-添加CNAME文件" class="headerlink" title="1. 添加CNAME文件"></a>1. 添加CNAME文件</h3><p>在仓库根目录创建CNAME文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yourdomain.com</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-DNS配置"><a href="#2-DNS配置" class="headerlink" title="2. DNS配置"></a>2. DNS配置</h3><p>在域名服务商处配置DNS记录：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># A记录</span><br><span class="line">@ 185.199.108.153</span><br><span class="line">@ 185.199.109.153</span><br><span class="line">@ 185.199.110.153</span><br><span class="line">@ 185.199.111.153</span><br><span class="line"></span><br><span class="line"># CNAME记录（可选）</span><br><span class="line">www username.github.io</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-启用HTTPS"><a href="#3-启用HTTPS" class="headerlink" title="3. 启用HTTPS"></a>3. 启用HTTPS</h3><p>在仓库Settings → Pages中：</p>
-<ul>
-<li>选择正确的分支</li>
-<li>勾选”Enforce HTTPS”</li>
-</ul>
-<h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><h3 id="GitHub-Actions配置"><a href="#GitHub-Actions配置" class="headerlink" title="GitHub Actions配置"></a>GitHub Actions配置</h3><p>创建<code>.github/workflows/deploy.yml</code>：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">to</span> <span class="string">GitHub</span> <span class="string">Pages</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span> [ <span class="string">main</span> ]</span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    </span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">    </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/setup-node@v2</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">node-version:</span> <span class="string">&#x27;16&#x27;</span></span><br><span class="line">        </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">      </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line">      </span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">      <span class="attr">with:</span></span><br><span class="line">        <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="常见问题解决"><a href="#常见问题解决" class="headerlink" title="常见问题解决"></a>常见问题解决</h2><h3 id="1-404错误"><a href="#1-404错误" class="headerlink" title="1. 404错误"></a>1. 404错误</h3><ul>
-<li>检查仓库名是否正确</li>
-<li>确认分支设置是否正确</li>
-<li>验证index.html文件是否存在</li>
-</ul>
-<h3 id="2-自定义域名不生效"><a href="#2-自定义域名不生效" class="headerlink" title="2. 自定义域名不生效"></a>2. 自定义域名不生效</h3><ul>
-<li>检查CNAME文件内容</li>
-<li>验证DNS配置是否正确</li>
-<li>等待DNS传播（可能需要24小时）</li>
-</ul>
-<h3 id="3-样式文件加载失败"><a href="#3-样式文件加载失败" class="headerlink" title="3. 样式文件加载失败"></a>3. 样式文件加载失败</h3><p>检查配置文件中的URL设置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://yourdomain.com</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="1-图片优化"><a href="#1-图片优化" class="headerlink" title="1. 图片优化"></a>1. 图片优化</h3><ul>
-<li>使用WebP格式</li>
-<li>压缩图片大小</li>
-<li>使用CDN加速</li>
-</ul>
-<h3 id="2-代码压缩"><a href="#2-代码压缩" class="headerlink" title="2. 代码压缩"></a>2. 代码压缩</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装压缩插件</span></span><br><span class="line">npm install hexo-html-minifier --save</span><br><span class="line">npm install hexo-clean-css --save</span><br><span class="line">npm install hexo-uglify --save</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-缓存策略"><a href="#3-缓存策略" class="headerlink" title="3. 缓存策略"></a>3. 缓存策略</h3><p>在<code>_config.yml</code>中配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 静态文件缓存</span></span><br><span class="line"><span class="attr">static_prefix:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">prefix:</span> <span class="string">/static</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="监控与分析"><a href="#监控与分析" class="headerlink" title="监控与分析"></a>监控与分析</h2><h3 id="1-Google-Analytics"><a href="#1-Google-Analytics" class="headerlink" title="1. Google Analytics"></a>1. Google Analytics</h3><p>添加跟踪代码到主题模板中：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Google Analytics --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">&quot;https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">dataLayer</span> = <span class="variable language_">window</span>.<span class="property">dataLayer</span> || [];</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">gtag</span>(<span class="params"></span>)&#123;dataLayer.<span class="title function_">push</span>(<span class="variable language_">arguments</span>);&#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">gtag</span>(<span class="string">&#x27;js&#x27;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>());</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">gtag</span>(<span class="string">&#x27;config&#x27;</span>, <span class="string">&#x27;GA_TRACKING_ID&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-网站地图"><a href="#2-网站地图" class="headerlink" title="2. 网站地图"></a>2. 网站地图</h3><p>生成并提交sitemap.xml：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装sitemap插件</span></span><br><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置_config.yml</span></span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>GitHub Pages提供了一个简单、免费且可靠的静态网站托管解决方案。通过合理的配置和优化，可以搭建出性能优秀的个人博客。</p>
-<p>关键要点：</p>
-<ul>
-<li>选择合适的部署方式</li>
-<li>正确配置自定义域名</li>
-<li>使用自动化部署提高效率</li>
-<li>持续优化网站性能</li>
-</ul>
-<p>希望这份指南能帮助你成功部署自己的GitHub Pages博客！</p>
-<hr>
-<p><em>有任何问题欢迎在评论区讨论交流！</em></p>
-]]></content>
-      <categories>
-        <category>技术教程</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
-        <tag>GitHub-Pages</tag>
-        <tag>部署</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>💭 碎碎念2：沉淀与坚持</title>
-    <url>/2025/11/19/suisuinian-2/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>好吧，我又又又偷懒，不知道这是第几次了！下次一定要坚持写博客，把它当成我的秘密基地~</p>
-<h2 id="一些感悟-💡"><a href="#一些感悟-💡" class="headerlink" title="一些感悟 💡"></a>一些感悟 💡</h2><p>这一个月捏，我感觉就是最大的感受就是得不断地沉淀、谦虚下去。无论如何，总有很多人比自己优秀 ✨，哪怕可能目前学的东西比别人进度可能快了，但其实可能别人的一些方面的思维是远超于自己的，这点是得好好学习的！</p>
-<p>还有就是一定要多查资料再去问别人，不能无脑问（虽然我一直觉得自己大部分情况并没有这个情况，但是架不住有时候看资料不仔细，明明看了，但居然没发现，然后去问别人又要被自己蠢笑了…😄）</p>
-<h2 id="一些新的进展-🚀"><a href="#一些新的进展-🚀" class="headerlink" title="一些新的进展 🚀"></a>一些新的进展 🚀</h2><p>学了一些大模型，比如 BERT、GPT-2，还有网络架构 Transformer，在慢慢入门。</p>
-<p>而且也制定了一些比较好的计划 📝，但是一定要坚持，现在愈发觉得坚持是很可贵的，所以自己需要不断地坚持，而且现在有个搭子监督我，我想我会努力去完成计划，以后发博客的频率也会越来越高的。我挺想记录自己的成长的 🌱，我觉得博客是可以把我的进步进行可视化的，但得保持更新！嗯！下次一定（bushi）。等我最近把几个大模型学的差不多了，而且能自己说的很明白了，我就把我的笔记发到博客上。</p>
-<p>之前的吴恩达机器学习的系列其实因为实习的任务搁置了，最近要重拾起来，但是策略要变。我估计会快速看知识，主要是去练习做作业。</p>
-<p>对了，最近有个开心的事情 🎉，我给一个我喜欢的 b 站博主充电了！！！好像是第一次诶，我感觉我一直是一个挺会为知识付费的人，因为我希望我喜欢的创作者能感受到有人还在支持他，希望他能继续更新视频，我也很希望能看到他的视频，不希望他退了（关注了好一些博主都注销了账户😭）。</p>
-<p>然后最开心的事，这个 up 主搞了抽奖给他的充电的会员们（”股东”），我，没想到，居然能在这些人中了！！！aaa，还是三本数学书？！不过有关机器学习，而且书的质量也太好了 📚，感谢 up 主，感谢编书人，我还去 GitHub 上找了系列其他的书（一个系列七本书）的电子版，打算有空好好揣摩一下，拜读一下！</p>
-<p><img src="/img/suisuinian2-books-1.jpg" alt="中奖的机器学习书籍"></p>
-<p><img src="/img/suisuinian2-books-2.jpg" alt="厚厚的三本书"></p>
-<p>（内心 OS：真的好厚啊！简直是可以把我砸死的程度，其实知识狠狠砸进我的脑子里也未尝不可 hhh😂）</p>
-]]></content>
-      <categories>
-        <category>生活感悟</category>
-      </categories>
-      <tags>
-        <tag>碎碎念</tag>
-        <tag>个人感悟</tag>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>碎碎念1</title>
-    <url>/2025/10/13/%E2%80%9C%E7%A2%8E%E7%A2%8E%E5%BF%B51%E2%80%9D/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实一直想发博客来着，但是拖延症太严重了！遂想发这个帖子，提醒自己要多发博客！这样才可以进步</p>
-<h3 id="国庆假期"><a href="#国庆假期" class="headerlink" title="国庆假期"></a>国庆假期</h3><p>国庆假期度过的很开心~  一是因为结交了一个很好的搭子，我们俩看的剧差不多，彼此懂对方笑点，好吧！感觉是臭味相投…</p>
-<p>我和她那几天都在探店找好吃的！我们吃了台湾菜、泰国菜…还有看了一部巨难看的电影aaa（可以说吗…电影还没有周深的一首歌 燃）</p>
-<p>我大一大二其实一直没咋逛过成都！（被比赛迫害（bushi））但其实仔细一想自己也没有多厉害，反而很多东西又忘了，又得补，感觉归功于我老喜欢三天打鱼两天晒网，希望日后能改掉这个毛病！我现在洗衣服都尽量让自己快点洗，希望能通过小事让自己积极起来，不要拖延成惯了。</p>
-<p>但是也有难过的哈哈哈哈，我老打破自己计划，搞得我国庆都没咋学习，明明说好要补专业课和机器学习的知识点的，因为专业课太多了，我已经落下了好多功课aaa，振作！不喜欢现在颓废的自己</p>
-<h3 id="最近在做些什么？"><a href="#最近在做些什么？" class="headerlink" title="最近在做些什么？"></a>最近在做些什么？</h3><p>最近就在兼顾专业课和机器学习的学习，还找了一个线上实习，目前在跟着实习学习！希望能坚持下去，获得实习证明…</p>
-<p>不得不说事情真的很多！要考虑的事情也好多，加油💪！</p>
-<h3 id="新的计划"><a href="#新的计划" class="headerlink" title="新的计划"></a>新的计划</h3><ul>
-<li>开 <code>VLA</code>的学习记录</li>
-<li>专业课公式推导 、记录</li>
-<li>……</li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活日常</category>
-      </categories>
-      <tags>
-        <tag>碎碎念</tag>
-        <tag>未来计划</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>🚀 欢迎来到重启纪元</title>
-    <url>/2025/09/14/welcome-to-reboot-era/</url>
-    <content><![CDATA[<h2 id="🎉-重启纪元，全新开始"><a href="#🎉-重启纪元，全新开始" class="headerlink" title="🎉 重启纪元，全新开始"></a>🎉 重启纪元，全新开始</h2><p>欢迎来到我的个人博客「重启纪元」！</p>
-<p>正如古人所言：”<strong>自能生羽翼，何必仰云梯</strong>“。每个人都有属于自己的成长轨迹，无需依赖他人的阶梯，关键是要有勇气展开自己的翅膀。</p>
-<h3 id="✨-关于这个博客"><a href="#✨-关于这个博客" class="headerlink" title="✨ 关于这个博客"></a>✨ 关于这个博客</h3><p>这个博客基于 <strong>Hexo</strong> 框架搭建，使用了优雅的 <strong>Butterfly</strong> 主题。在这里，我将：</p>
-<ul>
-<li>📝 <strong>记录学习心得</strong>：分享技术学习过程中的思考和总结</li>
-<li>🛠️ <strong>展示项目作品</strong>：展示一些有趣的技术项目和创意实现</li>
-<li>💭 <strong>分享生活感悟</strong>：记录日常生活中的所思所想</li>
-<li>🌱 <strong>追踪成长轨迹</strong>：见证自己在技术和人生路上的成长</li>
-</ul>
-<h3 id="🎯-我的技术栈"><a href="#🎯-我的技术栈" class="headerlink" title="🎯 我的技术栈"></a>🎯 我的技术栈</h3><p>目前主要专注于以下技术领域：</p>
-<ul>
-<li><strong>编程语言</strong>: Python、C++</li>
-<li><strong>数据库</strong>: MySQL、MongoDB</li>
-<li><strong>开发工具</strong>: Git、Docker、VS Code</li>
-<li><strong>其他技术</strong>: 嵌入式开发、机器学习</li>
-</ul>
-<h3 id="🌟-博客特色"><a href="#🌟-博客特色" class="headerlink" title="🌟 博客特色"></a>🌟 博客特色</h3><ul>
-<li><strong>简洁美观</strong>: 采用现代化设计，注重阅读体验</li>
-<li><strong>响应式布局</strong>: 完美适配各种设备</li>
-<li><strong>功能丰富</strong>: 支持搜索、分类、标签、深色模式等</li>
-<li><strong>SEO优化</strong>: 更好的搜索引擎收录表现</li>
-</ul>
-<h3 id="🚀-未来规划"><a href="#🚀-未来规划" class="headerlink" title="🚀 未来规划"></a>🚀 未来规划</h3><p>在接下来的日子里，我计划：</p>
-<ol>
-<li><strong>定期更新</strong>: 保持文章的更新频率，分享最新的学习成果</li>
-<li><strong>技术深度</strong>: 不断深入学习，提升技术广度和深度</li>
-<li><strong>交流互动</strong>: 与更多技术爱好者交流学习心得</li>
-<li><strong>项目实践</strong>: 通过实际项目来验证和应用所学知识</li>
-</ol>
-<h3 id="💬-联系方式"><a href="#💬-联系方式" class="headerlink" title="💬 联系方式"></a>💬 联系方式</h3><p>如果你对我的文章有任何建议，或者想要交流技术问题，欢迎通过以下方式联系我：</p>
-<ul>
-<li><strong>GitHub</strong>: <a href="https://github.com/maomao725">https://github.com/maomao725</a></li>
-<li><strong>Email</strong>: yejiale25@gmail</li>
-</ul>
-<h3 id="🎊-写在最后"><a href="#🎊-写在最后" class="headerlink" title="🎊 写在最后"></a>🎊 写在最后</h3><p>感谢每一位访问者的到来！希望这个博客能够成为我们共同学习、成长的平台。</p>
-<p>记住那句话：<strong>自能生羽翼，何必仰云梯</strong>。</p>
-<p>让我们一起在技术的海洋中展翅高飞，创造属于自己的精彩人生！</p>
-<hr>
-<blockquote>
-<p>“The best time to plant a tree was 20 years ago. The second best time is now.”</p>
-<p>种一棵树最好的时间是二十年前，其次是现在。</p>
-</blockquote>
-<p><strong>重启纪元，从今天开始！</strong> ✨</p>
-]]></content>
-      <categories>
-        <category>生活感悟</category>
-      </categories>
-      <tags>
-        <tag>个人感悟</tag>
-        <tag>随笔</tag>
-        <tag>开始</tag>
       </tags>
   </entry>
   <entry>
@@ -824,6 +720,110 @@
       <tags>
         <tag>机器学习</tag>
         <tag>作业笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🚀 欢迎来到重启纪元</title>
+    <url>/2025/09/14/welcome-to-reboot-era/</url>
+    <content><![CDATA[<h2 id="🎉-重启纪元，全新开始"><a href="#🎉-重启纪元，全新开始" class="headerlink" title="🎉 重启纪元，全新开始"></a>🎉 重启纪元，全新开始</h2><p>欢迎来到我的个人博客「重启纪元」！</p>
+<p>正如古人所言：”<strong>自能生羽翼，何必仰云梯</strong>“。每个人都有属于自己的成长轨迹，无需依赖他人的阶梯，关键是要有勇气展开自己的翅膀。</p>
+<h3 id="✨-关于这个博客"><a href="#✨-关于这个博客" class="headerlink" title="✨ 关于这个博客"></a>✨ 关于这个博客</h3><p>这个博客基于 <strong>Hexo</strong> 框架搭建，使用了优雅的 <strong>Butterfly</strong> 主题。在这里，我将：</p>
+<ul>
+<li>📝 <strong>记录学习心得</strong>：分享技术学习过程中的思考和总结</li>
+<li>🛠️ <strong>展示项目作品</strong>：展示一些有趣的技术项目和创意实现</li>
+<li>💭 <strong>分享生活感悟</strong>：记录日常生活中的所思所想</li>
+<li>🌱 <strong>追踪成长轨迹</strong>：见证自己在技术和人生路上的成长</li>
+</ul>
+<h3 id="🎯-我的技术栈"><a href="#🎯-我的技术栈" class="headerlink" title="🎯 我的技术栈"></a>🎯 我的技术栈</h3><p>目前主要专注于以下技术领域：</p>
+<ul>
+<li><strong>编程语言</strong>: Python、C++</li>
+<li><strong>数据库</strong>: MySQL、MongoDB</li>
+<li><strong>开发工具</strong>: Git、Docker、VS Code</li>
+<li><strong>其他技术</strong>: 嵌入式开发、机器学习</li>
+</ul>
+<h3 id="🌟-博客特色"><a href="#🌟-博客特色" class="headerlink" title="🌟 博客特色"></a>🌟 博客特色</h3><ul>
+<li><strong>简洁美观</strong>: 采用现代化设计，注重阅读体验</li>
+<li><strong>响应式布局</strong>: 完美适配各种设备</li>
+<li><strong>功能丰富</strong>: 支持搜索、分类、标签、深色模式等</li>
+<li><strong>SEO优化</strong>: 更好的搜索引擎收录表现</li>
+</ul>
+<h3 id="🚀-未来规划"><a href="#🚀-未来规划" class="headerlink" title="🚀 未来规划"></a>🚀 未来规划</h3><p>在接下来的日子里，我计划：</p>
+<ol>
+<li><strong>定期更新</strong>: 保持文章的更新频率，分享最新的学习成果</li>
+<li><strong>技术深度</strong>: 不断深入学习，提升技术广度和深度</li>
+<li><strong>交流互动</strong>: 与更多技术爱好者交流学习心得</li>
+<li><strong>项目实践</strong>: 通过实际项目来验证和应用所学知识</li>
+</ol>
+<h3 id="💬-联系方式"><a href="#💬-联系方式" class="headerlink" title="💬 联系方式"></a>💬 联系方式</h3><p>如果你对我的文章有任何建议，或者想要交流技术问题，欢迎通过以下方式联系我：</p>
+<ul>
+<li><strong>GitHub</strong>: <a href="https://github.com/maomao725">https://github.com/maomao725</a></li>
+<li><strong>Email</strong>: yejiale25@gmail</li>
+</ul>
+<h3 id="🎊-写在最后"><a href="#🎊-写在最后" class="headerlink" title="🎊 写在最后"></a>🎊 写在最后</h3><p>感谢每一位访问者的到来！希望这个博客能够成为我们共同学习、成长的平台。</p>
+<p>记住那句话：<strong>自能生羽翼，何必仰云梯</strong>。</p>
+<p>让我们一起在技术的海洋中展翅高飞，创造属于自己的精彩人生！</p>
+<hr>
+<blockquote>
+<p>“The best time to plant a tree was 20 years ago. The second best time is now.”</p>
+<p>种一棵树最好的时间是二十年前，其次是现在。</p>
+</blockquote>
+<p><strong>重启纪元，从今天开始！</strong> ✨</p>
+]]></content>
+      <categories>
+        <category>生活感悟</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>开始</tag>
+        <tag>个人感悟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>💭 碎碎念2：沉淀与坚持</title>
+    <url>/2025/11/19/suisuinian-2/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>好吧，我又又又偷懒，不知道这是第几次了！下次一定要坚持写博客，把它当成我的秘密基地~</p>
+<h2 id="一些感悟-💡"><a href="#一些感悟-💡" class="headerlink" title="一些感悟 💡"></a>一些感悟 💡</h2><p>这一个月捏，我感觉就是最大的感受就是得不断地沉淀、谦虚下去。无论如何，总有很多人比自己优秀 ✨，哪怕可能目前学的东西比别人进度可能快了，但其实可能别人的一些方面的思维是远超于自己的，这点是得好好学习的！</p>
+<p>还有就是一定要多查资料再去问别人，不能无脑问（虽然我一直觉得自己大部分情况并没有这个情况，但是架不住有时候看资料不仔细，明明看了，但居然没发现，然后去问别人又要被自己蠢笑了…😄）</p>
+<h2 id="一些新的进展-🚀"><a href="#一些新的进展-🚀" class="headerlink" title="一些新的进展 🚀"></a>一些新的进展 🚀</h2><p>学了一些大模型，比如 BERT、GPT-2，还有网络架构 Transformer，在慢慢入门。</p>
+<p>而且也制定了一些比较好的计划 📝，但是一定要坚持，现在愈发觉得坚持是很可贵的，所以自己需要不断地坚持，而且现在有个搭子监督我，我想我会努力去完成计划，以后发博客的频率也会越来越高的。我挺想记录自己的成长的 🌱，我觉得博客是可以把我的进步进行可视化的，但得保持更新！嗯！下次一定（bushi）。等我最近把几个大模型学的差不多了，而且能自己说的很明白了，我就把我的笔记发到博客上。</p>
+<p>之前的吴恩达机器学习的系列其实因为实习的任务搁置了，最近要重拾起来，但是策略要变。我估计会快速看知识，主要是去练习做作业。</p>
+<p>对了，最近有个开心的事情 🎉，我给一个我喜欢的 b 站博主充电了！！！好像是第一次诶，我感觉我一直是一个挺会为知识付费的人，因为我希望我喜欢的创作者能感受到有人还在支持他，希望他能继续更新视频，我也很希望能看到他的视频，不希望他退了（关注了好一些博主都注销了账户😭）。</p>
+<p>然后最开心的事，这个 up 主搞了抽奖给他的充电的会员们（”股东”），我，没想到，居然能在这些人中了！！！aaa，还是三本数学书？！不过有关机器学习，而且书的质量也太好了 📚，感谢 up 主，感谢编书人，我还去 GitHub 上找了系列其他的书（一个系列七本书）的电子版，打算有空好好揣摩一下，拜读一下！</p>
+<p><img src="/img/suisuinian2-books-1.jpg" alt="中奖的机器学习书籍"></p>
+<p><img src="/img/suisuinian2-books-2.jpg" alt="厚厚的三本书"></p>
+<p>（内心 OS：真的好厚啊！简直是可以把我砸死的程度，其实知识狠狠砸进我的脑子里也未尝不可 hhh😂）</p>
+]]></content>
+      <categories>
+        <category>生活感悟</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>个人感悟</tag>
+        <tag>碎碎念</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>碎碎念1</title>
+    <url>/2025/10/13/%E2%80%9C%E7%A2%8E%E7%A2%8E%E5%BF%B51%E2%80%9D/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实一直想发博客来着，但是拖延症太严重了！遂想发这个帖子，提醒自己要多发博客！这样才可以进步</p>
+<h3 id="国庆假期"><a href="#国庆假期" class="headerlink" title="国庆假期"></a>国庆假期</h3><p>国庆假期度过的很开心~  一是因为结交了一个很好的搭子，我们俩看的剧差不多，彼此懂对方笑点，好吧！感觉是臭味相投…</p>
+<p>我和她那几天都在探店找好吃的！我们吃了台湾菜、泰国菜…还有看了一部巨难看的电影aaa（可以说吗…电影还没有周深的一首歌 燃）</p>
+<p>我大一大二其实一直没咋逛过成都！（被比赛迫害（bushi））但其实仔细一想自己也没有多厉害，反而很多东西又忘了，又得补，感觉归功于我老喜欢三天打鱼两天晒网，希望日后能改掉这个毛病！我现在洗衣服都尽量让自己快点洗，希望能通过小事让自己积极起来，不要拖延成惯了。</p>
+<p>但是也有难过的哈哈哈哈，我老打破自己计划，搞得我国庆都没咋学习，明明说好要补专业课和机器学习的知识点的，因为专业课太多了，我已经落下了好多功课aaa，振作！不喜欢现在颓废的自己</p>
+<h3 id="最近在做些什么？"><a href="#最近在做些什么？" class="headerlink" title="最近在做些什么？"></a>最近在做些什么？</h3><p>最近就在兼顾专业课和机器学习的学习，还找了一个线上实习，目前在跟着实习学习！希望能坚持下去，获得实习证明…</p>
+<p>不得不说事情真的很多！要考虑的事情也好多，加油💪！</p>
+<h3 id="新的计划"><a href="#新的计划" class="headerlink" title="新的计划"></a>新的计划</h3><ul>
+<li>开 <code>VLA</code>的学习记录</li>
+<li>专业课公式推导 、记录</li>
+<li>……</li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活日常</category>
+      </categories>
+      <tags>
+        <tag>碎碎念</tag>
+        <tag>未来计划</tag>
       </tags>
   </entry>
 </search>
