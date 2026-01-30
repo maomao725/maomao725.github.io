@@ -183,7 +183,7 @@ related_post:
 # Dark mode
 darkmode:
   enable: true
-  button: true
+  button: false
   autoChangeMode: false
 
 # CDN settings

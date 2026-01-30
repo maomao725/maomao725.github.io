@@ -181,16 +181,27 @@ body {
 }
 
 /* ========== 4. 首页头部 (Dynamic Hero with Fullscreen Background) ========== */
+/* 所有页面头部的背景图 */
+#page-header {
+  background: var(--main-background-color) url("/img/background.png") center/cover no-repeat !important;
+  position: relative;
+}
+
+/* 首页全屏展示 */
 #page-header.full_page {
   height: 100vh !important;
   min-height: 600px !important;
-  position: relative;
   overflow: hidden;
-  background: var(--main-background-color) url("/img/background.png") center/cover no-repeat !important;
+}
+
+/* 非首页普通高度 */
+#page-header:not(.full_page) {
+  height: 60vh !important;
+  min-height: 400px !important;
 }
 
 /* 渐变遮罩层 - 从透明到背景色的平滑过渡 */
-#page-header.full_page::before {
+#page-header::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -205,7 +216,7 @@ body {
 }
 
 /* 亮色模式的遮罩 */
-[data-theme="light"] #page-header.full_page::before {
+[data-theme="light"] #page-header::before {
   background: linear-gradient(180deg,
     rgba(245, 245, 247, 0.2) 0%,
     rgba(245, 245, 247, 0.3) 50%,
@@ -215,7 +226,8 @@ body {
 }
 
 /* 确保标题在遮罩层上方 */
-#page-header.full_page #site-info {
+#page-header #site-info,
+#page-header #post-info {
   position: relative;
   z-index: 1;
 }
@@ -358,6 +370,11 @@ body {
   #page-header.full_page {
     height: 100vh !important;
     min-height: 500px !important;
+  }
+
+  #page-header:not(.full_page) {
+    height: 50vh !important;
+    min-height: 300px !important;
   }
 
   #site-title {
